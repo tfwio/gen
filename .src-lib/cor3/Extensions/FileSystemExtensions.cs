@@ -59,8 +59,38 @@ using w32.shell;
       return file.IsFileLocked();
     }
   }
-  static class FileSystemExtensions
+  static internal class FileSystemExtensions
   {
+    static string ShellPathFormat(this string input)
+    {
+      return input.Replace("/","\\");
+    }
+    
+    static public string[] ArrayJoin(this string[] input, int length)
+    {
+      var result = new string[length];
+      Array.Copy(input, result, length);
+      return result;
+    }
+    static public string ArrayJoinString(this string[] input, string separator, int offset)
+    {
+      return string.Join(separator, input.ArrayJoin(offset));
+    }
+    
+    static public string GetPathRoot(this string srcPath, string dstPath)
+    {
+      var src = srcPath.ShellPathFormat().SplitBy("\\", true);
+      var dst = dstPath.ShellPathFormat().SplitBy("\\", true);
+      string result = string.Empty;
+      for (int i = 0, aALength = src.Length; i < aALength; i++) {
+        var a = src[i];
+        if (dst[i]!=src[i]) break;
+        result = dst.ArrayJoinString("\\",i);
+      }
+      return result;
+    }
+    
+    
     static public bool HasFlag2(this uint enumValue, uint compare)
     {
       return (enumValue & compare) == compare;

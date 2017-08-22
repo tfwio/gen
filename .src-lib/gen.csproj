@@ -6,8 +6,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Exe</OutputType>
-    <RootNamespace>gen</RootNamespace>
-    <AssemblyName>gen</AssemblyName>
+    <RootNamespace>Gen</RootNamespace>
+    <AssemblyName>Gen</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <NoWin32Manifest>False</NoWin32Manifest>
@@ -18,7 +18,7 @@
     <WarningLevel>4</WarningLevel>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>gen.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\.src-lib\cor3.snk</AssemblyOriginatorKeyFile>
     <DelaySign>False</DelaySign>
     <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
     <TargetFrameworkProfile />

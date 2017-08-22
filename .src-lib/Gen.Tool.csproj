@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
-    <ProjectGuid>{A07EE6F0-10F1-44B4-98B0-705634F22510}</ProjectGuid>
+    <ProjectGuid>{628A05D7-2732-4A7E-B91E-666BD2C7B00A}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
     <RootNamespace>Gen</RootNamespace>
-    <AssemblyName>Gen.Lib</AssemblyName>
+    <AssemblyName>Gen.Tool</AssemblyName>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SignAssembly>True</SignAssembly>
     <DelaySign>False</DelaySign>
@@ -141,6 +141,14 @@
     <Compile Include="cor3\SimpleProgressEventArgs.cs" />
     <Compile Include="cor3\XLog.cs" />
     <Compile Include="cor3\XLogEventArgs.cs" />
+    <Compile Include="gen.src\Commander.cs" />
+    <Compile Include="gen.src\GeneratorApplication.cs" />
+    <Compile Include="gen.src\GeneratorModel.cs" />
+    <Compile Include="gen.src\GeneratorReader.cs" />
+    <Compile Include="gen.src\GenSettings.cs" />
+    <Compile Include="gen.src\Program.cs" />
+    <Compile Include="gen.src\RX.cs" />
+    <Compile Include="gen.src\System.DialogUtil.cs" />
     <Compile Include="Source\AccessDataFactory.cs" />
     <Compile Include="Source\ActionFactory.cs" />
     <Compile Include="Source\Elements.Basic\DatabaseChildElement.cs" />
@@ -254,7 +262,6 @@
       <DependentUpon>Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
     </Compile>
-    <None Include="App.config" />
     <None Include="cor3.snk" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -269,6 +276,7 @@
     <Folder Include="cor3.parsers" />
     <Folder Include="cor3" />
     <Folder Include="cor3\Extensions" />
+    <Folder Include="gen.src" />
     <Folder Include="Source" />
     <Folder Include="Source\Elements.Basic" />
     <Folder Include="Source\Elements\WinForms" />

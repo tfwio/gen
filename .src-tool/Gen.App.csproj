@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>WinExe</OutputType>
     <RootNamespace>GeneratorTool</RootNamespace>
-    <AssemblyName>gen.tool</AssemblyName>
+    <AssemblyName>Gen.App</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <Utf8Output>true</Utf8Output>
@@ -17,13 +17,14 @@
     <DelaySign>False</DelaySign>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <AssemblyOriginatorKeyFile>GeneratorTool.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\.src-lib\cor3.snk</AssemblyOriginatorKeyFile>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <StartupObject>GeneratorTool.App</StartupObject>
     <NoWin32Manifest>False</NoWin32Manifest>
     <SignAssembly>True</SignAssembly>
     <ApplicationIcon>Source\_rc\appbar.shuffle.ico</ApplicationIcon>
     <AsmRef>..\.asm-ref</AsmRef>
+    <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

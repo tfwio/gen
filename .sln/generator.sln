@@ -4,11 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # SharpDevelop 5.2
 VisualStudioVersion = 12.0.20827.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gen.tool", "..\.src-tool\gen.tool.csproj", "{B29A02FB-0D40-401C-8005-2B2A6B86AFFA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gen.App", "..\.src-tool\Gen.App.csproj", "{B29A02FB-0D40-401C-8005-2B2A6B86AFFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gen", "..\.src-gen\gen.csproj", "{22F89EAC-7C66-45CF-A55E-6D98853C5E8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gen.Lib", "..\.src-lib\gen.lib.csproj", "{A07EE6F0-10F1-44B4-98B0-705634F22510}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gen.lib", "..\.src-lib\gen.lib.csproj", "{A07EE6F0-10F1-44B4-98B0-705634F22510}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gen.Tool", "..\.src-lib\Gen.Tool.csproj", "{628A05D7-2732-4A7E-B91E-666BD2C7B00A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,13 +20,13 @@ Global
 		{B29A02FB-0D40-401C-8005-2B2A6B86AFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B29A02FB-0D40-401C-8005-2B2A6B86AFFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B29A02FB-0D40-401C-8005-2B2A6B86AFFA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{22F89EAC-7C66-45CF-A55E-6D98853C5E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{22F89EAC-7C66-45CF-A55E-6D98853C5E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{22F89EAC-7C66-45CF-A55E-6D98853C5E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{22F89EAC-7C66-45CF-A55E-6D98853C5E8E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A07EE6F0-10F1-44B4-98B0-705634F22510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A07EE6F0-10F1-44B4-98B0-705634F22510}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A07EE6F0-10F1-44B4-98B0-705634F22510}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A07EE6F0-10F1-44B4-98B0-705634F22510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{628A05D7-2732-4A7E-B91E-666BD2C7B00A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{628A05D7-2732-4A7E-B91E-666BD2C7B00A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{628A05D7-2732-4A7E-B91E-666BD2C7B00A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{628A05D7-2732-4A7E-B91E-666BD2C7B00A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
