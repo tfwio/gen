@@ -1,0 +1,193 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+  xmlns:e="clr-namespace:Generator.Elements;assembly=Generator.Lib"
+  xmlns:t="clr-namespace:Generator.Core.Markup;assembly=Generator.Lib"
+  xmlns:l="clr-namespace:GeneratorTool" xmlns:v="clr-namespace:GeneratorTool.Views"
+  xmlns:avalon="clr-namespace:GeneratorTool.Controls"
+  xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+  xmlns:dat="clr-namespace:System.Windows.Data;assembly=PresentationFramework">
+  
+  <BitmapImage UriSource="/source/code-variable.png" x:Key="FieldIcon" />
+  <BitmapImage UriSource="/source/kexi.png"          x:Key="DatabaseIcon" />
+  <BitmapImage UriSource="/source/table.png"         x:Key="TableIcon" />
+  
+  <v:DatabaseItemTemplateSelector                    x:Key="DatabaseItem_Selector" />
+  <v:VisibilityToBooleanConverter                    x:Key="Visi" />
+  <v:GroupOnMultiBindingConverter                    x:Key="GroupOnTemplatesConverter" />
+  <v:IsEnabledToColorConverter                       x:Key="isEnabledToColorConverter" />
+  
+  <Style x:Key="aeroCheckListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Padding" Value="2,0,0,0" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="16" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!--The grid left margin of -20, gets the
+                first column over to the left to give 
+                us that look that the CheckBoxes are 
+                outside our ListBox control-->
+            <Grid Background="Transparent" Width="16" Height="16" HorizontalAlignment="Left" Margin="-20,0,0,0">
+              <BulletDecorator Margin="2,0,0,0" SnapsToDevicePixels="true" Background="Transparent" VerticalAlignment="Center">
+                <BulletDecorator.Bullet>
+                  <Microsoft_Windows_Themes:BulletChrome BorderBrush="{StaticResource checkBoxBorderBrush}" IsChecked="{Binding Path=IsSelected, &#xD;&#xA;                          RelativeSource={RelativeSource AncestorLevel=1, &#xD;&#xA;                          AncestorType={x:Type ListBoxItem}, &#xD;&#xA;                            Mode=FindAncestor}}" RenderMouseOver="{TemplateBinding IsMouseOver}" />
+                </BulletDecorator.Bullet>
+              </BulletDecorator>
+            </Grid>
+            <!--This positions our content in the perfect position-->
+            <Border Margin="-10,0,10,0" Grid.Column="1" SnapsToDevicePixels="true" x:Name="Bd" VerticalAlignment="Center" MinHeight="16" Background="Transparent">
+              <ContentPresenter Content="{TemplateBinding Content}">
+                <ContentPresenter.Resources>
+                  <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                  </Style>
+                </ContentPresenter.Resources>
+              </ContentPresenter>
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <HierarchicalDataTemplate x:Key="DataViewLinkTemplate">
+    <StackPanel Orientation="Horizontal">
+      <StackPanel.ContextMenu>
+        <ContextMenu>
+          <MenuItem Header="DataView" />
+          <Separator />
+          <MenuItem Header="Cut" />
+          <MenuItem Header="Copy" />
+          <MenuItem Header="Paste" />
+          <Separator />
+          <MenuItem Header="Delete" />
+        </ContextMenu>
+      </StackPanel.ContextMenu>
+      <Image Margin="0,0,6,0" Source="{DynamicResource FieldIcon}" Width="16" Height="16" VerticalAlignment="Bottom" />
+      <TextBlock Text="{Binding Path=Alias}" />
+    </StackPanel>
+  </HierarchicalDataTemplate>
+  
+  <!--  -->
+  <!-- key="DataViewTemplate" source="LinkItems" ItemTemplate="DataViewLinkTemplate" -->
+  <!--  -->
+  <HierarchicalDataTemplate x:Key="DataViewTemplate" ItemsSource="{Binding Path=LinkItems}" ItemTemplate="{StaticResource DataViewLinkTemplate}">
+    <StackPanel Orientation="Horizontal">
+      <StackPanel.ContextMenu>
+        <ContextMenu>
+          <MenuItem Header="DataView" />
+          <Separator />
+          <MenuItem Header="Cut" />
+          <MenuItem Header="Copy" />
+          <MenuItem Header="Paste" />
+          <Separator />
+          <MenuItem Header="Delete" />
+        </ContextMenu>
+      </StackPanel.ContextMenu>
+      <Image Margin="0,0,6,0" Source="{DynamicResource FieldIcon}" Width="16" Height="16" VerticalAlignment="Bottom" />
+      <TextBlock Text="{Binding Path=Name}" />
+      <TextBlock Text="{Binding Path=Table}" />
+    </StackPanel>
+  </HierarchicalDataTemplate>
+  
+  <!--  -->
+  <!-- FIELD -->
+  <!--  -->
+  <HierarchicalDataTemplate x:Key="FieldTemplate">
+    <StackPanel Orientation="Horizontal">
+      <StackPanel.ContextMenu>
+        <ContextMenu>
+          <MenuItem Header="Field Element" />
+          <Separator />
+          <MenuItem Header="Cut" Command="{x:Static v:MoxiView.FieldCutCommand}" CommandParameter="{Binding .}" />
+          <MenuItem Header="Copy" Command="{x:Static v:MoxiView.FieldCopyCommand}" CommandParameter="{Binding .}" />
+          <MenuItem Header="Paste (Above)" Command="{x:Static v:MoxiView.FieldPasteAboveCommand}" CommandParameter="{Binding .}" />
+          <MenuItem Header="Paste (Below)" Command="{x:Static v:MoxiView.FieldPasteBelowCommand}" CommandParameter="{Binding .}" />
+          <Separator />
+          <MenuItem Header="Delete" />
+        </ContextMenu>
+      </StackPanel.ContextMenu>
+      <Image Margin="0,0,6,0" Source="{DynamicResource FieldIcon}" Width="16" Height="16" VerticalAlignment="Bottom" />
+      <TextBlock Text="{Binding Path=DataName}" />
+    </StackPanel>
+  </HierarchicalDataTemplate>
+  
+  <!--  -->
+  <!-- FIELD -->
+  <!-- key="TableTemplate" source="Fields" ItemTemplate="FieldTemplate" -->
+  <HierarchicalDataTemplate x:Key="TableTemplate" ItemsSource="{Binding Path=Fields}" ItemTemplate="{StaticResource FieldTemplate}">
+    <StackPanel Orientation="Horizontal">
+      <StackPanel.ContextMenu>
+        <ContextMenu>
+          <MenuItem Header="Table Element" />
+          <Separator />
+          <MenuItem Header="Cut" Command="{x:Static v:MoxiView.TableCutCommand}" CommandParameter="{Binding .}" />
+          <MenuItem Header="Copy" Command="{x:Static v:MoxiView.TableCopyCommand}" CommandParameter="{Binding .}" />
+          <MenuItem Header="Paste (Above)" Command="{x:Static v:MoxiView.TablePasteAboveCommand}" CommandParameter="{Binding .}" />
+          <MenuItem Header="Paste (Below)" Command="{x:Static v:MoxiView.TablePasteBelowCommand}" CommandParameter="{Binding .}" />
+          <Separator />
+          <MenuItem Header="Delete" />
+        </ContextMenu>
+      </StackPanel.ContextMenu>
+      <Image Margin="0,0,6,0" Source="{DynamicResource TableIcon}" Width="16" Height="16" VerticalAlignment="Bottom" />
+      <TextBlock Text="{Binding Path=Name}" />
+    </StackPanel>
+  </HierarchicalDataTemplate>
+  <!--  -->
+  <!-- DATABASE -->
+  <!-- key="DatabaseTemplate" source="Children" ItemTemplate="DatabaseItem_Selector" -->
+  <HierarchicalDataTemplate x:Key="DatabaseTemplate"
+    ItemsSource="{Binding Children}" ItemTemplateSelector="{StaticResource DatabaseItem_Selector}">
+    <StackPanel Orientation="Horizontal">
+      <StackPanel.ContextMenu>
+        <ContextMenu>
+          <MenuItem Header="Database?" />
+          <Separator />
+          <MenuItem Header="Cut" />
+          <MenuItem Header="Copy" />
+          <MenuItem Header="Paste" />
+          <Separator />
+          <MenuItem Header="Create Table" Command="{x:Static v:MoxiView.TableCreateCommand}" CommandParameter="{Binding .}" />
+          <Separator />
+          <MenuItem Header="Delete" />
+        </ContextMenu>
+      </StackPanel.ContextMenu>
+      <Image Margin="0,0,6,0" Source="{DynamicResource DatabaseIcon}" Width="16" Height="16" VerticalAlignment="Bottom" />
+      <TextBlock Text="{Binding Path=Name}" />
+    </StackPanel>
+  </HierarchicalDataTemplate>
+  
+  <!-- Templates -->
+  <HierarchicalDataTemplate x:Key="TemplatesTemplate" ItemsSource="{Binding Templates}">
+    <StackPanel Orientation="Horizontal">
+      <StackPanel.ContextMenu>
+        <ContextMenu>
+          <MenuItem Header="I'm a menu item">
+            <MenuItem Header="I'm a menu item" />
+          </MenuItem>
+        </ContextMenu>
+      </StackPanel.ContextMenu>
+      <!--<Image Margin="0,0,6,0" Source="{DynamicResource DatabaseIcon}" Width="16" Height="16" VerticalAlignment="Bottom" />-->
+      <TextBlock Text="{Binding Alias}" Margin="1,1,6,1" />
+      <TextBlock Text="{Binding GroupName}" Margin="1" />
+    </StackPanel>
+  </HierarchicalDataTemplate>
+  <HierarchicalDataTemplate x:Key="TemplatesGroupTemplate" ItemsSource="{Binding Templates}" ItemTemplate="{StaticResource TemplatesTemplate}">
+    <StackPanel Orientation="Horizontal">
+      <StackPanel.ContextMenu>
+        <ContextMenu>
+          <MenuItem Header="TableTemplate" />
+          <Separator />
+          <MenuItem Header="New Template" />
+        </ContextMenu>
+      </StackPanel.ContextMenu>
+      <!--<Image Margin="0,0,6,0" Source="{DynamicResource DatabaseIcon}" Width="16" Height="16" VerticalAlignment="Bottom" />-->
+      <!--<TextBlock Text="Group: " Margin="1,1,6,1" />-->
+      <TextBlock Text="{Binding GroupName}" Margin="1" />
+    </StackPanel>
+  </HierarchicalDataTemplate>
+</ResourceDictionary>

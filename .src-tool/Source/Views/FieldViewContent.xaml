@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+  x:Class="GeneratorTool.Views.FieldViewContent"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!--
+		Remember that adding any element to the FieldElement means that you
+		are dealing with references to tree-nodes, and the serialization and
+		deserialization.
+
+			FontWeight="Bold"
+			FontSize="9"
+		Tags were last implemented and are to be special grouping constructs
+		with implementation on the Cor3 end.
+		
+		and of course the reason for tags was to implement some sort of row
+		designation for gropuing methods rendering with the template.
+
+		there should also be considerations for implementing something like this
+		into coding points (in a live text-editor)
+	-->
+	<Grid UseLayoutRounding="True" SnapsToDevicePixels="True" VerticalAlignment="Top">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="140px" />
+			<ColumnDefinition Width="80*" />
+		</Grid.ColumnDefinitions>
+		<!-- DataName -->
+		<TextBlock Padding="4" TextAlignment="Right" VerticalAlignment="Center" Text="Element Name" />
+		<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedField.DataName}" x:Name="textDataName" />
+		<!-- MaxLength -->
+		<TextBlock Grid.Row="2" Padding="4" TextAlignment="Right" VerticalAlignment="Center" Text="MaxLength" Grid.Column="0" />
+		<TextBox Text="{Binding SelectedField.MaxLength}" x:Name="textMaxLength" Grid.Row="2" Grid.Column="1" />
+		<!-- Multiple Boolean -->
+		<WrapPanel Grid.Row="3" Grid.Column="1" Margin="4,4,4,4">
+			<CheckBox x:Name="checkIsPrimaryKey" Content="IsPrimaryKey" Grid.ColumnSpan="2" IsChecked="{Binding Path=SelectedField.IsPrimary}" ToolTip="Currently,&#xD;&#xA;In order for the Template Generator to work,&#xD;&#xA;you need to set at least one field to IsPrimaryKey=true" Width="90" />
+			<CheckBox x:Name="checkIsNullable" IsChecked="{Binding SelectedField.IsNullable}" Content="Is Nullable" Grid.ColumnSpan="2" Width="90" />
+			<CheckBox x:Name="checkIsArray" IsChecked="{Binding Path=SelectedField.IsArray}" Grid.ColumnSpan="2" Width="90" Content="IsArray" />
+		</WrapPanel>
+		<!-- DataTypeNative -->
+		<TextBlock Grid.Row="4" TextAlignment="Right" Padding="4" VerticalAlignment="Center" Text="Native Type" Grid.Column="0" />
+		<ComboBox Grid.Row="4" Grid.Column="1" x:Name="comboDataNativeType" Text="{Binding SelectedField.DataTypeNative}" IsEditable="True" />
+		<!-- DataType -->
+		<ComboBox Grid.Row="5" Grid.Column="1" x:Name="comboDataType" Text="{Binding SelectedField.DataType}" IsEditable="True" />
+		<TextBlock Grid.Row="5" Padding="4" TextAlignment="Right" VerticalAlignment="Center" Text="Data Type" Grid.Column="0" />
+		<!-- DefaultValue -->
+		<TextBox Grid.Row="6" Grid.Column="1" x:Name="textDefaultValue" Text="{Binding SelectedField.DefaultValue}" ToolTip="DefaultValue" />
+		<TextBlock Grid.Row="6" Grid.Column="0" Padding="4" TextAlignment="Right" VerticalAlignment="Center" Text="Default Value" />
+		<!-- Tags -->
+		<TextBlock Grid.Row="7" Grid.Column="0" Padding="4" TextAlignment="Right" VerticalAlignment="Center" Text="Tags" />
+		<TextBox Grid.Row="7" Grid.Column="1" x:Name="textTags" Text="{Binding Path=SelectedField.Tags}" ToolTip="Tags" />
+	</Grid>
+</UserControl>

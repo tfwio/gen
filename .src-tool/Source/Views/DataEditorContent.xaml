@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+	x:Class="GeneratorTool.Views.DataEditorContent"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib"
+	xmlns:gen="clr-namespace:GeneratorTool.Views"
+	xmlns:tpl="clr-namespace:Generator.Elements;assembly=Gen"
+	mc:Ignorable="d"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:AvalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+	xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:g="clr-namespace:Generator;assembly=Gen"
+	xmlns:v="clr-namespace:GeneratorTool.Views"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+	<!--<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/assets/styles/_rc/mui.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>-->
+	<DockPanel UseLayoutRounding="True" SnapsToDevicePixels="True">
+		<ScrollViewer VerticalScrollBarVisibility="Auto" Padding="4pt">
+			<StackPanel>
+				<HeaderedContentControl Header="Database" Focusable="False">
+					<gen:TableViewContent x:Name="viewTable" />
+				</HeaderedContentControl>
+				<Separator Background="{x:Null}" Height="4pt" />
+				<HeaderedContentControl Header="Field" Focusable="False">
+					<gen:FieldViewContent x:Name="viewField" />
+				</HeaderedContentControl>
+				<Separator Background="{x:Null}" Height="4pt" />
+				<HeaderedContentControl Header="More…" DataContext="{Binding SelectedField}" Focusable="False">
+					<Grid>
+						<Expander Style="{DynamicResource ExpanderTemplate}" Grid.Row="0" Grid.Column="0" Header="Additional Content" IsExpanded="True">
+							<Grid>
+								<ComboBox x:Name="cbBlockAction" ItemsSource="{x:Static g:ActionFactory.EnumeratedActions}" IsEditable="True" Text="{Binding BlockAction, Mode=TwoWay}" Grid.Column="0" Grid.Row="0" ToolTip="BlockAction" />
+								<TextBox Text="{Binding CodeBlock}" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" TextWrapping="WrapWithOverflow" Grid.Column="1" Grid.Row="0" />
+								<CheckBox x:Name="checkUseFormat" Content="Use Format" IsChecked="{Binding UseFormat}" Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" ToolTip="UsePath" FlowDirection="RightToLeft" HorizontalAlignment="Center" />
+								<TextBox Grid.Row="1" x:Name="textFilterFormat" Text="{Binding FormatString, Mode=TwoWay}" Grid.Column="1" ToolTip="FormatString" />
+								<TextBlock Padding="4" Grid.Row="2" Grid.Column="0" TextAlignment="Center" Text="FormType" />
+								<ComboBox x:Name="comboWebFormType" Text="{Binding FormType, Mode=TwoWay}" IsEditable="True" Grid.Column="1" Grid.Row="2" ToolTip="FormType" />
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="*" />
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="214" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+							</Grid>
+						</Expander>
+						<Expander Style="{DynamicResource ExpanderTemplate}" Grid.Row="1" Grid.Column="0" Header="Comment" IsExpanded="True">
+							<Grid>
+								<TextBox Text="{Binding Description, Mode=TwoWay}" AcceptsReturn="True" AcceptsTab="True" TextWrapping="WrapWithOverflow" />
+							</Grid>
+						</Expander>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+					</Grid>
+				</HeaderedContentControl>
+				<!--<Grid>
+				<Border Background="{StaticResource dataEditorBackgroundGradientBrush1}" Padding="24" CornerRadius="9" />
+				<controls:PropertyItemGroup Margin="12" Header="Weeeee" x:Name="customItems" />
+			</Grid>-->
+			</StackPanel>
+		</ScrollViewer>
+	</DockPanel>
+</UserControl>

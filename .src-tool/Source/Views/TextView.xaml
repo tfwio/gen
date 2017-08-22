@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="GeneratorTool.Views.TextView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             
+             xmlns:avalon="clr-namespace:GeneratorTool.Controls"
+             xmlns:v="clr-namespace:GeneratorTool.Views">
+	<Grid>
+		<avalon:Editor SyntaxHighlighting="XML"  ShowLineNumbers="True" FontFamily="Consolas">
+			<avalon:Editor.ContextMenu>
+				<ContextMenu xmlns:v="clr-namespace:GeneratorTool.Views">
+					<MenuItem Header="Cut" Command="{x:Static ApplicationCommands.Cut}" />
+					<MenuItem Header="Copy" Command="{x:Static ApplicationCommands.Copy}" />
+					<MenuItem Header="Paste" Command="{x:Static ApplicationCommands.Paste}" />
+					<MenuItem Header="Delete" Command="{x:Static ApplicationCommands.Delete}" />
+					<Separator />
+					<MenuItem Header="Table" Command="{x:Static v:MoxiView.ToggleTableCommand}" />
+					<MenuItem Header="Field" Command="{x:Static v:MoxiView.ToggleFieldCommand}" />
+					<MenuItem Header="Preview" Command="{x:Static v:MoxiView.TogglePreviewCommand}" />
+				</ContextMenu>
+			</avalon:Editor.ContextMenu>
+		</avalon:Editor>
+	</Grid>
+</UserControl>

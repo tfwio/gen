@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{B29A02FB-0D40-401C-8005-2B2A6B86AFFA}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GeneratorTool</RootNamespace>
+    <AssemblyName>gen.tool</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <Utf8Output>true</Utf8Output>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DelaySign>False</DelaySign>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <AssemblyOriginatorKeyFile>GeneratorTool.snk</AssemblyOriginatorKeyFile>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <StartupObject>GeneratorTool.App</StartupObject>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <SignAssembly>True</SignAssembly>
+    <ApplicationIcon>Source\_rc\appbar.shuffle.ico</ApplicationIcon>
+    <AsmRef>..\.asm-ref</AsmRef>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <StartAction>Project</StartAction>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AvalonDock">
+      <HintPath>..\.sln\packages\AvalonDock.Unofficial.1.3.1\lib\net40\AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="AvalonDock.Themes">
+      <HintPath>..\.sln\packages\AvalonDock.Unofficial.1.3.1\lib\net40\AvalonDock.Themes.dll</HintPath>
+    </Reference>
+    <Reference Include="FirstFloor.ModernUI">
+      <HintPath>..\.sln\packages\ModernUI.WPF.1.0.6\lib\net45\FirstFloor.ModernUI.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\.sln\packages\AvalonEdit.5.0.2\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop.Widgets">
+      <HintPath>$(AsmRef)\ICSharpCode.SharpDevelop.Widgets.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\lib\net45\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Source\Views\CreateTemplateDialog.xaml" />
+    <Page Include="Source\Views\DataEditorContent.xaml" />
+    <Page Include="Source\Views\FieldViewContent.xaml" />
+    <Page Include="Source\Views\Moxi.xaml" />
+    <Page Include="Source\Views\MuiModern.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Views\NewWriterTemplateControl.xaml" />
+    <Page Include="Source\Views\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Views\SettingsAppearance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Views\ShowVectorContent.xaml" />
+    <Page Include="Source\Views\SQLiteView.xaml" />
+    <Page Include="Source\Views\TableViewContent.xaml" />
+    <Page Include="Source\Views\TextView.xaml" />
+    <Page Include="Source\Views\ViewContent.xaml" />
+    <Page Include="Source\Views\WriterTemplateControl.xaml" />
+    <Page Include="Source\_rc\DataTemplates.xaml" />
+    <Page Include="Source\_rc\GlobalTheme.xaml" />
+    <Page Include="Source\_rc\Icons.xaml" />
+    <Page Include="Source\_rc\Lime.xaml" />
+    <Page Include="Source\_rc\mui.xaml" />
+    <Page Include="Source\_rc\Theme.xaml" />
+    <Resource Include="Source\speaker_tosort.ico" />
+    <Resource Include="Source\_rc\Actions-edit-find.ico" />
+    <Resource Include="Source\_rc\appbar.shuffle.ico" />
+    <Resource Include="Source\_rc\appbar.shuffle.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Source\_rc\code-variable.png" />
+    <Page Include="Source\App.xaml" />
+    <Page Include="Source\Controls\AvalonEditor\Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Source\App.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\AppGlobal.cs" />
+    <Compile Include="Source\Commands.cs" />
+    <Compile Include="Source\Controls\AvalonEditorUtils.cs" />
+    <Compile Include="Source\DatabaseItemTemplateSelector.cs" />
+    <Compile Include="Source\GeneratorContentLoader.cs" />
+    <Compile Include="Source\GeneratorReader.cs" />
+    <Compile Include="Source\GroupOnMultiBindingConverter.cs" />
+    <Compile Include="Source\IsEnabledToColorConverter.cs" />
+    <Compile Include="Source\LocalMuiSettings.cs" />
+    <Compile Include="Source\Model\GeneratorModel.cs" />
+    <Compile Include="Source\Model\GeneratorUIModel.cs" />
+    <Compile Include="Source\Model\GeneratorViewMode.cs" />
+    <Compile Include="Source\RectConverter.cs" />
+    <Compile Include="Source\ResourceGenerator.cs" />
+    <Compile Include="Source\SelectionChangedBehaviour.cs" />
+    <Compile Include="Source\SettingsAppearanceViewModel.cs" />
+    <Compile Include="Source\SQLite-DatabaseLoader.cs" />
+    <Compile Include="Source\SQLite-DataRunner.cs" />
+    <Compile Include="Source\SQLite-SQLFileLoader.cs" />
+    <Compile Include="Source\System.DialogUtil.cs" />
+    <Compile Include="Source\UriHackExtension.cs" />
+    <Compile Include="Source\Views\CreateTemplateDialog.xaml.cs">
+      <DependentUpon>CreateTemplateDialog.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Source\Views\DataEditorContent.xaml.cs">
+      <DependentUpon>DataEditorContent.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Source\Views\FieldViewContent.xaml.cs">
+      <DependentUpon>FieldViewContent.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Source\Views\Moxi.xaml.cs">
+      <DependentUpon>Moxi.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Source\Views\MuiModern.xaml.cs">
+      <DependentUpon>MuiModern.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Views\NewWriterTemplateControl.cs">
+      <DependentUpon>NewWriterTemplateControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Source\Views\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Views\SettingsAppearance.xaml.cs">
+      <DependentUpon>SettingsAppearance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Views\ShowVectorContent.xaml.cs">
+      <DependentUpon>ShowVectorContent.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Source\Views\SQLiteView.xaml.cs">
+      <DependentUpon>SQLiteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Views\TableViewContent.xaml.cs">
+      <DependentUpon>TableViewContent.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Source\Views\TextView.xaml.cs">
+      <DependentUpon>TextView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Source\Views\ViewContent.xaml.cs">
+      <DependentUpon>ViewContent.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Source\Views\WriterTemplateControl.xaml.cs">
+      <DependentUpon>WriterTemplateControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Source\VisibilityToBooleanConverter.cs" />
+    <Compile Include="Source\WpfExtensions.cs" />
+    <Compile Include="Source\Controls\AvalonEditor\Common.cs" />
+    <Compile Include="Source\Controls\AvalonEditor\Editor.xaml.cs">
+      <DependentUpon>Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Controls\AvalonEditor\TextEditorExtension.cs" />
+    <Compile Include="Source\Controls\AvalonEditor\ZoomLevelToTextFormattingModeConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\WPFAssemblyInfo.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <DependentUpon>Resource.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Source\WriterTemplateModel.cs" />
+    <Compile Include="Source\WriterTplModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <EmbeddedResource Include="Source\_rc\Sql.xshd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Source\Model" />
+    <Folder Include="Source\_rc" />
+    <Folder Include="Source\Views" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\.src-lib\gen.lib.csproj">
+      <Project>{a07ee6f0-10f1-44b4-98b0-705634f22510}</Project>
+      <Name>gen.lib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\build\net45\System.Data.SQLite.Core.targets')" />
+</Project>

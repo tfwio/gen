@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MsgLoadVeetleContent" xml:space="preserve">
+    <value>The url specified did not exist.
+Please correct the matter and try again.
+	OK to throw (see) exception
+	CANCEL to ignore exception.</value>
+  </data>
+  <data name="MsgLoadVeetleContent_Caption" xml:space="preserve">
+    <value>Exception</value>
+  </data>
+  <data name="MsgGetLineFromText" xml:space="preserve">
+    <value>There was an error getting the url.</value>
+  </data>
+  <data name="MsgGetLineFromText_Caption" xml:space="preserve">
+    <value>Please check your parser</value>
+  </data>
+  <data name="MsgNothingFound" xml:space="preserve">
+    <value>Nothing was found</value>
+  </data>
+  <data name="SQLite_StartPath" xml:space="preserve">
+    <value>f:/dev/bin/sqlite3/</value>
+  </data>
+  <data name="SQLite_Database" xml:space="preserve">
+    <value>newdb.db</value>
+  </data>
+  <data name="SQLite_QueryTarget" xml:space="preserve">
+    <value>select * from [targets]</value>
+  </data>
+  <data name="SQLite_QueryTargetUpdate" xml:space="preserve">
+    <value>update [targets] set
+	[Name]=@name,
+	[Uri]=@uri,
+	[UriType]=@uritype,
+	[MimeType]=@mimetype,
+	[TypeName]=@typename,
+	[Format]=@format,
+	[Description]=@description,
+	[NextTarget]=@ntarget,
+	[FRegExp]=@regex,
+	[Action]=@action,
+	[ResultFilter]=@filter,
+	[OffsetStart]=@offsetstart,
+	[OffsetEnd]=@offsetend,
+	[Value]=@value
+where [id]=@xid;</value>
+  </data>
+  <data name="SQLite_QueryCreateTargets" xml:space="preserve">
+    <value>
+	DROP TABLE IF EXISTS [targets];
+	CREATE TABLE [targets] (
+	
+	/* @rem so.addVariable('config', '/xml/index?id=1105895-277588-26-0-600') (ptube) */
+	[ID]			INTEGER PRIMARY KEY AUTOINCREMENT,
+	/* the name of the task */
+	[Name]			VARCHAR,
+	/* the name of the task */
+	[MimeType]		VARCHAR,
+	/* the uri being loaded */
+	[Uri]			VARCHAR,
+	/* POST|GET */
+	[UriType]		VARCHAR DEFAULT 'GET',
+	/* P=PRIMARY|CHILD=NULL */
+	[TypeName]		VARCHAR,
+	/* html|xml */
+	[Format]		VARCHAR,
+	/* a description of this task */
+	[Description]	VARCHAR,
+	/* the next task (or none to end after the task) */
+	[NextTarget]	VARCHAR,
+	/* File-Name Regular Expression */
+	[FRegExp]		VARCHAR,
+	/*
+		INTO|GET
+	 */
+	[Action]		INTEGER default 0,
+	/* string search points */
+	[ResultFilter]	VARCHAR,
+	[OffsetStart]	VARCHAR,
+	[OffsetEnd]		VARCHAR,
+	[Value]			VARCHAR
+	);
+	DROP TABLE IF EXISTS [downloads];
+	CREATE TABLE [downloads] (
+		[ID]			INTEGER PRIMARY KEY AUTOINCREMENT,
+		[Name]			VARCHAR,
+		[Value]			VARCHAR,
+		[Description]	VARCHAR,
+		[Exists]		VARCHAR
+	);
+	DROP TABLE IF EXISTS [settings];
+	CREATE TABLE [settings] (
+		[ID]			INTEGER PRIMARY KEY AUTOINCREMENT,
+		[Name]			VARCHAR,
+		[Value]			VARCHAR
+	);
+
+	insert into [targets] (Name,NextTarget,TypeName,Format,OffsetStart,OffsetEnd,Action)
+	values('YouTube','YouTube-Post','L','html','flashvars=\""','\""','INTO');
+
+	insert into [targets] (Name,TypeName,Format,OffsetStart,OffsetEnd,Action)
+	values('YouTube-Post','T','html','&amp;url_encoded_fmt_stream_map=url=','&amp;quality','INTO');
+
+	insert into [targets] (Name,TypeName,Format,OffsetStart,OffsetEnd,Action)
+	values('unknown website','P','html','so.addVariable(''file'',''','''','INTO');
+
+	insert into [targets] (Name,TypeName,Format,OffsetStart,OffsetEnd,Action)
+	values('xhampster','P','html','''file'': ''',',''','GET|UriFilter');
+
+	insert into [targets] (Name,TypeName,Format,OffsetStart,OffsetEnd,Action,NextTarget,FRegExp,Value)
+	values('porntube','P','html','so.addVariable(''config'', ''','''','INTO','porntube-inner','http://www.porntube.com/videos/(?&lt;title&gt;[^\|]*)|[^\.]*(?&lt;ext&gt;.(m4v|mp4|flv|avi))','http://www.porntube.com{0}');
+
+	insert into [targets] (Name,TypeName,Format,OffsetStart,OffsetEnd,Action,NextTarget,FRegExp,Value)
+	values('4tube','P','html','s1.addParam(''flashvars'',''config=','''','INTO','porntube-inner','http://www.4tube.com/videos/[0-9]*/(?&lt;title&gt;[^\|]*)|[^\.]*(?&lt;ext&gt;\.(m4v|mp4|flv|avi))','http://www.4tube.com{0}');
+
+	insert into [targets] (Name,TypeName,Format,OffsetStart,OffsetEnd,Action)
+	values( 'porntube-inner','P','xml','&lt;file&gt;','&lt;/file&gt;','GET');
+
+	insert into [targets] (Name,TypeName,Format,OffsetStart,OffsetEnd,Action,ResultFilter)
+	values( 'red-tube','P','mp4','source src=''','''','GET','([0-9]+).mp4');
+
+	insert into [targets] (Name,TypeName,Format,OffsetStart,OffsetEnd,Action,ResultFilter,FRegExp)
+	values( 'xvideos','P','flv','flv_url=','&amp;amp;','GET|UriFilter','([0-9]+).mp4','(http://[^\?][\w\n.]*/videos/([\w\n_/]*.com[\w\n]*)(?&lt;ext&gt;.[\w\n]*))|http://www.xvideos\.com/([\w\n.]+)/(?&lt;title&gt;[\w\n_]*)');
+
+	insert into [targets] (Name,TypeName,Format,OffsetStart,OffsetEnd,Action,ResultFilter,FRegExp)
+	values( 'nxgx', 'P', 'mp4', '''file'': ''', ''',' ,'GET','([0-9]+).mp4$','(?&lt;ext&gt;(.mp4))|http://www.nxgx.com/video/(?&lt;title&gt;[^|]*)');
+
+	insert into [targets] (Name,TypeName,Format,OffsetStart,OffsetEnd,Action,ResultFilter,FRegExp)
+	values( 'beeg', 'P', 'mp4', '''file'': ''', ''',' ,'GET','([0-9]+).mp4$','\|http://[\n\w\.]*/[\n\w]*[\w\n]*/(?&lt;title&gt;[\w\n]*)(?&lt;ext&gt;\.(mp4|flv))');
+
+	insert into [targets] (Name,TypeName,Format,OffsetStart,OffsetEnd,Action,ResultFilter)
+	values( 'pornhub','P','flv',',""video_url"":""','""','GET|UriFilter','([0-9]+).mp4');
+
+	/*select * from [targets];*/</value>
+  </data>
+  <data name="DateFormatDownloader" xml:space="preserve">
+    <value>yyyy-MM-dd HH:mm:ss.FFFFF</value>
+  </data>
+  <data name="MsgRegexError" xml:space="preserve">
+    <value>There was an error in your expression.</value>
+  </data>
+  <data name="MsgRegexError_Caption" xml:space="preserve">
+    <value>;(</value>
+  </data>
+  <data name="Window_Title" xml:space="preserve">
+    <value>Web Utility Application</value>
+  </data>
+  <data name="FileDialog_TextFile" xml:space="preserve">
+    <value>Text File (*.txt)|*.txt|Text File (*.text)|*.text|All Files|*</value>
+  </data>
+  <data name="WebBrowser_DocumentTemplate" xml:space="preserve">
+    <value>&lt;HTML&gt;&lt;body&gt;&lt;H2&gt;Clearing Content…&lt;/H2&gt;&lt;/body&gt;&lt;/HTML&gt;</value>
+  </data>
+  <data name="Cmd_BrowserNavigation" xml:space="preserve">
+    <value>Save Markdown XHTML File, Shows the content in the navigation window.</value>
+  </data>
+  <data name="Cmd_ClearList" xml:space="preserve">
+    <value>Clear the list of download items.</value>
+  </data>
+  <data name="File_DefaultDownload" xml:space="preserve">
+    <value>c:/users/oio/desktop/dl_{0}.file</value>
+  </data>
+  <data name="File_DefaultTimeStamp" xml:space="preserve">
+    <value>yyyyMMdd-HHmmss</value>
+  </data>
+  <data name="FileDialog_MovieTarget" xml:space="preserve">
+    <value>Flash Video|*.flv|MPEG 4 Video|*.mp4|All Files|*</value>
+  </data>
+  <data name="MsgPlatformNotSupported" xml:space="preserve">
+    <value>This platform is not supported.</value>
+  </data>
+  <data name="MsgPlatformNotSupported_Caption" xml:space="preserve">
+    <value>Exception</value>
+  </data>
+  <data name="MsgErrorCreatingAppSettingsDirectory" xml:space="preserve">
+    <value>There was an error creating the Application-Setings Directory.</value>
+  </data>
+</root>

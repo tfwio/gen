@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{A07EE6F0-10F1-44B4-98B0-705634F22510}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Gen</RootNamespace>
+    <AssemblyName>Gen</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SignAssembly>True</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <TargetFrameworkProfile />
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <AsmRef>..\..\project\asmref</AsmRef>
+    <AssemblyOriginatorKeyFile>gen.lib.snk</AssemblyOriginatorKeyFile>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE;TREEV;WPF4;CONSOLE</DefineConstants>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>PdbOnly</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE;TREEV;WPF4</DefineConstants>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\.sln\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\lib\net40\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="cor3.data\Context\CategoryMode.cs" />
+    <Compile Include="cor3.data\Context\DatabaseContext.cs">
+      <DependentUpon>QueryDatabaseContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\DatabaseContextCollection.cs">
+      <DependentUpon>QueryDatabaseContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\IDatabaseContext.cs">
+      <DependentUpon>QueryDatabaseContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\IQueryContext1.cs">
+      <DependentUpon>QueryContext`4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\IQueryContext2.cs">
+      <DependentUpon>QueryContext`4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\OleDbContext.cs" />
+    <Compile Include="cor3.data\Context\OrderMode.cs" />
+    <Compile Include="cor3.data\Context\QueryCollection.cs" />
+    <Compile Include="cor3.data\Context\QueryContext.cs">
+      <DependentUpon>QueryContext`4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\QueryContextInfo.cs" />
+    <Compile Include="cor3.data\Context\QueryContext`4.cs" />
+    <Compile Include="cor3.data\Context\QueryDatabaseContext.cs">
+      <DependentUpon>QueryContextInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\SqlContext.cs">
+      <DependentUpon>QueryContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\SQLiteContext.cs">
+      <DependentUpon>QueryContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\DataAbstract\ColumnInfo.cs" />
+    <Compile Include="cor3.data\DataAbstract\DataAbstract.cs" />
+    <Compile Include="cor3.data\Engine\Access10.cs" />
+    <Compile Include="cor3.data\Engine\MySqlDbA.cs" />
+    <Compile Include="cor3.data\Engine\SqlDbA.cs" />
+    <Compile Include="cor3.data\Engine\SQLiteDb.cs" />
+    <Compile Include="cor3.data\Engine\SqlServerConnectionType.cs" />
+    <Compile Include="cor3.data\Engine\SqlServerDb.cs" />
+    <Compile Include="cor3.data\Engine\TableParams.cs" />
+    <Compile Include="cor3.data\Extensions\DataSetExtensions.cs" />
+    <Compile Include="cor3.data\Extensions\DataTemplateExtensions.cs" />
+    <Compile Include="cor3.data\Extensions\GeneralDataExtensions.cs" />
+    <Compile Include="cor3.data\Extensions\System.Cor3.Data.QueryStringExtension.cs" />
+    <Compile Include="cor3.data\Extensions\System.FieldStringExtension.cs" />
+    <Compile Include="cor3.data\Reflection\BindingFlag.cs" />
+    <Compile Include="cor3.data\Reflection\MarshalByRefType.cs">
+      <DependentUpon>ReferenceAppDomain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Reflection\ReferenceAppDomain.cs" />
+    <Compile Include="cor3.data\ResourceUtil.cs" />
+    <Compile Include="cor3.data\Settings\SQLiteSettings.cs" />
+    <Compile Include="cor3.parsers\AnsiCharClassType.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\AttributeInfoCollection.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\AttributeInsight.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CommonDefinitions.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CssAttributeFragment.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CssAttributeValueFragment.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CssColour.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CssDefinitions.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CssFragment.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CssFragmentType.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CssParser.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CssParserException.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CssParserOptions.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CssParserReference.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CssParserUserPreferences.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\CssRewriteOptions.cs" />
+    <Compile Include="cor3.parsers\CascadingStyleSheets\Expression.cs" />
+    <Compile Include="cor3.parsers\Html\BlockWriteInfo.cs" />
+    <Compile Include="cor3.parsers\Html\CharacterEntityConversions.cs" />
+    <Compile Include="cor3.parsers\Html\ConvertionsExtension.cs" />
+    <Compile Include="cor3.parsers\Html\HtmlAttributeValuePair.cs" />
+    <Compile Include="cor3.parsers\Html\HtmlExtension.cs" />
+    <Compile Include="cor3.parsers\Html\TagHelper.cs" />
+    <Compile Include="cor3.parsers\INIParser.cs" />
+    <Compile Include="cor3.parsers\ISyntaxStrategy.cs" />
+    <Compile Include="cor3.parsers\ITextRange.cs" />
+    <Compile Include="cor3.parsers\MarkdownSharp\Markdown.cs" />
+    <Compile Include="cor3.parsers\MarkdownSharp\MmdExtension.cs" />
+    <Compile Include="cor3.parsers\ParserBlock.cs" />
+    <Compile Include="cor3.parsers\ParserTypes.cs" />
+    <Compile Include="cor3.parsers\ParseStrategy\KeyValue.cs" />
+    <Compile Include="cor3.parsers\ParseStrategy\ParserStrategy.cs" />
+    <Compile Include="cor3.parsers\ParseStrategy\StringValue.cs" />
+    <Compile Include="cor3.parsers\RangeBlock.cs" />
+    <Compile Include="cor3.parsers\StringRange.cs" />
+    <Compile Include="cor3.parsers\TextRange.cs" />
+    <Compile Include="cor3.parsers\Tools\ItemCountChanged.cs" />
+    <Compile Include="cor3.parsers\Tools\SimpleTemplateConverter.cs" />
+    <Compile Include="cor3.parsers\Tools\SimpleTemplateItem.cs" />
+    <Compile Include="cor3.parsers\UnicodeSpaceType.cs" />
+    <Compile Include="cor3\DICT.cs" />
+    <Compile Include="cor3\last_addon.cs" />
+    <Compile Include="cor3\Logger.cs" />
+    <Compile Include="cor3\MessageType.cs" />
+    <Compile Include="cor3\Serial.cs" />
+    <Compile Include="cor3\XLog.cs" />
+    <Compile Include="cor3\XLogEventArgs.cs" />
+    <Compile Include="Source\AccessDataFactory.cs" />
+    <Compile Include="Source\ActionFactory.cs" />
+    <Compile Include="Source\Elements.Basic\DatabaseChildElement.cs" />
+    <Compile Include="Source\Elements.Basic\DataMapElement.cs" />
+    <Compile Include="Source\Elements.Basic\FieldReference.cs" />
+    <Compile Include="Source\Elements.Basic\IDataView.cs" />
+    <Compile Include="Source\Elements.Basic\UniqueKey.cs" />
+    <Compile Include="Source\BasicDataFactory.cs" />
+    <Compile Include="Source\Elements\DatabaseCollection.cs" />
+    <Compile Include="Source\Elements\DataViewLink.cs" />
+    <Compile Include="Source\Elements\GeneratorConfig.cs" />
+    <None Include="cor3.data\Reflection\readme.md" />
+    <None Include="cor3.parsers\CascadingStyleSheets\css-attribute-definitions-readme.htm" />
+    <None Include="cor3.parsers\CascadingStyleSheets\css-attribute-definitions-readme.md" />
+    <None Include="cor3.parsers\CascadingStyleSheets\css21props.text" />
+    <None Include="cor3.parsers\CascadingStyleSheets\css3-animations.text" />
+    <None Include="cor3.parsers\CascadingStyleSheets\css3-background.text" />
+    <None Include="cor3.parsers\CascadingStyleSheets\css3-box.text" />
+    <None Include="cor3.parsers\Tools\SimpleTemplateConverter.cs.md" />
+    <Compile Include="Source\Elements\ReferenceAssemblyElement.cs" />
+    <Compile Include="Source\Elements\QueryElement.cs" />
+    <Compile Include="Source\Elements\WinForms\DatabaseCollection.cs" />
+    <Compile Include="Source\Elements\WinForms\DatabaseElement.cs" />
+    <Compile Include="Source\Elements\WinForms\DataViewElement.Forms.cs" />
+    <Compile Include="Source\Elements\WinForms\FieldElement.cs" />
+    <Compile Include="Source\Elements\WinForms\QueryElement.cs" />
+    <Compile Include="Source\Elements\WinForms\ReferenceAssemblyElement.cs" />
+    <Compile Include="Source\Elements\WinForms\SimpleQueryElement.cs" />
+    <Compile Include="Source\Elements\WinForms\TableElement.cs" />
+    <Compile Include="Source\Export\GeneratorContextClass.cs" />
+    <Compile Include="Source\Export\Intrinsic\IDatabaseCollection.cs" />
+    <Compile Include="Source\Export\Intrinsic\IDatabaseContext.cs" />
+    <Compile Include="Source\Export\Intrinsic\IDataConfig.cs" />
+    <Compile Include="Source\Export\Intrinsic\IDbConfiguration.cs" />
+    <Compile Include="Source\Export\Intrinsic\IDbConfiguration4.cs" />
+    <Compile Include="Source\Export\Intrinsic\IDbSelection.cs" />
+    <Compile Include="Source\Export\Intrinsic\IFactory.cs" />
+    <Compile Include="Source\Export\Intrinsic\IGeneratorContext.cs" />
+    <Compile Include="Source\Export\Intrinsic\ITemplateContext.cs" />
+    <Compile Include="Source\Export\Intrinsic\ITemplateSelection.cs" />
+    <Compile Include="Source\IDataFactory.cs" />
+    <Compile Include="Source\ImageKeyNames.cs" />
+    <Compile Include="Source\Parser\REPLACEMENT.cs" />
+    <Compile Include="Source\Parser\SchemaStateViewBase.cs" />
+    <Compile Include="Source\Parser\SqlTemplateParser.cs" />
+    <Compile Include="Source\Parser\tempmatch.cs" />
+    <Compile Include="Source\Parser\TypeResolutionClass.cs" />
+    <Compile Include="Source\QueryDataContext.cs" />
+    <Compile Include="Source\SQLiteOperations.cs" />
+    <Compile Include="Source\TemplateManager.cs" />
+    <Compile Include="Source\TemplateModel\TemplateStrategy\TemplateReferenceUtil.cs" />
+    <Compile Include="Source\Elements\TemplateElement.cs" />
+    <Compile Include="Source\Export\DataCfg.cs" />
+    <Compile Include="Source\Extensions\FileSaveExtensions.cs" />
+    <Compile Include="Source\Parser\Enumerations.cs" />
+    <Compile Include="Source\Parser\FieldMatch.cs" />
+    <Compile Include="Source\Parser\GeneratorParser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\Parser\ParserHelper.cs" />
+    <Compile Include="Source\Parser\ParseUtil.cs" />
+    <Compile Include="Source\Parser\TemplateFactory.cs" />
+    <Compile Include="Source\SqlDataFactory.cs" />
+    <Compile Include="Source\SQLiteDataFactory.cs" />
+    <Compile Include="Source\TemplateUtil.cs" />
+    <Compile Include="Source\Types\AccessTypeResolution.cs" />
+    <Compile Include="Source\Elements\DatabaseElement.cs" />
+    <Compile Include="Source\Elements\DataViewElement.cs" />
+    <Compile Include="Source\Elements\FieldElement.cs" />
+    <Compile Include="Source\Elements\RegularExpressionElement.cs" />
+    <Compile Include="Source\Elements\SimpleQueryElement.cs" />
+    <Compile Include="Source\Elements\TableElement.cs" />
+    <Compile Include="Source\Types\ACE\AceTypeConverter.cs" />
+    <Compile Include="Source\Types\ActionTypes.cs" />
+    <Compile Include="Source\Types\AS3\As3TypeProvider.cs" />
+    <Compile Include="Source\Types\AS3\FlashNativeTypes.cs" />
+    <Compile Include="Source\Types\ConnectionType.cs" />
+    <Compile Include="Source\Types\DatabaseTypes.cs" />
+    <Compile Include="Source\Types\DotNet\NativeTypes.cs" />
+    <Compile Include="Source\Types\DotNet\ReferenceAsmContextTypes.cs" />
+    <Compile Include="Source\Types\ExtJs\ExtJsFieldType.cs" />
+    <Compile Include="Source\Types\ExtJs\ExtJsFieldTypeProvider.cs" />
+    <Compile Include="Source\Types\ExtJs\ExtJsRecordFieldType.cs" />
+    <Compile Include="Source\Types\ExtJs\ExtJsRecordFieldTypeConverter.cs" />
+    <Compile Include="Source\Types\ExtJs\ExtJsRecordFieldTypeProvider.cs" />
+    <Compile Include="Source\Types\GeneratorTypeConverter.cs" />
+    <Compile Include="Source\Types\InfoCollectionViewTypes.cs" />
+    <Compile Include="Source\Types\InfoStringTypes.cs" />
+    <Compile Include="Source\Types\Net\WebElementType.cs" />
+    <Compile Include="Source\Types\ADO\AccessDataTypes.cs" />
+    <Compile Include="Source\Types\Net\WebFormAttributeType.cs" />
+    <Compile Include="Source\Types\Net\WebFormInputAttributeType.cs" />
+    <Compile Include="Source\Types\Net\WebFormTypes.cs" />
+    <Compile Include="Source\Types\OutputTypes.cs" />
+    <Compile Include="Source\Types\Parser\TemplateSyntaxType.cs" />
+    <Compile Include="Source\Types\Provider\EnumProvider.cs" />
+    <Compile Include="Source\Types\Provider\GeneratorDateTimeFieldProvider.cs" />
+    <Compile Include="Source\Types\Provider\GeneratorTypeProvider.cs" />
+    <Compile Include="Source\Types\SCHEMA\SchemaMapTypes.cs" />
+    <Compile Include="Source\Types\TSQL\TSQLConverter.cs" />
+    <Compile Include="Source\Types\NullableTypeUtility.cs" />
+    <Compile Include="Source\TemplateModel\FieldTemplate.cs" />
+    <Compile Include="Source\TemplateModel\MarkupTemplate.cs" />
+    <Compile Include="Source\TemplateModel\TableTemplate.cs" />
+    <Compile Include="Source\TemplateModel\TemplateCollection.cs" />
+    <Compile Include="Source\TemplateModel\TemplateStrategy\QuickMatch.cs" />
+    <Compile Include="Source\Extensions\AccessDataExtension.cs" />
+    <Compile Include="Source\Extensions\MatchExtension.cs" />
+    <Compile Include="Source\Extensions\SchemaExtension.cs" />
+    <Compile Include="Source\Extensions\XHelpers.cs" />
+    <Compile Include="Messages.Designer.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\WPFAssemblyInfo.cs" />
+    <Compile Include="Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="cor3.data" />
+    <Folder Include="cor3.data\Context" />
+    <Folder Include="cor3.data\DataAbstract" />
+    <Folder Include="cor3.data\Engine" />
+    <Folder Include="cor3.data\Extensions" />
+    <Folder Include="cor3.data\.migra" />
+    <Folder Include="cor3.data\Reflection" />
+    <Folder Include="cor3.data\Settings" />
+    <Folder Include="cor3.parsers" />
+    <Folder Include="cor3.parsers\CascadingStyleSheets" />
+    <Folder Include="cor3.parsers\Html" />
+    <Folder Include="cor3.parsers\MarkdownSharp" />
+    <Folder Include="cor3.parsers\ParseStrategy" />
+    <Folder Include="cor3.parsers\Tools" />
+    <Folder Include="cor3" />
+    <Folder Include="Source" />
+    <Folder Include="Source\Elements.Basic" />
+    <Folder Include="Source\Elements\WinForms" />
+    <Folder Include="Source\Export\Intrinsic" />
+    <Folder Include="Source\Export" />
+    <Folder Include="Source\Parser" />
+    <Folder Include="Source\Types\Provider" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx" />
+    <EmbeddedResource Include="Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\build\net40\System.Data.SQLite.Core.targets')" />
+</Project>

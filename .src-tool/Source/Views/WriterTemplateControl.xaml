@@ -1,0 +1,77 @@
+<UserControl x:Class="GeneratorTool.Views.WriterTemplateControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:AvalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+             xmlns:g="clr-namespace:Generator;assembly=Gen"
+             xmlns:v="clr-namespace:GeneratorTool.Views"
+             xmlns:a="clr-namespace:GeneratorTool.Controls">
+	<DockPanel>
+		<Grid DockPanel.Dock="Top" DataContext="Model">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="120" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<StackPanel Orientation="Horizontal">
+				<Button Content="Menu" ClickMode="Press" Click="Event_ButtonContextMenu" x:Name="mnuBtn">
+					<Button.ContextMenu>
+						<ContextMenu PlacementTarget="{Binding mnuBtn}">
+							<MenuItem Header="Load SQLite File" Click="LoadDatabase" />
+							<MenuItem Header="Unload SQLite File" />
+							<Separator />
+							<MenuItem Header="INSERT Row" Click="Event_CreateRow" />
+							<MenuItem Header="DELETE Row" Click="Event_DeleteRow" />
+							<Separator />
+							<MenuItem Header="Generate *.resx Resource File" Click="Event_SaveResxFile"/>
+							<!--<MenuItem Header="File">
+							</MenuItem>
+							<MenuItem Header="Edit">
+								<MenuItem Header="Sub-Item" />
+								<MenuItem Header="Sub-Item" />
+								<MenuItem Header="Sub-Item" />
+								<MenuItem Header="Sub-Item" />
+							</MenuItem>-->
+						</ContextMenu>
+					</Button.ContextMenu>
+				</Button>
+			</StackPanel>
+			<TextBox x:Name="tNamespace" Grid.Column="1" />
+			<ComboBox x:Name="cbTplGroup" Grid.Column="2" v:SelectionChangedBehaviour.Command="{x:Static v:WriterTemplateControl.GroupUpdatedCommand}" IsEditable="True" ItemsSource="{Binding GroupNames}" />
+			<ComboBox x:Name="cbTplName" Grid.Column="3" v:SelectionChangedBehaviour.Command="{x:Static v:WriterTemplateControl.RowUpdatedCommand}" IsEditable="True" ItemsSource="{Binding Rows}" DisplayMemberPath="Title" />
+			<ComboBox x:Name="cbTplField" Grid.Column="4" v:SelectionChangedBehaviour.Command="{x:Static v:WriterTemplateControl.FieldUpdatedCommand}" IsEditable="True" />
+			<ComboBox x:Name="cbEditorFmt" Grid.Column="5" v:SelectionChangedBehaviour.Command="{x:Static v:WriterTemplateControl.SyntaxUpdatedCommand}" ItemsSource="{Binding Source={x:Static AvalonEdit:HighlightingManager.Instance}, Path=HighlightingDefinitions}" />
+		</Grid>
+		<Grid>
+			<a:Editor x:Name="editor" FontSize="14">
+				<a:Editor.ContextMenu>
+					<ContextMenu>
+						<MenuItem Header="Cut" Command="{x:Static ApplicationCommands.Cut}" />
+						<MenuItem Header="Copy" Command="{x:Static ApplicationCommands.Copy}" />
+						<MenuItem Header="Paste" Command="{x:Static ApplicationCommands.Paste}" />
+						<MenuItem Header="Delete" Command="{x:Static ApplicationCommands.Delete}" />
+						<Separator />
+						<MenuItem Header="Fo_rmat">
+							<MenuItem Header="Leading Spaces To Tabs" Command="{x:Static AvalonEdit:AvalonEditCommands.ConvertLeadingSpacesToTabs}" />
+							<MenuItem Header="Leading Tabs To Spaces" Command="{x:Static AvalonEdit:AvalonEditCommands.ConvertLeadingTabsToSpaces}" />
+							<MenuItem Header="Spaces To Tabs" Command="{x:Static AvalonEdit:AvalonEditCommands.ConvertSpacesToTabs}" />
+							<MenuItem Header="Tabs To Spaces" Command="{x:Static AvalonEdit:AvalonEditCommands.ConvertTabsToSpaces}" />
+							<Separator />
+							<MenuItem Header="Lowercase" Command="{x:Static AvalonEdit:AvalonEditCommands.ConvertToLowercase}" />
+							<MenuItem Header="Upper Case" Command="{x:Static AvalonEdit:AvalonEditCommands.ConvertToUppercase}" />
+							<MenuItem Header="Title Case" Command="{x:Static AvalonEdit:AvalonEditCommands.ConvertToTitleCase}" />
+							<MenuItem Header="Invert Case" Command="{x:Static AvalonEdit:AvalonEditCommands.InvertCase}" />
+							<Separator />
+							<MenuItem Header="Indent Selection" Command="{x:Static AvalonEdit:AvalonEditCommands.IndentSelection}" />
+							<Separator />
+							<MenuItem Header="Remove Leading Whitespace" Command="{x:Static AvalonEdit:AvalonEditCommands.RemoveLeadingWhitespace}" />
+							<MenuItem Header="Remove Trailing Whitespace" Command="{x:Static AvalonEdit:AvalonEditCommands.RemoveTrailingWhitespace}" />
+						</MenuItem>
+					</ContextMenu>
+				</a:Editor.ContextMenu>
+			</a:Editor>
+		</Grid>
+	</DockPanel>
+</UserControl>

@@ -1,0 +1,51 @@
+<UserControl x:Class="GeneratorTool.Views.SQLiteView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:icAvalon="http://icsharpcode.net/sharpdevelop/avalonedit"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d"
+  xmlns:l="clr-namespace:GeneratorTool.SQLiteUtil"
+  xmlns:c="clr-namespace:GeneratorTool.Views"
+  xmlns:ctl="clr-namespace:GeneratorTool.Controls"
+  d:DesignWidth="873" d:DesignHeight="398"
+>
+  <Grid>
+    <DockPanel>
+      <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+        
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="DB " />
+        <Button FontSize="9" Content="CREATE" Click="Event_CreateDb" />
+        <Button FontSize="9" Content="LOAD" Click="Event_OpenDb" />
+        <Button FontSize="9" Content="CLOSE" />
+        <Separator Background="Transparent" BorderBrush="{x:Null}" Width="3" />
+        
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="QUERY " />
+        <Button FontSize="9" Content="EXEC" ToolTip="NO RESULTS!" Click="Event_ExecuteNonQuery" x:Name="btnNonQuery" />
+        <Button FontSize="9" Content="SELECT" ToolTip="...And show results" Click="Event_ExecuteSelectQuery" />
+        <Separator Background="Transparent" BorderBrush="{x:Null}" Width="3" />
+        
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="PANEL " />
+        <Button FontSize="9" Content="DATA" Command="{x:Static c:SQLiteView.ToggleViewCommand}" />
+        <Button FontSize="9" Content="TEXT" Command="{x:Static c:SQLiteView.ToggleSqlCommand}" />
+        <Separator Background="Transparent" BorderBrush="{x:Null}" Width="3" />
+        
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="SQL " />
+        <Button FontSize="9" Content="LOAD" Command="{x:Static l:SQLFileLoader.LoadSqlFileCommand}" CommandParameter="{Binding ElementName=edit}" />
+        <Button FontSize="9" Content="SAVE" Command="{x:Static l:SQLFileLoader.SaveSqlFileCommand}" CommandParameter="{Binding ElementName=edit}" />
+        <Button FontSize="9" Content="SAVE AS" Command="{x:Static l:SQLFileLoader.SaveSqlFileAsCommand}" CommandParameter="{Binding ElementName=edit}" />
+      
+      </StackPanel>
+      
+      <TabControl x:Name="tabs" Background="Transparent" BorderBrush="Transparent">
+        <TabItem Header="SQL" x:Name="tabSql">
+          <ctl:Editor x:Name="edit" FontFamily="FreeMono" FontWeight="Medium" SyntaxHighlighting="SQL" FontSize="14" Text="SELECT * from sqlite_master;" />
+        </TabItem>
+        <TabItem Header="View" x:Name="tabView">
+          <DataGrid x:Name="grid" />
+        </TabItem>
+      </TabControl>
+    
+    </DockPanel>
+  </Grid>
+</UserControl>

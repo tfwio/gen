@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="GeneratorTool.Views.ViewContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/source/_rc/datatemplates.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<Grid>
+		<WrapPanel Margin="12" ItemHeight="240" ItemWidth="240">
+			<Grid MinWidth="240">
+				<Border CornerRadius="8" Background="#ff007FFF" />
+				<Grid Margin="4">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<TextBlock Grid.Row="0" Text="1" />
+					<ListBox Grid.Row="1" MinHeight="100" Background="Silver" />
+					<TextBlock Grid.Row="2" Text="as" />
+					<TextBox Grid.Row="3" Text="" />
+					<TextBlock Grid.Row="4" Text="on" />
+					<TextBox Grid.Row="5" Text="" />
+					<TextBlock Grid.Row="6" Text="from" />
+					<TextBox Grid.Row="7" Text="" />
+				</Grid>
+			</Grid>
+			<Grid MinWidth="240">
+				<Border CornerRadius="8" Background="#ff007FFF" />
+				<Grid Margin="4">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<TextBlock Grid.Row="0" Text="1" />
+					<ListBox Grid.Row="1" MinHeight="100" Background="Silver" />
+					<TextBlock Grid.Row="2" Text="as" />
+					<TextBox Grid.Row="3" Text="" />
+					<TextBlock Grid.Row="4" Text="on" />
+					<TextBox Grid.Row="5" Text="" />
+					<TextBlock Grid.Row="6" Text="from" />
+					<TextBox Grid.Row="7" Text="" />
+				</Grid>
+			</Grid>
+			<Grid MinWidth="240">
+				<Border CornerRadius="8" Background="#ff007FFF" />
+				<Grid Margin="4">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<TextBlock Grid.Row="0" Text="1" />
+					<ListBox Grid.Row="1" MinHeight="100" Background="Silver" />
+					<TextBlock Grid.Row="2" Text="as" />
+					<TextBox Grid.Row="3" Text="" />
+					<TextBlock Grid.Row="4" Text="on" />
+					<TextBox Grid.Row="5" Text="" />
+					<TextBlock Grid.Row="6" Text="from" />
+					<TextBox Grid.Row="7" Text="" />
+				</Grid>
+			</Grid>
+		</WrapPanel>
+	</Grid>
+</UserControl>

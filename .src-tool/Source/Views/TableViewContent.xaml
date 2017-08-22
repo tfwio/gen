@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="GeneratorTool.Views.TableViewContent"
+             xmlns:v="clr-namespace:GeneratorTool.Views"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Grid VerticalAlignment="Top">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="100" />
+			<ColumnDefinition Width="190" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		
+		<TextBlock Grid.Row="0" Grid.Column="0" Text="Database" HorizontalAlignment="Center" />
+		<ComboBox Grid.Row="0" Grid.Column="1" x:Name="comboDatabaseType" Text="{Binding SelectedDatabase.ConnectionType}" />
+		<TextBox x:Name="tbDatabaseName" Grid.Row="0" Grid.Column="2" Text="{Binding SelectedDatabase.Name}" />
+		
+		<TextBlock Grid.Row="1" Grid.Column="0" Text="Table" TextAlignment="Center" />
+		<ComboBox v:SelectionChangedBehaviour.Command="{x:Static v:MoxiView.TableTypeCommand}" Grid.Row="1" Grid.Column="1" x:Name="comboTableType" Text="{Binding SelectedTable.DbType}" />
+		<TextBox Grid.Row="1" Grid.Column="2" Text="{Binding SelectedTable.Name}" />
+		
+		<TextBlock Grid.Row="2" Grid.Column="0" Text="Table: Base-Class" HorizontalAlignment="Center" />
+		<!--<ComboBox Grid.Row="2" Grid.Column="1" x:Name="combo?" />-->
+		<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedTable.BaseClass}" />
+		
+		<Expander Style="{DynamicResource ExpanderTemplate}" Grid.Row="3" Grid.ColumnSpan="3" Header="Description" ToolTip="This is not yet implemented" IsExpanded="False" Visibility="Collapsed">
+			<TextBox x:Name="textDescription" Text="{Binding Path=SelectedTable.Description}" ToolTip="Description" />
+		</Expander>
+	
+	</Grid>
+</UserControl>
