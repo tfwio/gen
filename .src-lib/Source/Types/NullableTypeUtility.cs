@@ -2,7 +2,7 @@
 
 namespace Generator
 {
-	public class NullableTypeUtility
+	public static class NullableTypeUtility
 	{
 		#region NativeNullType Helper
 		static public string GetNativeNullType(string input)

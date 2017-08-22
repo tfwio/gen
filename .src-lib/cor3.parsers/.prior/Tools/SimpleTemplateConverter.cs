@@ -1,8 +1,5 @@
 ﻿/*
- * 
-
  * oio * 04/22/2012 * 14:16
- 
  */
 using System;
 using System.Collections.Generic;
@@ -137,14 +134,8 @@ namespace System.Cor3.Parsers.Tools
 		protected virtual void OnCountChanged(ItemCountChanged e) { if (CountChanged != null) { CountChanged(this, e); } }
 		#endregion
 		
-		public void FindItems()
-		{
-			this.ActionFindItems();
-		}
-		public void ClearItems()
-		{
-			this.items.Clear();
-		}
+		public void FindItems() { this.ActionFindItems(); }
+		public void ClearItems() { this.items.Clear(); }
 
 		/// <summary>
 		/// Starts writing files!

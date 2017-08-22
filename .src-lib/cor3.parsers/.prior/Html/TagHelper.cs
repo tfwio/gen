@@ -9,19 +9,7 @@
 //---------------------------------------------------------------------------
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Web;
-using System.Xml;
-using System.Xml.XPath;
 
-//using CodeSane.MetaWeblog.Api;
-using RES = System.ResourceUtil;
-// StringBuilder
-// important TODOS:
 
 namespace System.Cor3.Parsers.Html
 {
@@ -36,22 +24,22 @@ namespace System.Cor3.Parsers.Html
 		/// <para>Scripts	$(JavascriptIncludes)</para>
 		/// <para>Body		$(DocumentBody)</para>
 		/// </summary>
-		public static readonly string default_document					= RES.GetString("TemplateHtmlDocument");
-		public static readonly string DefaultStyleSheetContent			= RES.GetString("TemplateStyleSheetContent");
-		public static readonly string DefaultJavascriptInclude			= RES.GetString("TemplateJavascriptInclude");
-		public static readonly string DefaultJavascriptContentInclude	= RES.GetString("TemplateJavascriptContentInclude");
-		public static readonly string DefaultStyleSheetInclude			= RES.GetString("TemplateStyleSheetInclude");
+		public static readonly string default_document					      = ResourceUtil.GetString("TemplateHtmlDocument");
+		public static readonly string DefaultStyleSheetContent			  = ResourceUtil.GetString("TemplateStyleSheetContent");
+		public static readonly string DefaultJavascriptInclude			  = ResourceUtil.GetString("TemplateJavascriptInclude");
+		public static readonly string DefaultJavascriptContentInclude	= ResourceUtil.GetString("TemplateJavascriptContentInclude");
+		public static readonly string DefaultStyleSheetInclude			  = ResourceUtil.GetString("TemplateStyleSheetInclude");
 		#endregion
 		
 		// Section Constants
 		public const string IsEditableAttributeTag = "$(IsEditable)";
-		public const string StylesheetIncludeTag = "$(StylesheetInclude)";
-		public const string StylesheetContentTag = "$(StylesheetContent)";
-		public const string JavascriptIncludeTag = "$(JavascriptInclude)";
-		public const string JavascriptContentTag = "$(JavascriptContent)";
-		public const string DocumentBaseTag = "$(DocumentBase)";
-		public const string DocumentContentTag = "$(DocumentContent)";
-		public const string DocumentTitleTag = "$(DocumentTitle)";
+		public const string StylesheetIncludeTag   = "$(StylesheetInclude)";
+		public const string StylesheetContentTag   = "$(StylesheetContent)";
+		public const string JavascriptIncludeTag   = "$(JavascriptInclude)";
+		public const string JavascriptContentTag   = "$(JavascriptContent)";
+		public const string DocumentBaseTag        = "$(DocumentBase)";
+		public const string DocumentContentTag     = "$(DocumentContent)";
+		public const string DocumentTitleTag       = "$(DocumentTitle)";
 
 		// String Extensions
 		
