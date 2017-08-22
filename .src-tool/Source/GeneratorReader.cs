@@ -11,6 +11,8 @@ using Generator.Elements;
 using Generator.Core.Markup;
 using Microsoft.Win32;
 
+//namespace on.gen {
+
 namespace GeneratorTool
 {
 	/// <summary>

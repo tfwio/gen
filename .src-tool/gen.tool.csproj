@@ -124,7 +124,6 @@
     <Page Include="Source\_rc\Lime.xaml" />
     <Page Include="Source\_rc\mui.xaml" />
     <Page Include="Source\_rc\Theme.xaml" />
-    <Resource Include="Source\speaker_tosort.ico" />
     <Resource Include="Source\_rc\Actions-edit-find.ico" />
     <Resource Include="Source\_rc\appbar.shuffle.ico" />
     <Resource Include="Source\_rc\appbar.shuffle.png">
@@ -143,26 +142,30 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\AppGlobal.cs" />
-    <Compile Include="Source\Commands.cs" />
     <Compile Include="Source\Controls\AvalonEditorUtils.cs" />
-    <Compile Include="Source\DatabaseItemTemplateSelector.cs" />
-    <Compile Include="Source\GeneratorContentLoader.cs" />
     <Compile Include="Source\GeneratorReader.cs" />
-    <Compile Include="Source\GroupOnMultiBindingConverter.cs" />
-    <Compile Include="Source\IsEnabledToColorConverter.cs" />
     <Compile Include="Source\LocalMuiSettings.cs" />
     <Compile Include="Source\Model\GeneratorModel.cs" />
     <Compile Include="Source\Model\GeneratorUIModel.cs" />
     <Compile Include="Source\Model\GeneratorViewMode.cs" />
-    <Compile Include="Source\RectConverter.cs" />
-    <Compile Include="Source\ResourceGenerator.cs" />
-    <Compile Include="Source\SelectionChangedBehaviour.cs" />
-    <Compile Include="Source\SettingsAppearanceViewModel.cs" />
-    <Compile Include="Source\SQLite-DatabaseLoader.cs" />
-    <Compile Include="Source\SQLite-DataRunner.cs" />
-    <Compile Include="Source\SQLite-SQLFileLoader.cs" />
-    <Compile Include="Source\System.DialogUtil.cs" />
-    <Compile Include="Source\UriHackExtension.cs" />
+    <Compile Include="Source\Model\WriterTemplateModel.cs" />
+    <Compile Include="Source\Model\WriterTplModel.cs" />
+    <Compile Include="Source\SQL\SQLite-DatabaseLoader.cs" />
+    <Compile Include="Source\SQL\SQLite-DataRunner.cs" />
+    <Compile Include="Source\SQL\SQLite-SQLFileLoader.cs" />
+    <Compile Include="Source\UI\Commands.cs" />
+    <Compile Include="Source\UI\DatabaseItemTemplateSelector.cs" />
+    <Compile Include="Source\UI\GeneratorContentLoader.cs" />
+    <Compile Include="Source\Utility\GroupOnMultiBindingConverter.cs" />
+    <Compile Include="Source\Utility\IsEnabledToColorConverter.cs" />
+    <Compile Include="Source\Utility\RectConverter.cs" />
+    <Compile Include="Source\Utility\ResourceGenerator.cs" />
+    <Compile Include="Source\Utility\SelectionChangedBehaviour.cs" />
+    <Compile Include="Source\Utility\SettingsAppearanceViewModel.cs" />
+    <Compile Include="Source\Utility\System.DialogUtil.cs" />
+    <Compile Include="Source\Utility\UriHackExtension.cs" />
+    <Compile Include="Source\Utility\VisibilityToBooleanConverter.cs" />
+    <Compile Include="Source\Utility\WpfExtensions.cs" />
     <Compile Include="Source\Views\CreateTemplateDialog.xaml.cs">
       <DependentUpon>CreateTemplateDialog.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -215,8 +218,6 @@
       <DependentUpon>WriterTemplateControl.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Source\VisibilityToBooleanConverter.cs" />
-    <Compile Include="Source\WpfExtensions.cs" />
     <Compile Include="Source\Controls\AvalonEditor\Common.cs" />
     <Compile Include="Source\Controls\AvalonEditor\Editor.xaml.cs">
       <DependentUpon>Editor.xaml</DependentUpon>
@@ -229,13 +230,12 @@
       <DependentUpon>Resource.resx</DependentUpon>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Source\WriterTemplateModel.cs" />
-    <Compile Include="Source\WriterTplModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Source\_rc\Sql.xshd" />
+    <Resource Include="Source\_rc\speaker_tosort.ico" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resource.resx">
@@ -245,6 +245,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Source\Model" />
+    <Folder Include="Source\SQL" />
+    <Folder Include="Source\Utility" />
+    <Folder Include="Source\UI" />
     <Folder Include="Source\_rc" />
     <Folder Include="Source\Views" />
   </ItemGroup>
