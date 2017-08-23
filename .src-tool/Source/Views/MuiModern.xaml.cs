@@ -1,22 +1,8 @@
 ﻿/* oio : 12/27/2013 2:03 AM */
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
-using System.Web.UI.WebControls;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using FirstFloor.ModernUI.Presentation;
-using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
-using FirstFloor.ModernUI.Windows.Controls;
-using FirstFloor.ModernUI.Windows.Media;
-using FirstFloor.ModernUI.Windows.Navigation;
-using ICSharpCode.SharpDevelop;
 
 namespace GeneratorTool.Views
 {

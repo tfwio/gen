@@ -61,6 +61,44 @@ namespace Gen {
     }
     
     /// <summary>
+    ///   Looks up a localized string similar to 
+    ///Configuration  = {config}
+    ///OutputFile     = {output}
+    ///TemplateName   = {template}
+    ///db.table       = {db}.{table}
+    ///.
+    /// </summary>
+    public static string AppConf {
+      get {
+        return ResourceManager.GetString("AppConf", resourceCulture);
+      }
+    }
+    
+    /// <summary>
+    ///   Looks up a localized string similar to  ----------------------------------------------------------
+    /// ==========================================================
+    /// Generator Command Appliaction
+    /// ----------------------------------------------------------
+    /// 
+    /// There are two modes of operation in this application.
+    ///
+    ///1. Using a pre-determined configuration-set,
+    ///   we execute a given template on input/output.
+    ///
+    ///2. all runtime cofniguration settings are injected
+    ///   via invocation.
+    /// 
+    /// # RUNTIME CONF
+    /// 
+    ///    Here, a generator-configuraion file as i [rest of string was truncated]&quot;;.
+    /// </summary>
+    public static string AppHelpString {
+      get {
+        return ResourceManager.GetString("AppHelpString", resourceCulture);
+      }
+    }
+    
+    /// <summary>
     ///   Looks up a localized string similar to &quot;[NO TABLE NAMED ‘{0}’ EXISTS]&quot;.
     /// </summary>
     public static string DatabaseCollection_ConvertInput_TableNotFound {

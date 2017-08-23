@@ -8,11 +8,12 @@
   xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
   xmlns:dat="clr-namespace:System.Windows.Data;assembly=PresentationFramework">
   
-  <BitmapImage UriSource="/source/code-variable.png" x:Key="FieldIcon" />
-  <BitmapImage UriSource="/source/kexi.png"          x:Key="DatabaseIcon" />
   <BitmapImage UriSource="/source/table.png"         x:Key="TableIcon" />
+  <BitmapImage UriSource="/source/kexi.png"          x:Key="DatabaseIcon" />
+  <BitmapImage UriSource="/source/code-variable.png" x:Key="FieldIcon" />
   
   <v:DatabaseItemTemplateSelector                    x:Key="DatabaseItem_Selector" />
+  
   <v:VisibilityToBooleanConverter                    x:Key="Visi" />
   <v:GroupOnMultiBindingConverter                    x:Key="GroupOnTemplatesConverter" />
   <v:IsEnabledToColorConverter                       x:Key="isEnabledToColorConverter" />

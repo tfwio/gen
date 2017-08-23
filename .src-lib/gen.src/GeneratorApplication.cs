@@ -13,22 +13,25 @@ namespace GeneratorApp
   
   class GeneratorApplication : GeneratorApp.Commander
   {
+    static public GeneratorApplication Create(params string[] input) { return new GeneratorApplication(input); }
+    
     public GeneratorApplication(string[] args)
     {
       this.Args = new List<string>(args);
       this.ArgsBackup = new List<string>(args);
+      
       Initialize();
       
       if (settings.HasConfigFile || settings.HasSchemaAndTemplate)
       {
         Console.Write(
-          RX.TEST_CONFIG
+          Gen.Messages.AppConf
           .Replace("{config}",    settings.FileConfig==null ? "null" : settings.FileConfig.FullName)
           .Replace("{input}",     settings.FileIn==null     ? "null" : settings.FileIn.FullName)
           .Replace("{output}",    settings.FileOut==null    ? "null" : settings.FileOut.FullName)
-          .Replace("{template}",  settings.TemplateName    ?? "null")
-          .Replace("{db}",        settings.DatabaseName    ?? "null")
-          .Replace("{table}",     settings.TableName       ?? "null")
+          .Replace("{template}",  settings.TemplateName     ?? "null")
+          .Replace("{db}",        settings.DatabaseName     ?? "null")
+          .Replace("{table}",     settings.TableName        ?? "null")
          );
         
         if (settings.FileConfig==null)
@@ -51,9 +54,13 @@ namespace GeneratorApp
           reader.Model.Templates[settings.TemplateName]);
         
         string input = null;
+        
         if (settings.FileIn != null) input = File.ReadAllText(settings.FileIn.FullName);
         
-        if (!string.IsNullOrEmpty(settings.ReplacementTag) && !string.IsNullOrEmpty(input))
+        if (
+          !string.IsNullOrEmpty(settings.ReplacementTag) &&
+          !string.IsNullOrEmpty(input)
+         )
           output = input.Replace(settings.ReplacementTag,output);
         
         File.WriteAllText(settings.FileOut.FullName,output);
@@ -84,13 +91,15 @@ namespace GeneratorApp
     {
       if (Args.Contains("--help") || Args.Contains("-h")) {
         int width = Console.BufferWidth;
-        using (var str = new StringReader(RX.HELPSTRING))
+        using (var str = new StringReader(Gen.Messages.AppHelpString))
         {
           string line = str.ReadLine();
-          int firstChar = FirstNonSpace(line);
-          
+          if (!string.IsNullOrEmpty(line)) 
+          {
+            int firstChar = FirstNonSpace(line);
+          }
         }
-        Console.Write(RX.HELPSTRING);
+        Console.Write(Gen.Messages.AppHelpString);
         return;
       }
       

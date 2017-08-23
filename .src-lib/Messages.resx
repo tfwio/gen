@@ -138,4 +138,75 @@
   <data name="Filter Generator Config" xml:space="preserve">
     <value>generator-config|*.generator-config;|All Files|*</value>
   </data>
+  <data name="AppHelpString" xml:space="preserve">
+    <value> ----------------------------------------------------------
+ ==========================================================
+ Generator Command Appliaction
+ ----------------------------------------------------------
+ 
+ There are two modes of operation in this application.
+
+1. Using a pre-determined configuration-set,
+   we execute a given template on input/output.
+
+2. all runtime cofniguration settings are injected
+   via invocation.
+ 
+ # RUNTIME CONF
+ 
+    Here, a generator-configuraion file as its basis.  Here, you supply a path to your configuration-file and supply a name of the template you intend to use and a name for the generation process.  note: round and square braces of course are not used in the command
+
+```
+# where -gcfg: (file) is our Generator Configuration File
+
+gen -gcfg [gen-cfg]
+
+# or
+
+gen -it   [path] \
+    -is   [path]) \
+    -tbln [table-name] \
+    -tpln [template-name] \
+    -i    (file) \
+    -o    (file)
+```
+ 
+if no generator-config, then supply the following two files...
+   
+   -it: (file) input template config *.xtpl
+   -is: (file) input data-schematic config *.xdata
+   -ij: (file) input data-schematic config *.json|*.gen
+       - typically, a file named '.gen' would
+         be created for this.
+       - additionally, we use something like nodejs
+         with a ""gen_cfg"" sub-directory.
+       - is this true; is it coded in here?
+         I don't think so.
+ 
+# STANDALONE RUNTIME PARAMS
+
+-db  [string] name of database [-dbn]
+-t   [string] name of table    [-table -tbln]
+-tpl [string] name of template [-tpln]
+ 
+options
+ 
+-i  [file]    input file containing (see -r) input template.
+-o  [file]    output file.
+
+-r  [string]  Target Replace(target,generated) block
+              to be replaced in our input file.
+ 
+input file must contain some form of data-config?
+Template and possibly even specify the output-file.
+</value>
+  </data>
+  <data name="AppConf" xml:space="preserve">
+    <value>
+Configuration  = {config}
+OutputFile     = {output}
+TemplateName   = {template}
+db.table       = {db}.{table}
+</value>
+  </data>
 </root>

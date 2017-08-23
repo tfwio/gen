@@ -17,7 +17,7 @@
 	
 	<mui:ModernWindow.TitleLinks><!--
 		<mui:Link DisplayName="generator" Source="/generator" />-->
-		<mui:Link DisplayName="settings" Source="/source/view/settings.xaml" />
+		<mui:Link DisplayName="settings" Source="/source/views/settings.xaml" />
 		<!--<mui:Link DisplayName="gen[template]" Source="/generator/template" />
 		<mui:Link DisplayName="gen[database]" Source="/generator/data" />-->
 	</mui:ModernWindow.TitleLinks>

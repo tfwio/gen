@@ -4,7 +4,8 @@ using System;
 using System.Linq;
 namespace GeneratorTool
 {
-	public enum ViewMode
+   /// why not add <c>flags?</c>
+  [Flags] public enum ViewMode
 	{
 		Undefined = 0,
 		Database,

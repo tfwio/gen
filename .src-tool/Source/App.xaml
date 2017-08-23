@@ -1,39 +1,48 @@
-<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:v="clr-namespace:GeneratorTool.Views" mc:Ignorable="d" x:Class="GeneratorTool.App">
-	<Application.Resources>
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
+<Application
+  x:Class="GeneratorTool.App"
+  
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  
+  xmlns:v="clr-namespace:GeneratorTool.Views" mc:Ignorable="d">
+  
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml" />
         <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Dark.xaml" />
-				<ResourceDictionary Source="/source/_rc/globaltheme.xaml" />
-				<ResourceDictionary Source="/source/_rc/theme.xaml" />
+        <ResourceDictionary Source="/source/_rc/globaltheme.xaml" />
+        <ResourceDictionary Source="/source/_rc/theme.xaml" />
         <ResourceDictionary Source="/source/_rc/lime.xaml" />
         <ResourceDictionary Source="/source/_rc/icons.xaml" />
-			</ResourceDictionary.MergedDictionaries>
-			
-		  <v:VisibilityToBooleanConverter x:Key="vbc" />
-		  
-			<Style x:Key="ExpanderTemplate">
-				<Setter Property="Control.Template">
-					<Setter.Value>
-						<ControlTemplate TargetType="Expander">
-							<DockPanel>
-								<ToggleButton DockPanel.Dock="Top" IsChecked="{Binding Path=IsExpanded,Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Header}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Padding="{TemplateBinding Padding}" Name="HeaderSite" MinWidth="0" MinHeight="0" Margin="{TemplateBinding Margin}">
-								</ToggleButton>
-								<ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Name="ExpandSite" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="Collapsed" Focusable="False" DockPanel.Dock="Bottom" />
-							</DockPanel>
-							<ControlTemplate.Triggers>
-								<Trigger Property="IsExpanded" Value="True">
-									<Setter TargetName="ExpandSite" Property="Visibility" Value="Visible" />
-								</Trigger>
-								<Trigger Property="IsEnabled" Value="False">
-									<Setter Property="TextElement.Foreground" Value="{DynamicResource DisabledTextBrush}" />
-								</Trigger>
-							</ControlTemplate.Triggers>
-						</ControlTemplate>
-					</Setter.Value>
-				</Setter>
-			</Style>
-	  
-		</ResourceDictionary>
-	</Application.Resources>
+      </ResourceDictionary.MergedDictionaries>
+      
+      <v:VisibilityToBooleanConverter x:Key="vbc" />
+      
+      <Style x:Key="ExpanderTemplate">
+        <Setter Property="Control.Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="Expander">
+              <DockPanel>
+                <ToggleButton DockPanel.Dock="Top" IsChecked="{Binding Path=IsExpanded,Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Header}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Padding="{TemplateBinding Padding}" Name="HeaderSite" MinWidth="0" MinHeight="0" Margin="{TemplateBinding Margin}">
+                </ToggleButton>
+                <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Name="ExpandSite" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="Collapsed" Focusable="False" DockPanel.Dock="Bottom" />
+              </DockPanel>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsExpanded" Value="True">
+                  <Setter TargetName="ExpandSite" Property="Visibility" Value="Visible" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                  <Setter Property="TextElement.Foreground" Value="{DynamicResource DisabledTextBrush}" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
+    
+    </ResourceDictionary>
+  </Application.Resources>
 </Application>

@@ -51,6 +51,21 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
     <StartAction>Project</StartAction>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Win32' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Win64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AvalonDock">
@@ -142,7 +157,9 @@
       <SubType>Code</SubType>
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Source\AppGlobal.cs" />
+    <Compile Include="Source\AppGlobal.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Source\Controls\AvalonEditorUtils.cs" />
     <Compile Include="Source\GeneratorReader.cs" />
     <Compile Include="Source\LocalMuiSettings.cs" />
@@ -236,6 +253,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Source\_rc\Sql.xshd" />
+    <Resource Include="Source\code-variable.png" />
+    <Resource Include="Source\kexi.png" />
+    <Resource Include="Source\table.png" />
     <Resource Include="Source\_rc\speaker_tosort.ico" />
   </ItemGroup>
   <ItemGroup>
