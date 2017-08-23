@@ -9,7 +9,7 @@ author: some dude
 There are generally two versions of this here
 
 1. [.src-lib](.src-lib) — [`.src-lib/Gen.Tool.csproj`](.src-lib/Gen.Tool.csproj) and  [`.src-lib/Gen.Lib.csproj`](.src-lib/Gen.Lib.csproj) are identical except that the library version doesn't have the workings of the command-line tool version.
-2. [.src-tool](.src-tool) — `[.src-tool/Gen.App.csproj](.src-tool/Gen.App.csproj)` is a shallow WIP wrapper of the general functionality expected.
+2. [.src-tool](.src-tool) — [`.src-tool/Gen.App.csproj`](.src-tool/Gen.App.csproj) is a shallow WIP wrapper of the general functionality expected.
 
 Since some of the source licenses conflict a bit, we don't release binaries of the ui-app until thats resolved.
 
