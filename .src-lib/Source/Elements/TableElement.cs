@@ -23,162 +23,93 @@ namespace Generator.Elements
 	
 	public partial class TableElement : DatabaseChildElement
 	{
-		[XmlAttribute()]
-		public string Name {
-			get { return name; }
-			set { name = value; OnPropertyChanged("Name"); }
-		} string name;
+		[XmlAttribute()] public string Name { get { return name; } set { name = value; OnPropertyChanged("Name"); } } string name;
 		
-		[XmlIgnore]
-		public DatabaseElement Parent {
-			get {
-				return parent;
-			}
-			set {
-				parent = value;
-				OnPropertyChanged("Parent");
-			}
-		} DatabaseElement parent;
+		[XmlIgnore] public DatabaseElement Parent { get { return parent; } set { parent = value; OnPropertyChanged("Parent"); } } DatabaseElement parent;
+		
 		#region Properties
-		/// <summary>
-		/// A helper method used to transform our internal variable dictionary
-		/// for parser addons.
-		/// </summary>
-		[XmlIgnore]
-		public Action<DICT<string,object>> Transform { get;set; }
+		/// <summary>A helper method used to transform our internal variable dictionary for parser addons.</summary>
+		[XmlIgnore] public Action<DICT<string,object>> Transform { get;set; }
 
-		[XmlElement("Field"), Browsable(false)]
-		public List<FieldElement> Fields {
-			get { return items; }
-			set { items = new List<FieldElement>(value); OnPropertyChanged("Fields"); }
-		} List<FieldElement> items;
+		[XmlElement("Field"), Browsable(false)] public List<FieldElement> Fields { get { return items; } set { items = new List<FieldElement>(value); OnPropertyChanged("Fields"); } } List<FieldElement> items;
 		
-		/// <summary>
-		/// Gets a Keyed element or Null if no matching Key was found.
-		/// </summary>
-		public FieldElement this[string key] {
-			get { return Find(key); }
-		}
+		/// <summary>Gets a Keyed element or Null if no matching Key was found.</summary>
+		public FieldElement this[string key] { get { return Find(key); } }
 		
 		#region Table Definition
 		
 		string baseClass;
-		[XmlAttribute("base")]
-		public string BaseClass {
-			get {
-				return baseClass;
-			}
-			set {
-				baseClass = value; OnPropertyChanged("BaseClass");
-			}
-		}
+		[XmlAttribute("base")] public string BaseClass { get { return baseClass; } set { baseClass = value; OnPropertyChanged("BaseClass"); } }
 
-		[XmlAttribute] public string Inherits {
-			get { return _inherits; } set { _inherits = value; OnPropertyChanged("Inherits"); }
-		} string _inherits;
+		[XmlAttribute] public string Inherits { get { return _inherits; } set { _inherits = value; OnPropertyChanged("Inherits"); } } string _inherits;
 
-		[DefaultValue(""), XmlAttribute()]
-		public string Description {
-			get { return description; }
-			set { description = description; OnPropertyChanged("Description"); }
-		} string description;
+		[DefaultValue(""), XmlAttribute()] public string Description { get { return description; } set { description = description; OnPropertyChanged("Description"); } } string description;
 		
-		[XmlIgnore()] public string FriendlyName {
-			get { return Name.Clean(); }
-		}
+		[XmlIgnore()] public string FriendlyName { get { return Name.Clean(); } }
 		
-		[XmlAttribute()] public string PrimaryKey {
-			get { return primaryKey; }
-			set { primaryKey = value; OnPropertyChanged("PrimaryKey"); }
-		} string primaryKey;
+		[XmlAttribute()] public string PrimaryKey { get { return primaryKey; } set { primaryKey = value; OnPropertyChanged("PrimaryKey"); } } string primaryKey;
 		
-		[XmlIgnore()]
-		public FieldElement PrimaryKeyElement {
-			get { return Find(PrimaryKey); }
-		}
+		[XmlIgnore()] public FieldElement PrimaryKeyElement { get { return Find(PrimaryKey); } }
+		
 		static readonly string DefaultDatabaseTypeNames = "Unspecified,ClassObject,SqlServer,MySql,OleAccess_2007,OleDb,OleAccess,SQLite";
-		/// <summary>
-		/// Specify the type for a current selection, such as the type of database
-		/// currently in operation/view.
-		/// </summary>
-		[XmlAttribute]
-		public /*DatabaseType*/string DbType {
-			get { return dbType; }
-			set { dbType = value;  OnPropertyChanged("DbType"); }
-		} /*DatabaseType*/string dbType = "Unspecified";
+		
+		/// <summary>Specify the type for a current selection, such as the type of database currently in operation/view.</summary>
+		[XmlAttribute] public /*DatabaseType*/string DbType { get { return dbType; } set { dbType = value;  OnPropertyChanged("DbType"); } } /*DatabaseType*/string dbType = "Unspecified";
 
 		/// <summary>
 		/// get;set;
 		/// <para>Returns a table view if present;</para>
 		/// <para>This should only be set internally by the parser;</para>
 		/// </summary>
-		[XmlIgnore] public DataViewElement View {
-			get { return view; }
-			set { view = value; OnPropertyChanged("View"); }
-		} DataViewElement view;
+		[XmlIgnore] public DataViewElement View { get { return view; } set { view = value; OnPropertyChanged("View"); } } DataViewElement view;
+		
 		/// <summary>
 		/// get;set;
 		/// <para>Returns a table link if present;</para>
 		/// <para>This should only be set internally by the parser;</para>
 		/// </summary>
-		[XmlIgnore] public DataViewLink Link {
-			get { return link; }
-			set { link = value; OnPropertyChanged("Link"); }
-		} DataViewLink link;
+		[XmlIgnore] public DataViewLink Link { get { return link; } set { link = value; OnPropertyChanged("Link"); } } DataViewLink link;
 		
 		#endregion
 		
 		#region TypeName Helpers (See Namespace Provider Properties)
-		public static string TypeName(Type t)
-		{
-			return string.Format("{0}.{1}", t.Namespace, t.Name);
-		}
-		public static string TypeN(Type t)
-		{
-			return t.Name;
-		}
-		public static string NsName(Type t)
-		{
-			return t.Namespace;
-		}
+		
+		public static string TypeName(Type t) { return string.Format("{0}.{1}", t.Namespace, t.Name); }
+		public static string TypeN(Type t) { return t.Name; }
+		public static string NsName(Type t) { return t.Namespace; }
+		
 		#endregion
+		
 		// IDbCommand, IDbConnection, IDbField, IDbDataAdapter
+		
 		#region Namespace Provided Properties
 		#region Command
-		[XmlIgnore]
-		public string NsCommand
-		{
-			get
-			{
+		
+		[XmlIgnore] public string NsCommand {
+			get {
 				switch (dbType) {
-						case "SQLite": return NsName(typeof(System.Data.SQLite.SQLiteCommand));
+					case "SQLite":    return NsName(typeof(System.Data.SQLite.SQLiteCommand));
 					case "OleAccess":
-						case "OleDb": return NsName(typeof(System.Data.OleDb.OleDbCommand));
-						case "SqlServer": return NsName(typeof(System.Data.SqlClient.SqlCommand));
-						#if USEMYSQL
-						case "MySql": return NsName(typeof(MySqlCommand));
-						#endif
-						default: return "ClassObject";
+					case "OleDb":     return NsName(typeof(System.Data.OleDb.OleDbCommand));
+					case "SqlServer": return NsName(typeof(System.Data.SqlClient.SqlCommand));
+#if USEMYSQL
+					case "MySql":     return NsName(typeof(MySqlCommand));
+#endif
+					default: return "ClassObject";
 				}
 			}
 		}
-		[XmlIgnore()]
-		public string TypeCommand {
+		[XmlIgnore()] public string TypeCommand {
 			get {
 				switch (dbType) {
-					case "SQLite":
-						return TypeName(typeof(System.Data.SQLite.SQLiteCommand));
+					case "SQLite":    return TypeName(typeof(System.Data.SQLite.SQLiteCommand));
 					case "OleAccess":
-					case "OleDb":
-						return TypeName(typeof(System.Data.OleDb.OleDbCommand));
-					case "SqlServer":
-						return TypeName(typeof(System.Data.SqlClient.SqlCommand));
-						#if USEMYSQL
-					case "MySql":
-						return TypeName(typeof(MySqlCommand));
-						#endif
-					default:
-						return "ClassObject";
+					case "OleDb":     return TypeName(typeof(System.Data.OleDb.OleDbCommand));
+					case "SqlServer": return TypeName(typeof(System.Data.SqlClient.SqlCommand));
+#if USEMYSQL
+					case "MySql":     return TypeName(typeof(MySqlCommand));
+#endif
+					default:          return "ClassObject";
 				}
 			}
 		}
@@ -186,41 +117,30 @@ namespace Generator.Elements
 		public string TCommand {
 			get {
 				switch (dbType) {
-					case "SQLite":
-						return TypeN(typeof(System.Data.SQLite.SQLiteCommand));
+					case "SQLite":    return TypeN(typeof(System.Data.SQLite.SQLiteCommand));
 					case "OleAccess":
-					case "OleDb":
-						return TypeN(typeof(System.Data.OleDb.OleDbCommand));
-					case "SqlServer":
-						return TypeN(typeof(System.Data.SqlClient.SqlCommand));
-						#if USEMYSQL
-					case "MySql":
-						return TypeN(typeof(MySqlCommand));
-						#endif
-					default:
-						return "ClassObject";
+					case "OleDb":     return TypeN(typeof(System.Data.OleDb.OleDbCommand));
+					case "SqlServer": return TypeN(typeof(System.Data.SqlClient.SqlCommand));
+#if USEMYSQL
+					case "MySql": return TypeN(typeof(MySqlCommand));
+#endif
+					default:          return "ClassObject";
 				}
 			}
 		}
 		#endregion
 		#region Adapter
-		[XmlIgnore()]
-		public string NsAdapter {
+		[XmlIgnore()] public string NsAdapter {
 			get {
 				switch (dbType) {
-					case "SQLite":
-						return NsName(typeof(System.Data.SQLite.SQLiteDataAdapter));
-					case "OleAccess":
-					case "OleDb":
-						return NsName(typeof(System.Data.OleDb.OleDbDataAdapter));
-					case "SqlServer":
-						return NsName(typeof(System.Data.SqlClient.SqlDataAdapter));
+					case "SQLite":    return NsName(typeof(System.Data.SQLite.SQLiteDataAdapter));
+					case "OleAccess": 
+					case "OleDb":     return NsName(typeof(System.Data.OleDb.OleDbDataAdapter));
+					case "SqlServer": return NsName(typeof(System.Data.SqlClient.SqlDataAdapter));
 						#if USEMYSQL
-					case "MySql":
-						return NsName(typeof(MySqlDataAdapter));
+					case "MySql":     return NsName(typeof(MySqlDataAdapter));
 						#endif
-					default:
-						return "ClassObject";
+					default:          return "ClassObject";
 				}
 			}
 		}
@@ -228,19 +148,14 @@ namespace Generator.Elements
 		public string TypeAdapter {
 			get {
 				switch (dbType) {
-					case "SQLite":
-						return TypeName(typeof(System.Data.SQLite.SQLiteDataAdapter));
+					case "SQLite":    return TypeName(typeof(System.Data.SQLite.SQLiteDataAdapter));
 					case "OleAccess":
-					case "OleDb":
-						return TypeName(typeof(System.Data.OleDb.OleDbDataAdapter));
-					case "SqlServer":
-						return TypeName(typeof(System.Data.SqlClient.SqlDataAdapter));
+					case "OleDb":     return TypeName(typeof(System.Data.OleDb.OleDbDataAdapter));
+					case "SqlServer": return TypeName(typeof(System.Data.SqlClient.SqlDataAdapter));
 						#if USEMYSQL
-					case "MySql":
-						return TypeName(typeof(MySqlDataAdapter));
+					case "MySql":     return TypeName(typeof(MySqlDataAdapter));
 						#endif
-					default:
-						return "ClassObject";
+					default:          return "ClassObject";
 				}
 			}
 		}
@@ -248,41 +163,31 @@ namespace Generator.Elements
 		public string TAdapter {
 			get {
 				switch (dbType) {
-					case "SQLite":
-						return TypeN(typeof(System.Data.SQLite.SQLiteDataAdapter));
+					case "SQLite":    return TypeN(typeof(System.Data.SQLite.SQLiteDataAdapter));
 					case "OleAccess":
-					case "OleDb":
-						return TypeN(typeof(System.Data.OleDb.OleDbDataAdapter));
-					case "SqlServer":
-						return TypeN(typeof(System.Data.SqlClient.SqlDataAdapter));
+					case "OleDb":     return TypeN(typeof(System.Data.OleDb.OleDbDataAdapter));
+					case "SqlServer": return TypeN(typeof(System.Data.SqlClient.SqlDataAdapter));
 						#if USEMYSQL
 					case "MySql":
 						return TypeN(typeof(MySqlDataAdapter));
 						#endif
-					default:
-						return "ClassObject";
+					default:          return "ClassObject";
 				}
 			}
 		}
 		#endregion
 		#region Connection
-		[XmlIgnore()]
-		public string NsConnection {
+		[XmlIgnore()] public string NsConnection {
 			get {
 				switch (dbType) {
-					case "SQLite":
-						return NsName(typeof(System.Data.SQLite.SQLiteConnection));
+					case "SQLite":    return NsName(typeof(System.Data.SQLite.SQLiteConnection));
 					case "OleAccess":
-					case "OleDb":
-						return NsName(typeof(System.Data.OleDb.OleDbConnection));
-					case "SqlServer":
-						return NsName(typeof(System.Data.SqlClient.SqlConnection));
+					case "OleDb":     return NsName(typeof(System.Data.OleDb.OleDbConnection));
+					case "SqlServer": return NsName(typeof(System.Data.SqlClient.SqlConnection));
 						#if USEMYSQL
-					case "MySql":
-						return NsName(typeof(MySqlConnection));
+					case "MySql":     return NsName(typeof(MySqlConnection));
 						#endif
-					default:
-						return "ClassObject";
+					default:          return "ClassObject";
 				}
 			}
 		}
@@ -290,19 +195,14 @@ namespace Generator.Elements
 		public string TypeConnection {
 			get {
 				switch (dbType) {
-					case "SQLite":
-						return TypeName(typeof(System.Data.SQLite.SQLiteConnection));
+					case "SQLite":    return TypeName(typeof(System.Data.SQLite.SQLiteConnection));
 					case "OleAccess":
-					case "OleDb":
-						return TypeName(typeof(System.Data.OleDb.OleDbConnection));
-					case "SqlServer":
-						return TypeName(typeof(System.Data.SqlClient.SqlConnection));
+					case "OleDb":     return TypeName(typeof(System.Data.OleDb.OleDbConnection));
+					case "SqlServer": return TypeName(typeof(System.Data.SqlClient.SqlConnection));
 						#if USEMYSQL
-					case "MySql":
-						return TypeName(typeof(MySqlConnection));
+					case "MySql":     return TypeName(typeof(MySqlConnection));
 						#endif
-					default:
-						return "ClassObject";
+					default:          return "ClassObject";
 				}
 			}
 		}
@@ -310,19 +210,14 @@ namespace Generator.Elements
 		public string TConnection {
 			get {
 				switch (dbType) {
-					case "SQLite":
-						return TypeN(typeof(System.Data.SQLite.SQLiteConnection));
+					case "SQLite":     return TypeN(typeof(System.Data.SQLite.SQLiteConnection));
 					case "OleAccess":
-					case "OleDb":
-						return TypeN(typeof(System.Data.OleDb.OleDbConnection));
-					case "SqlServer":
-						return TypeN(typeof(System.Data.SqlClient.SqlConnection));
+					case "OleDb":      return TypeN(typeof(System.Data.OleDb.OleDbConnection));
+					case "SqlServer":  return TypeN(typeof(System.Data.SqlClient.SqlConnection));
 						#if USEMYSQL
-					case "MySql":
-						return TypeN(typeof(MySqlConnection));
+					case "MySql":      return TypeN(typeof(MySqlConnection));
 						#endif
-					default:
-						return "ClassObject";
+					default:           return "ClassObject";
 				}
 			}
 		}
@@ -330,19 +225,14 @@ namespace Generator.Elements
 		public string TParameter {
 			get {
 				switch (dbType) {
-					case "SQLite":
-						return TypeN(typeof(System.Data.SQLite.SQLiteParameter));
+					case "SQLite":     return TypeN(typeof(System.Data.SQLite.SQLiteParameter));
 					case "OleAccess":
-					case "OleDb":
-						return TypeN(typeof(System.Data.OleDb.OleDbParameter));
-					case "SqlServer":
-						return TypeN(typeof(System.Data.SqlClient.SqlParameter));
+					case "OleDb":      return TypeN(typeof(System.Data.OleDb.OleDbParameter));
+					case "SqlServer":  return TypeN(typeof(System.Data.SqlClient.SqlParameter));
 						#if USEMYSQL
-					case "MySql":
-						return TypeN(typeof(MySqlConnection));
+					case "MySql":      return TypeN(typeof(MySqlConnection));
 						#endif
-					default:
-						return "ClassObject";
+					default:           return "ClassObject";
 				}
 			}
 		}
@@ -352,19 +242,14 @@ namespace Generator.Elements
 		public string NsReader {
 			get {
 				switch (dbType) {
-					case "SQLite":
-						return NsName(typeof(System.Data.SQLite.SQLiteDataReader));
+					case "SQLite":     return NsName(typeof(System.Data.SQLite.SQLiteDataReader));
 					case "OleAccess":
-					case "OleDb":
-						return NsName(typeof(System.Data.OleDb.OleDbDataReader));
-					case "SqlServer":
-						return NsName(typeof(System.Data.SqlClient.SqlDataReader));
+					case "OleDb":      return NsName(typeof(System.Data.OleDb.OleDbDataReader));
+					case "SqlServer":  return NsName(typeof(System.Data.SqlClient.SqlDataReader));
 						#if USEMYSQL
-					case "MySql":
-						return NsName(typeof(MySqlDataReader));
+					case "MySql":      return NsName(typeof(MySqlDataReader));
 						#endif
-					default:
-						return "ClassObject";
+					default:           return "ClassObject";
 				}
 			}
 		}
@@ -372,19 +257,14 @@ namespace Generator.Elements
 		public string TypeReader {
 			get {
 				switch (dbType) {
-					case "SQLite":
-						return TypeName(typeof(System.Data.SQLite.SQLiteDataReader));
+					case "SQLite":     return TypeName(typeof(System.Data.SQLite.SQLiteDataReader));
 					case "OleAccess":
-					case "OleDb":
-						return TypeName(typeof(System.Data.OleDb.OleDbDataReader));
-					case "SqlServer":
-						return TypeName(typeof(System.Data.SqlClient.SqlDataReader));
+					case "OleDb":      return TypeName(typeof(System.Data.OleDb.OleDbDataReader));
+					case "SqlServer":  return TypeName(typeof(System.Data.SqlClient.SqlDataReader));
 						#if USEMYSQL
-					case "MySql":
-						return TypeName(typeof(MySqlDataReader));
+					case "MySql":      return TypeName(typeof(MySqlDataReader));
 						#endif
-					default:
-						return "ClassObject";
+					default:           return "ClassObject";
 				}
 			}
 		}
@@ -392,19 +272,15 @@ namespace Generator.Elements
 		public string TReader {
 			get {
 				switch (dbType) {
-					case "SQLite":
-						return TypeN(typeof(System.Data.SQLite.SQLiteDataReader));
+					case "SQLite":     return TypeN(typeof(System.Data.SQLite.SQLiteDataReader));
 					case "OleAccess":
-					case "OleDb":
-						return TypeN(typeof(System.Data.OleDb.OleDbDataReader));
-					case "SqlServer":
-						return TypeN(typeof(System.Data.SqlClient.SqlDataReader));
+					case "OleDb":      return TypeN(typeof(System.Data.OleDb.OleDbDataReader));
+					case "SqlServer":  return TypeN(typeof(System.Data.SqlClient.SqlDataReader));
 						#if USEMYSQL
 					case "MySql":
 						return TypeN(typeof(MySqlDataReader));
 						#endif
-					default:
-						return "ClassObject";
+					default:           return "ClassObject";
 				}
 			}
 		}
@@ -418,25 +294,14 @@ namespace Generator.Elements
 		/// </summary>
 		/// <param name="Key">(string) FieldElement.DataName</param>
 		/// <returns>a FieldElement or Null</returns>
-		FieldElement Find(string Key)
-		{
-			if (items == null) return null;
-			if (items.Count == 0) return null;
-			foreach (FieldElement field in this.Fields) {
-				if (field.DataName == Key)
-					return field;
-			}
-			return null;
-		}
+		FieldElement Find(string Key) { if (items == null) return null; if (items.Count == 0) return null; foreach (FieldElement field in this.Fields) { if (field.DataName == Key) return field; } return null; }
+		
 		/// <summary>
 		/// The given Key is found in Field list.
 		/// </summary>
 		/// <param name="Key">see the FieldElement.DataName property</param>
 		/// <returns>True if the DataName is found</returns>
-		public bool Contains(string Key)
-		{
-			return Find(Key) != null;
-		}
+		public bool Contains(string Key) { return Find(Key) != null; }
 		#endregion
 		#region .ctor
 		public TableElement()
@@ -462,10 +327,7 @@ namespace Generator.Elements
 
 		internal DICT<string, object> conversionElements = new DICT<string, object>();
 		
-		void Add(string keyName, object value)
-		{
-			conversionElements.Add(keyName, value);
-		}
+		void Add(string keyName, object value) { conversionElements.Add(keyName, value); }
 		
 		virtual public void InitializeDictionary()
 		{
@@ -483,7 +345,7 @@ namespace Generator.Elements
 			// see the primary key related tags below
 			Add("PK", PrimaryKey);
 			Add("pk", PrimaryKey == null ? string.Empty : PrimaryKey.ToLower());
-			Add("PrimaryKey", PrimaryKey == null ? string.Empty : PrimaryKey);
+      Add("PrimaryKey", PrimaryKey ?? string.Empty);
 			Add("PrimaryKeyCleanC", PrimaryKey == null ? string.Empty : PrimaryKey.ToStringCapitolize().Clean());
 			Add("primarykey", PrimaryKey == null ? string.Empty : PrimaryKey.ToLower());
 			#endregion
@@ -569,7 +431,7 @@ namespace Generator.Elements
 				Add("PKFriendlyName",		PrimaryKeyElement.DataName.Clean());
 				Add("PKFriendlyNameC",		PrimaryKeyElement.DataName.Clean().ToStringCapitolize());
 			} else {
-				Global.statR(Gen.Messages.TableElement_PrimaryKeyNotFound, Name);
+				Logger.Warn("TableElement.InitializeDictionary", Gen.Messages.TableElement_PrimaryKeyNotFound, Name);
 			}
 			#endregion
 			
@@ -588,10 +450,7 @@ namespace Generator.Elements
 				string.Format("{0}", conversionElements[Key])
 			);
 		}
-		/// <summary>
-		/// in preparation for a field-template, a field template is parsed
-		/// for table-template parameters.
-		/// </summary>
+		/// <summary>prepare a field-template, parse field-template for table-template-params.</summary>
 		/// <param name="input"></param>
 		/// <returns></returns>
 		public string Reformat(string input)
@@ -606,8 +465,8 @@ namespace Generator.Elements
 		/// <summary>
 		/// Initializes the dictionary `InitializeDictionary()`, and calls `Reformat()`.
 		/// </summary>
-		/// <param name="table">TableElement</param>
 		/// <param name="tableTemplate">(string) TableTemplate</param>
+		/// <param name="action">action? doesn't seemto be used at all!</param>
 		/// <returns></returns>
 		public string ReplaceValues(string tableTemplate, Action<DICT<string,object>> action=null)
 		{

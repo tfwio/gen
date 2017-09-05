@@ -6,7 +6,11 @@ using System.Windows.Forms;
 namespace Generator.Core.Markup
 {
 	/// <summary>
-	/// 
+  /// If we are here, we have a **complex** template; That is, our template references multiple tables.
+  ///
+  /// match.value  - Comma Delimited Formatted string [0: template, N++: table-name]
+  /// match.name  - ="TableTemplate" in this case?
+  /// match.params - same as value
 	/// </summary>
 	public struct QuickMatch
 	{

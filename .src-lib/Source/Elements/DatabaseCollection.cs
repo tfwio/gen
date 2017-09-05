@@ -212,33 +212,6 @@ namespace Generator.Elements
 		{
 		}
 
-		#region ConvertInput Utility
-
-		#region No Longer
-		#if no
-
-		/// <summary>
-		/// if a table is provided, the database knows where to start and conversion is called starting with
-		/// the parameters from the particular table.
-		/// </summary>
-		/// <param name="dbs">(IDbConfiguration) where the List of ‘Databases’ finds the template, and sends the IDbConfiguration through to the Table.ConvertInput method.</param>
-		/// <param name="tableName">the name of the table to apply ‘templating’ toward.</param>
-		/// <returns>
-		/// If success, the converted template is returned, otherwise an empty string or the message ‘NO TABLE NAMED [table_name] EXISTS’
-		/// </returns>
-		public string ConvertInput(IDbConfiguration dbs, string tableName)
-		{
-			foreach (DatabaseElement elm in Databases) {
-				if (elm[tableName]==null) continue;
-				if (elm.Contains(tableName))
-					return TemplateFactory.ConvertInput( dbs, true );
-			}
-			return string.Format(Messages.DatabaseCollection_ConvertInput_TableNotFound,tableName.ToUpper());
-		}
-
-		#endif
-		#endregion
-
 		/// <summary></summary>
 		/// <param name="dbs">(IDbConfiguration) where the List of
 		/// ‘Databases’ finds the template, and sends the IDbConfiguration
@@ -251,12 +224,12 @@ namespace Generator.Elements
 			// I suppose that this loop just checks weather the table exists.
 			foreach (DatabaseElement elm in Databases) {
 				if ( elm[tableName] == null ) continue;
-				if ( elm.Contains(tableName) ) return TemplateFactory.ConvertInput( dbs, true );
+				if ( elm.Contains(tableName) ) {
+				  return TemplateFactory.Generate( dbs );
+				}
 			}
 			return string.Format( Gen.Messages.DatabaseCollection_ConvertInput_TableNotFound , tableName.ToUpper() );
 		}
-
-		#endregion
 
 	}
 	

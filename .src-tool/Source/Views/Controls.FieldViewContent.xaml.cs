@@ -9,7 +9,7 @@
 using System;
 using System.Windows.Controls;
 
-namespace GeneratorTool.Views
+namespace GeneratorTool.Views.Controls
 {
 	/// <summary>
 	/// Interaction logic for FieldView.xaml

@@ -14,7 +14,7 @@ using Generator.Elements;
 using Microsoft.Win32;
 using GeneratorTool.Views.Content;
 
-namespace GeneratorTool.Views
+namespace GeneratorTool.Views.Controls
 {
 	/// <summary>
 	/// Interaction logic for WriterTemplateControl.xaml

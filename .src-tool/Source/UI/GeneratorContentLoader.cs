@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 
 using FirstFloor.ModernUI.Windows;
+using GeneratorTool.Views.Controls;
 
 namespace GeneratorTool.Views
 {
@@ -14,7 +15,7 @@ namespace GeneratorTool.Views
 		public GeneratorModel Model;
 		
 		readonly MoxiView moxi = new MoxiView();
-		readonly WriterTemplateControl writerControl = new WriterTemplateControl();
+    readonly WriterTemplateControl writerControl = new WriterTemplateControl();
 		readonly SQLiteView sqlTool = new SQLiteView();
 		
 		/// <summary>

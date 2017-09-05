@@ -27,7 +27,7 @@ namespace Generator.Parser
 	
 		static public MatchCollection Match(string regex, string input)
 		{
-			Regex r = new Regex(regex,RegexOptions.Multiline);
+			var r = new Regex(regex,RegexOptions.Multiline);
 			if (!r.IsMatch(input)) return null;
 			MatchCollection mc = r.Matches(input);
 			r = null;

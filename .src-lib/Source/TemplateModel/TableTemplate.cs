@@ -132,22 +132,14 @@ namespace Generator.Core.Markup
 		/// <para>(System.Cor3.Data.Map.Types.FlashNativeTypes)</para>
 		/// </para>
 		/// </summary>
-		[XmlAttribute,Category(groupTemplate)]
-		public string SyntaxLanguage {
-			get { return syntaxLanguage; } set { syntaxLanguage = value; }
-		}
+		[XmlAttribute,Category(groupTemplate)] public string SyntaxLanguage { get { return syntaxLanguage; } set { syntaxLanguage = value; } }
 		
-
-		FieldTemplate fieldTemplate;
-		[XmlElement,Browsable(false)] public FieldTemplate FieldTemplate {
-			get { return fieldTemplate; } set { fieldTemplate = value; }
-		}
+		[XmlElement,Browsable(false)] public FieldTemplate FieldTemplate { get { return fieldTemplate; } set { fieldTemplate = value; } } FieldTemplate fieldTemplate;
 		#endregion
 
 		// .ctor
 		public TableTemplate() : this(new TableElement())
 		{
-			
 		}
 		public TableTemplate(DataRow row) : this(new TableElement())
 		{

@@ -10,7 +10,7 @@ using FirstFloor.ModernUI.Windows.Navigation;
 using Generator.Extensions;
 using ICSharpCode.SharpDevelop;
 
-namespace GeneratorTool.Views
+namespace GeneratorTool.Views.Controls
 {
 	/// <summary>
 	/// Interaction logic for UcPanelSpec.xaml

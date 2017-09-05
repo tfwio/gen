@@ -53,15 +53,9 @@ namespace Generator.Core.Markup
 		/// <summary>
 		/// Otherwise known as the field template
 		/// </summary>
-		[XmlElement]
-		public string ItemsTemplate
-		{
-			get { return itemsTemplate; }
-			set { itemsTemplate = value; }
-		}
+		[XmlElement] public string ItemsTemplate { get { return itemsTemplate; } set { itemsTemplate = value; } }
 		
-		[Browsable(false)]
-		virtual public string ElementTemplate { get { return Template; } set { Template=value; } }
+		[Browsable(false)] virtual public string ElementTemplate { get { return Template; } set { Template=value; } }
 		#endregion
 		
 		public MarkupTemplate()

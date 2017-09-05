@@ -1,17 +1,6 @@
 ﻿/* oIo : 2/10/2011 : 9:52 PM */
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
-using System.Text.RegularExpressions;
-using System.Windows.Input;
-
-using System.Cor3.Parsers;
-
-using Generator.Data;
-using Generator.Extensions;
-using Generator.Elements;
-using Generator.Elements.Types;
 
 namespace Generator.Parser
 {

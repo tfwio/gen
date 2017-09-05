@@ -63,107 +63,39 @@ namespace Generator.Elements
 		} string dataType = "Text";
 		
 		
-		[XmlAttribute, DefaultValue("")] public string DataTypeNative {
-			get { return dataTypeNative; } set { dataTypeNative = value; OnPropertyChanged("DataTypeNative"); }
-		} string dataTypeNative;
-		[XmlAttribute] public string DataName {
-			get { return dataName; } set { dataName = value; OnPropertyChanged("DataName"); }
-		} string dataName;
-		[XmlAttribute] public string FormatString {
-			get { return formatString; } set { formatString = value; OnPropertyChanged("FormatString"); }
-		} string formatString;
-		[XmlAttribute, DefaultValue("")] public string BaseClass {
-			get { return baseClass; } set { baseClass = value; OnPropertyChanged("BaseClass"); }
-		} string baseClass;
-		[XmlAttribute,DefaultValue(-1)] public int MaxLength {
-			get { return maxLength; } set { maxLength = value; OnPropertyChanged("MaxLength"); }
-		} int maxLength = -1;
-		[DefaultValue(false),XmlAttribute] public bool UseFormat {
-			get { return useFormat; } set { useFormat = value; OnPropertyChanged("UseFormat"); }
-		} bool useFormat;
-		
-		[DefaultValue(true),XmlAttribute] public bool IsNullable {
-			get { return isNullable; } set { isNullable = value; OnPropertyChanged("IsNullable"); }
-		} bool isNullable = true;
-		
-		[XmlAttribute]
-		public bool IsArray {
-			get { return isArray; } set { isArray = value; OnPropertyChanged("IsArray"); }
-		} bool isArray;
-		
-		[XmlIgnore]
-		public bool IsPrimary {
-			get { return parent.PrimaryKey == dataName; }
-			set { if (value) Parent.PrimaryKey = dataName; OnPropertyChanged("IsPrimary"); }
-		}
-		
-		[XmlAttribute]
-		public string Description {
-			get { return description; }
-			set { description = value; OnPropertyChanged("Description"); }
-		} string description;
-		
-		[XmlAttribute/*,DefaultValue("DBNull.Value")*/]
-		public string DefaultValue {
-			get { return defaultValue; }
-			set { defaultValue = value; OnPropertyChanged("DefaultValue"); }
-		} string defaultValue = "DBNull.Value";
-		
-		[XmlAttribute]
-		public string BlockAction {
-			get { return blockAction; }
-			set { blockAction = value; OnPropertyChanged("BlockAction"); }
-		} string blockAction;
-		
-		[XmlAttribute]
-		public string CodeBlock {
-			get { return codeBlock; }
-			set { codeBlock = value; OnPropertyChanged("CodeBlock"); }
-		} string codeBlock;
-		
-		[XmlAttribute]
-		public string FormType {
-			get { return formType; }
-			set { formType = value; OnPropertyChanged("FormType"); }
-		} string formType;
-
-		/// <summary>
-		/// Used internally by the parser
-		/// </summary>
-		[XmlIgnore]
-		public DataViewElement View {
-			get { return view; }
-			set { view = value; OnPropertyChanged("View"); }
-		} DataViewElement view;
-		/// <summary>
-		/// Used internally by the parser
-		/// </summary>
-		[XmlIgnore]
-		public DataViewLink Link {
-			get { return link; }
-			set { link = value; OnPropertyChanged("Link"); }
-		} DataViewLink link;
+		[XmlAttribute, DefaultValue("")]                public string DataTypeNative { get { return dataTypeNative; } set { dataTypeNative = value; OnPropertyChanged("DataTypeNative"); } } string dataTypeNative;
+		[XmlAttribute]                                  public string DataName       { get { return dataName; } set { dataName = value; OnPropertyChanged("DataName"); } } string dataName;
+		[XmlAttribute]                                  public string FormatString   { get { return formatString; } set { formatString = value; OnPropertyChanged("FormatString"); } } string formatString;
+		[XmlAttribute, DefaultValue("")]                public string BaseClass      { get { return baseClass; } set { baseClass = value; OnPropertyChanged("BaseClass"); } } string baseClass;
+		[XmlAttribute,DefaultValue(-1)]                 public int    MaxLength      { get { return maxLength; } set { maxLength = value; OnPropertyChanged("MaxLength"); } } int maxLength = -1;
+		[DefaultValue(false),XmlAttribute]              public bool   UseFormat      { get { return useFormat; } set { useFormat = value; OnPropertyChanged("UseFormat"); } } bool useFormat;
+		[DefaultValue(true),XmlAttribute]               public bool   IsNullable     { get { return isNullable; } set { isNullable = value; OnPropertyChanged("IsNullable"); } } bool isNullable = true;
+		[XmlAttribute]                                  public bool   IsArray        { get { return isArray; } set { isArray = value; OnPropertyChanged("IsArray"); } } bool isArray;
+		[XmlIgnore]                                     public bool   IsPrimary      { get { return parent.PrimaryKey == dataName; } set { if (value) Parent.PrimaryKey = dataName; OnPropertyChanged("IsPrimary"); } }
+		[XmlAttribute]                                  public string Description    { get { return description; } set { description = value; OnPropertyChanged("Description"); } } string description;
+		[XmlAttribute/*,DefaultValue("DBNull.Value")*/] public string DefaultValue   { get { return defaultValue; } set { defaultValue = value; OnPropertyChanged("DefaultValue"); } } string defaultValue = "DBNull.Value";
+		[XmlAttribute]                                  public string BlockAction    { get { return blockAction; } set { blockAction = value; OnPropertyChanged("BlockAction"); } } string blockAction;
+		[XmlAttribute]                                  public string CodeBlock { get { return codeBlock; } set { codeBlock = value; OnPropertyChanged("CodeBlock"); } } string codeBlock;
+		[XmlAttribute]                                  public string FormType { get { return formType; } set { formType = value; OnPropertyChanged("FormType"); } } string formType;
+		/// <summary>Used internally by the parser</summary>
+		[XmlIgnore]                                     public DataViewElement View { get { return view; } set { view = value; OnPropertyChanged("View"); } } DataViewElement view;
+		/// <summary>Used internally by the parser</summary>
+		[XmlIgnore]                                     public DataViewLink Link { get { return link; } set { link = value; OnPropertyChanged("Link"); } } DataViewLink link;
 		
 		#endregion
 
 		#region This[String Key]
-		/// <summary>
-		/// This is to be used carefully, it Generates the entire (Params) Dictionary
-		/// to simply reference a single element-value within.
-		/// </summary>
+		
+		/// <summary>This is to be used carefully, it Generates the entire (Params) Dictionary to simply reference a single element-value within.</summary>
 		public object this[string Key]
 		{
 			get {
 				return !Contains(Key) ? null : Params[Key];
 			}
 		}
-
-		/// <summary>
-		/// A helper method used to transform our internal variable dictionary
-		/// for parser addons.
-		/// </summary>
-		[XmlIgnore]
-		public Action<DICT<string,object>> Transform { get;set; }
+		/// <summary>A helper method used to transform our internal variable dictionary for parser addons.</summary>
+		[XmlIgnore] public Action<DICT<string,object>> Transform { get;set; }
+		
 		/// <summary>
 		/// THE Dictionary of KeyValuePair of Values contained within this Field.
 		/// <remarks>
@@ -303,7 +235,6 @@ namespace Generator.Elements
 				//
 				#region disabled
 				#if no
-				
 				switch (DataTypeNative) {
 					case "Single":
 						fparams.Add("Native","float");
@@ -406,53 +337,35 @@ namespace Generator.Elements
 			prams = null;
 			return returned;
 		}
+		
 		#endregion
 
-		/// <summary>
-		/// Used at the UI-level;  Should this be in our TREEV block?
-		/// </summary>
-		[XmlIgnore] public string ToolTip
-		{
-			get {
-				return string.Format(
-					"Name: “{0}”\nType: “{1}{2}”",
-					this.DataName,
-					this.DataType,
-					this["fmax"]
-				);
-			}
-		}
+		/// <summary>Used at the UI-level;  Should this be in our TREEV block?</summary>
+		[XmlIgnore] public string ToolTip { get { return string.Format( "Name: “{0}”\nType: “{1}{2}”", this.DataName, this.DataType, this["fmax"] ); } }
 
-		public FieldElement(string n, string t)
-		{
-			DataType = t;
-			DataName = n;
-		}
+		public FieldElement(string n, string t) { DataType = t; DataName = n; }
 		
-		public FieldElement()
-		{
-		}
+		public FieldElement() { }
 
+		/// <summary>
+		/// Generates the field's dictionary and performs string-replace on string-input
+    /// against each key-value-pair of the field values stored to dictionary (memory).
+		/// </summary>
+		/// <param name="Input"></param>
+		/// <param name="action">never seems to be used.</param>
+		/// <returns></returns>
 		public string Replace(string Input, Action<DICT<string,object>> action=null)
 		{
-			Transform = action;
-			DICT<string,object> prams = Params;
-			Transform = null;
-			
-			string rv = string.Copy(Input);
-			foreach (KeyValuePair<string,object> entry in prams) {
-				rv = rv
-					.Replace(
-						string.Format("$({0})",entry.Key),
-						string.Format("{0}",entry.Value)
-					)
-					.Replace(
-						string.Format("$({0})",entry.Key.CapitolN()),
-						string.Format("{0}",entry.Value.ToStringCapitolize())
-					);
+		  Transform = action; Transform = null; // < this is never used.
+		  DICT<string,object> prams = Params;
+		  string rv = string.Copy(Input);
+		  foreach (KeyValuePair<string,object> entry in prams)
+		  {
+		    rv = rv
+		      .Replace( string.Format("$({0})", entry.Key), string.Format("{0}",entry.Value) )
+		      .Replace( string.Format("$({0})", entry.Key.CapitolN()), string.Format("{0}", entry.Value.ToStringCapitolize()) );
 			}
 			return rv;
 		}
-
 	}
 }

@@ -1,16 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<UserControl x:Class="GeneratorTool.Views.DataEditorContent"
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="GeneratorTool.Views.Controls.DataEditorContent"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:AvalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:gen="clr-namespace:GeneratorTool.Views"
-             xmlns:v="clr-namespace:GeneratorTool.Views"
-             xmlns:tpl="clr-namespace:Generator;assembly=Gen.Lib"
+             xmlns:veu="clr-namespace:GeneratorTool.Views.Controls"
              xmlns:g="clr-namespace:Generator;assembly=Gen.Lib"
-             xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
              mc:Ignorable="d">
   <!--<UserControl.Resources>
 		<ResourceDictionary>
@@ -23,11 +18,11 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="4pt">
       <StackPanel>
         <HeaderedContentControl Header="Database" Focusable="False">
-          <gen:TableViewContent x:Name="viewTable" />
+          <veu:TableViewContent x:Name="viewTable" />
         </HeaderedContentControl>
         <Separator Background="{x:Null}" Height="4pt" />
         <HeaderedContentControl Header="Field" Focusable="False">
-          <gen:FieldViewContent x:Name="viewField" />
+          <veu:FieldViewContent x:Name="viewField" />
         </HeaderedContentControl>
         <Separator Background="{x:Null}" Height="4pt" />
         <HeaderedContentControl Header="More…" DataContext="{Binding SelectedField}" Focusable="False">

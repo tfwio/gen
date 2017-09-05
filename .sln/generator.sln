@@ -6,7 +6,7 @@ VisualStudioVersion = 12.0.20827.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gen.App", "..\.src-tool\Gen.App.csproj", "{B29A02FB-0D40-401C-8005-2B2A6B86AFFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gen.Lib", "..\.src-lib\gen.lib.csproj", "{A07EE6F0-10F1-44B4-98B0-705634F22510}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gen.lib", "..\.src-lib\gen.lib.csproj", "{A07EE6F0-10F1-44B4-98B0-705634F22510}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gen.Tool", "..\.src-lib\Gen.Tool.csproj", "{628A05D7-2732-4A7E-B91E-666BD2C7B00A}"
 EndProject

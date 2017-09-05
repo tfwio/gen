@@ -94,6 +94,8 @@ namespace GeneratorTool.Views
 		
 		public GeneratorUIModel Model = new GeneratorUIModel();
 		
+    void Event_ButtonContextMenu(object sender, RoutedEventArgs e) { (sender as Button).ContextMenu.IsOpen = true; }
+    //void Event_ButtonContextMenu(object sender, System.Windows.RoutedEventArgs e) { (e.OriginalSource as Button).ContextMenu.IsOpen = true; }
 		
 		
 		#region Little Helpers
@@ -363,7 +365,6 @@ namespace GeneratorTool.Views
 			cbDatabase.DisplayMemberPath = "Name";
 			
 			RefreshTemplates();
-			
 			DataContext = Model.Reader.Model;
 		}
 		
@@ -432,8 +433,6 @@ namespace GeneratorTool.Views
 			
 			RefreshTemplates();
 		}
-		
-		void Event_ButtonContextMenu(object sender, System.Windows.RoutedEventArgs e) { (e.OriginalSource as Button).ContextMenu.IsOpen = true; }
 		
 		public event PropertyChangedEventHandler PropertyChanged;
 		

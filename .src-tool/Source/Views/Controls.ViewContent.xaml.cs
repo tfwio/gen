@@ -10,7 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace GeneratorTool.Views
+namespace GeneratorTool.Views.Controls
 {
 	/// <summary>
 	/// Interaction logic for ViewContent.xaml

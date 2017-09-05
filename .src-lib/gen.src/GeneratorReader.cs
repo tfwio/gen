@@ -30,10 +30,7 @@ namespace GeneratorApp
 	/// </summary>
 	public class GeneratorReader : IGeneratorReader
 	{
-		public GeneratorModel Model {
-			get;
-			set;
-		}
+		public GeneratorModel Model { get; set; }
 
 		#region (static) ICommand
 		public Action InitializeCompleteAction { get; set; }
@@ -42,10 +39,7 @@ namespace GeneratorApp
 
 		public Action SaveCompleteAction { get; set; }
 
-		public Action<string> TemplateGeneratedAction {
-			get;
-			set;
-		}
+		public Action<string> TemplateGeneratedAction { get; set; }
 
 //		CommandBindingCollection CommandBindings {
 //			get;
@@ -107,7 +101,7 @@ namespace GeneratorApp
 
 		public string Generate(TableElement tableName, TableTemplate templateName)
 		{
-			Generator.Export.Intrinsic.IDbConfiguration4 config = GetConfig(tableName, templateName);
+			var config = GetConfig(tableName, templateName);
 			GeneratedTemplate = Model.Databases.ConvertInput(config, config.SelectedTable.Name);
 			if (TemplateGeneratedAction != null)
 				TemplateGeneratedAction.Invoke(GeneratedTemplate);

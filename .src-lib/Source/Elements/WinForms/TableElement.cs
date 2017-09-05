@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 namespace Generator.Elements
 {
-	
 	public partial class TableElement
 	{
 		#if TREEV || false
@@ -51,7 +50,7 @@ namespace Generator.Elements
 			foreach (FieldElement item in items)
 				tblelement.Nodes.Add(item.ToNode());
 		}
-#endif
+    #endif
 	}
 }
 

@@ -14,6 +14,7 @@
   xmlns:e="clr-namespace:Generator.Elements;assembly=Gen.Lib"
   xmlns:l="clr-namespace:GeneratorTool"
   xmlns:v="clr-namespace:GeneratorTool.Views"
+  xmlns:veu="clr-namespace:GeneratorTool.Views.Controls"
   xmlns:avalon="clr-namespace:GeneratorTool.Controls"
 >
   
@@ -140,8 +141,8 @@
               <ColumnDefinition Width="Auto" />
               <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            
-            <Button Grid.Column="0" Content="MENU">
+            <Button Grid.Column="0" Content="MENU" ClickMode="Press" Click="Event_ButtonContextMenu">
+<!--            <Button Grid.Column="0" Content="MENU" ClickMode="Press">-->
               <Button.ContextMenu>
                 <ContextMenu>
                   <MenuItem Header="Browse" Command="{x:Static l:GeneratorReader.LoadConfigurationCommand}" />
@@ -181,10 +182,10 @@
         <!-- }                                 -->
         <TabControl x:Name="tabs" BorderBrush="{x:Null}" Background="Transparent">
           <TabItem Header="Data" x:Name="tabData">
-            <v:DataEditorContent x:Name="dataEditor" />
+            <veu:DataEditorContent x:Name="dataEditor" />
           </TabItem>
           <TabItem Header="View-Data" x:Name="tabView">
-            <v:ViewContent x:Name="dataView" />
+            <veu:ViewContent x:Name="dataView" />
           </TabItem>
           <TabItem Header="Editor" x:Name="tabEdit">
             <avalon:Editor

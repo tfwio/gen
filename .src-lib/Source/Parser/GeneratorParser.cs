@@ -17,7 +17,7 @@ namespace Generator.Parser
 		protected override void OnDoWork(DoWorkEventArgs e)
 		{
 			base.OnDoWork(e);
-			ParserResult = TemplateFactory.ConvertTable(Configuration);
+			ParserResult = TemplateFactory.Generate(Configuration);
 		}
 		
 		protected override void OnRunWorkerCompleted(RunWorkerCompletedEventArgs e)

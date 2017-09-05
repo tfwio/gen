@@ -178,44 +178,6 @@ namespace Gen {
     }
     
     /// <summary>
-    ///   Looks up a localized string similar to Tag: ‘{0}’ value..
-    /// </summary>
-    internal static string LogTemplateFactoryErr_Filter {
-      get {
-        return ResourceManager.GetString("LogTemplateFactoryErr_Filter", resourceCulture);
-      }
-    }
-    
-    /// <summary>
-    ///   Looks up a localized string similar to TemplateFactory.ConvertInput ERROR.
-    /// </summary>
-    internal static string LogTemplateFactoryErr_Title {
-      get {
-        return ResourceManager.GetString("LogTemplateFactoryErr_Title", resourceCulture);
-      }
-    }
-    
-    /// <summary>
-    ///   Looks up a localized string similar to Match0.Value=“{0}”
-    ///Match0.Name=“{1}”
-    ///Match0.Params=“{2}”.
-    /// </summary>
-    internal static string LogTemplateInfo_Format {
-      get {
-        return ResourceManager.GetString("LogTemplateInfo_Format", resourceCulture);
-      }
-    }
-    
-    /// <summary>
-    ///   Looks up a localized string similar to TemplateFactory.
-    /// </summary>
-    internal static string LogTemplateInfo_Title {
-      get {
-        return ResourceManager.GetString("LogTemplateInfo_Title", resourceCulture);
-      }
-    }
-    
-    /// <summary>
     ///   Looks up a localized string similar to Error finding database or table for view..
     /// </summary>
     internal static string MsgDatabaseOrTableNullError_Exception {

@@ -203,25 +203,11 @@
   <data name="Regex Field Template Tag" xml:space="preserve">
     <value>\$\((set\w*|begin\w*|end\w*|print\w*|Table\w*|Field\w*)\:(?&lt;innerElement&gt;[^\)]+)\)</value>
   </data>
-  <data name="LogTemplateInfo_Format" xml:space="preserve">
-    <value>Match0.Value=“{0}”
-Match0.Name=“{1}”
-Match0.Params=“{2}”</value>
-  </data>
-  <data name="LogTemplateInfo_Title" xml:space="preserve">
-    <value>TemplateFactory</value>
-  </data>
   <data name="LogTable_Format" xml:space="preserve">
     <value>Table: “{0}”</value>
   </data>
   <data name="LogFactoryConvert_Title" xml:space="preserve">
     <value>TemplateFactory.ConvertInput</value>
-  </data>
-  <data name="LogTemplateFactoryErr_Title" xml:space="preserve">
-    <value>TemplateFactory.ConvertInput ERROR</value>
-  </data>
-  <data name="LogTemplateFactoryErr_Filter" xml:space="preserve">
-    <value>Tag: ‘{0}’ value.</value>
   </data>
   <data name="MsgDatabaseOrTableNullError_Title" xml:space="preserve">
     <value>Error finding database or table for view.</value>

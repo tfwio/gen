@@ -19,31 +19,16 @@ namespace Generator.Core.Markup
 	/// <summary>
 	/// Description of TemplateReferenceTool.
 	/// </summary>
-	static public class TemplateReferenceUtil
+	static public class TagRefReader
 	{
 		internal const string regex_quickMatch = @"\$\([^\)]*\)";
 		internal const string regex_delimitedMatch = @"\$\((\w+)\:([^\)]*)\)";
 		internal const string regex_fieldMatch = @"\$\((Table\w*|Field\w*)\:(?<innerElement>[^\)]+)\)";
 		internal const string regex_ioMatch = @"\$\((Directory\w*|File\w*)\:(?<innerElement>[^\)]+)\)";
-		
 		internal const string regex_FieldAndIOMatch = @"\$\((set\w*|print\w*|begin\w*|end\w*|Directory\w*|Table\w*|Field\w*)\:(?<innerElement>[^\)]+)\)";
-		/// <summary>
-		/// Finds Tag-Regions (EG: “$(tag-name:varN,varN+1,…)within
-		/// a template matching all templates called by a single template.
-		/// </summary>
-		/// <returns>
-		/// The regular expression matches.
-		/// </returns>
-		/// <remarks>
-		/// This regular expression is obsoleted by function: ‘ListTagsAndFiles’
-		/// </remarks>
-		[Obsolete]
-		static public MatchCollection ListTags(string input) { return ParseUtil.Match(regex_fieldMatch,input); }
-		
-		
 		
 		/// <summary>
-		/// Runs regular expression on the input (see: <see cref="regex_FieldAndIOMatch"/>)
+		/// Runs regular expression on the input (regex_FieldAndIOMatch)
 		/// </summary>
 		/// <remarks>
 		/// though not support yet, the regular expression is designed to support
@@ -65,7 +50,11 @@ namespace Generator.Core.Markup
 		static public List<QuickMatch> GetReferences(string input)
 		{
 			var matches = new List<QuickMatch>();
-			var mc = ListTagsAndFiles(input);
+			
+			MatchCollection mc = ListTagsAndFiles(input);
+			
+			// FIXME: why is this here if always zero?
+			Logger.LogM("TagRefReader.GetReferences","matches {0}", mc.Count);
 			
 			if (mc==null) return matches;
 	

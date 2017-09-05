@@ -5,619 +5,499 @@ using System.Text.RegularExpressions;
 
 using Generator.Elements;
 using Generator.Core.Markup;
-using Generator;
 using Global=System.Cor3.last_addon;
-
+using GenConfig=Generator.Export.Intrinsic.IDbConfiguration4;
 namespace Generator.Parser
 {
-	static public class TemplateFactory
-	{
-		
-		#region NO
-		#if NO
-		#region Not Used
-		static public DictionaryList<string,string> GroupedKeys = new DictionaryList<string,string>();
-		/// not yet
-		static public string CategorizedField(string fieldname)
-		{
-			return null;
-		}
-		#endregion
-		
-		public static List<string> GetParamStrings(DataViewElement view, TableElement table, string fieldTemplate, bool noKey)
-		{
-			List<string> paramStrings = new List<string>();
-			List<string> viewFields = new List<string>(view.Fields.Split(','));
-			int counter=0;
-			
-			foreach (string item in viewFields) // otherwise Table.Fields
-			{
-				FieldElement field = FieldElement.Clone(table[item]);
-				string fieldGen = fieldTemplate;
-				bool isPrimary = table.PrimaryKey==field["DataName"].ToString();
-				if (field==null) {
-					
-					continue;
-				}
-				if (noKey & isPrimary) continue;
-				
-				// take care of table-values within the field-template
-				fieldGen = fieldGen
-					.ReplaceP("FieldIndex",counter++)
-					.ReplaceP("IsPrimary",isPrimary)
-					.ReplaceP("PrimaryKey",table.PrimaryKey);
-				
-				// continue to replace field-values
-				fieldGen = field.Replace(
-					fieldGen,
-					delegate(DICT<string,object> dic){
-						//
-						dic.Add("FieldName",field.DataName);
-						field.DataName = string.IsNullOrEmpty(view.Alias) ? string.Empty : view.Alias + "." + dic["DataName"];
-						dic["DataName"] = field.DataName;
-						dic["dataname"] = field.DataName.ToLower();//
-						dic["DataNameC"] = field.DataName.ToStringCapitolize();
-						dic["CleanName,Nodash"] = field.DataName.Clean();
-						dic["FriendlyName"] = field.DataName.Clean();
-						dic["CleanName"] = field.DataName.Replace("-","_");
-						dic["FriendlyNameC"] = field.DataName.Clean().ToStringCapitolize();
-					});
-				paramStrings.Add(fieldGen);
-			}
-			return paramStrings;
-		}
-		
-		public static List<string> GetParamStrings(DataViewLink link, TableElement table, string fieldTemplate, bool noKey)
-		{
-			List<string> paramStrings = new List<string>();
-			List<string> linkFields = new List<string>(link.Fields.Split(','));
-			int counter=0;
-			foreach (string item in linkFields) // otherwise Table.Fields
-			{
-				FieldElement field =	FieldElement.Clone(table[item]);
-				string fieldGen =		fieldTemplate;
-				bool isPrimary =		table.PrimaryKey==field["DataName"].ToString();
-				
-				if (field==null)
-				{
-					throw new ArgumentException(
-						string.Format(
-							"No field named ‘{0}’ found in table ‘{1}’.",
-							item,
-							table.Name
-						)
-					);
-				}
-				
-				if (noKey & isPrimary) continue;
-				
-				// take care of table-values within the field-template
-				fieldGen = fieldGen
-					.ReplaceP("FieldIndex",counter++)
-					.ReplaceP("IsPrimary",isPrimary)
-					.ReplaceP("PrimaryKey",table.PrimaryKey);
-				
-				// continue to replace field-values
-				fieldGen = field.Replace(
-					fieldGen,
-					delegate(DICT<string,object> dic)
-					{
-						//
-						dic.Add("FieldName",field.DataName);
-						field.DataName = string.IsNullOrEmpty(link.Alias) ? string.Empty : link.Alias + "." + dic["DataName"];
-						dic["DataName"] =			field.DataName;
-						dic["dataname"] =			field.DataName.ToLower();//
-						dic["DataNameC"] =			field.DataName.ToStringCapitolize();
-						dic["CleanName,Nodash"] =	field.DataName.Clean();
-						dic["FriendlyName"] =		field.DataName.Clean();
-						dic["CleanName"] =			field.DataName.Replace("-","_");
-						dic["FriendlyNameC"] =		field.DataName.Clean().ToStringCapitolize();
-					}
-				);
-				
-				paramStrings.Add(fieldGen);
-				
-			}
-			return paramStrings;
-		}
-		
-		/// <summary>
-		/// Find all occurances of Table or Field Template-Tag references.
-		/// </summary>
-		static FieldMatch GetMatches(string tableTemplate)
-		{
-			Logger.LogG("template-fac","gotmatches");
-			
-			MatchCollection mc = regex_fieldTemplateTag.Matches(tableTemplate);
-			if (mc==null) return null;
-			FieldMatch fm = null;
-			if (mc.Count >= 1) { fm = new FieldMatch(mc); }
-			return fm;
-		}
-		
-		#endif
-		#endregion
-		
-		#region (static/constant)
-		
-		public const string fmt_field = "$({0})";
-		
-		static int counter=0;
-		
-		static readonly Dictionary<NsTypes,string> AC001 = new Dictionary<NsTypes,string>(){
-			{ NsTypes.Global, Gen.Strings.Factory_AcErratum },
-			{ NsTypes.TableTypes, string.Concat(
-				Gen.Strings.Factory_AcTable,";",
-				Gen.Strings.Factory_AcPrime) },
-			{ NsTypes.AdapterTypes,
-				Gen.Strings.Factory_AcAdapt },
-			{ NsTypes.DatabaseTypes,
-				Gen.Strings.Factory_AcData },
-			{ NsTypes.FieldTypes, string.Concat(
-				Gen.Strings.Factory_AcField,";",
-				Gen.Strings.Factory_AcTypes,";",
-				Gen.Strings.Factory_AcPkType) },
-		};
-		static readonly Dictionary<NsTypes,string> AC002 = new Dictionary<NsTypes,string>(){
-			{ NsTypes.Global,Gen.Strings.Factory_AcErratum },
-			{ NsTypes.TableTypes, string.Concat(
-				Gen.Strings.Factory_AcTable,";",
-				Gen.Strings.Factory_AcTypes,";",
-				Gen.Strings.Factory_AcPrime) },
-			{ NsTypes.AdapterTypes,
-				Gen.Strings.Factory_AcAdapt },
-		};
-		
-		static public readonly Dictionary<NsTypes,string> Ac01 = AC001;
-		static public readonly Dictionary<NsTypes,string> Ac02 = AC002;
+  // should have named it template-model.
+  public class TemplateModel
+  {
+    internal GenConfig ConfigMemory;
+    internal DatabaseElement  DB;
+    internal TableElement     T;
+    internal TableTemplate    TT;
+    
+    public string TemplateName, DatabaseName, TableName, TemplateContentReformat;
+    public string TemplateBody { get; set; }
+    public string TemplateContent { get; set; }
+    
+    void LoadConfig(GenConfig config)
+    {
+      ConfigMemory    = config;
+      DatabaseName    = config.SelectedTable.Parent?.Name ?? "[Unknown]";
+      TableName       = config.SelectedTable.Name ?? "[Unknown]";
+      TemplateBody    = config.SelectedTemplate.ElementTemplate;
+      TemplateContent = config.SelectedTemplate.ItemsTemplate;
+    }
+    
+    /// full-initialize table-template.
+    internal void PrepareReplaceValues()
+    {
+      TemplateContentReformat = T.ReplaceValues( TemplateContent );
+    }
+    /// prepare table-level template
+    internal void PrepareReformat()
+    {
+      TemplateContentReformat = T.Reformat( TemplateContent ); // what's the table we're dealing with here?
+    }
+    
+    public void SetView(DataViewLink link)
+    {
+      DB = ConfigMemory.SelectedCollection.Databases.FirstOrDefault(xdb => xdb.Name == link.Database);
+      T = (TableElement)DB.Items.FirstOrDefault(t => T.Name == link.Table);
+    }
+    
+    /// <summary>
+    /// Set the datbase and table name for the view.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <remarks>
+    /// if anybody is going to walk out of the context of a database and into the context
+    /// of a database-collection, well --- this would be our guy.
+    /// </remarks>
+    public void SetView()
+    {
+      DB = ConfigMemory.SelectedCollection.Databases.FirstOrDefault(dbx=>dbx.Name== T.View.Database);
+      T = DB.Items.FirstOrDefault(t => t.Name == T.View.Table);
+    }
+    
+    /// <summary>Set DB as config-selected-db and T to the supplied 'tableName'.</summary>
+    public void SetView(string tableName)
+    {
+      DB = ConfigMemory.SelectedDatabase;
+      T = DB.Items.FirstOrDefault(t => t.Name == tableName);
+    }
+    
+    public void SetTemplate(string alias)
+    {
+      TT = ConfigMemory.Templates[alias];
+      TemplateBody = TT.ElementTemplate;
+      TemplateContent = TT.ItemsTemplate;
+      // why do this? //T.View = config.SelectedView;
+      
+    }
+    
+    static public TemplateModel LoadSelection(GenConfig config)
+    {
+      var view = new TemplateModel();
+      view.LoadConfig(config);
+      
+      view.DB = config.SelectedCollection.Databases // should we  expand the context even further?
+        .FirstOrDefault(db => db.Name == config.SelectedTable.Name);
+      view.T  = config.SelectedTable;
+      view.TT = config.SelectedTemplate;
+      
+      return view;
+    }
+    
+    static public TemplateModel LoadView(GenConfig config)
+    {
+      var view   = LoadSelection(config);
+      
+      string sdb = config.SelectedView.Database, stb=config.SelectedView.Table;
+      view.DB    = config.SelectedCollection.Databases.FirstOrDefault(db => db.Name == config.SelectedView.Database);
+      view.T     = (TableElement)view.DB.Items.FirstOrDefault(t => t.Name == stb);
+      
+      if (TemplateFactory.CheckForError(view.DB, view.T, true)) // until we have something better
+        throw new Exception(Gen.Strings.MsgDatabaseOrTableNullError_Exception);
+      
+      view.T.View     = config.SelectedView;
+      
+      return view;
+    }
+  }
+  
+  static class StrKeys
+  {
+    internal const string
+      FieldValues        = "FieldValues"
+      , FieldValuesCdf   = "FieldValues,Cdf"
+      , FieldValuesNK    = "FieldValuesNK"
+      , FieldValuesNKCdf = "FieldValuesNK,Cdf"
+      , FieldIndex       = "FieldIndex"
+      , IsPrimaryKey     = "IsPrimaryKey"
+      , PrimaryKey       = "PrimaryKey"
+      ;
+  }
+  
+  static public class TemplateFactory
+  {
+    
+    #region Check For Error
+    internal static bool CheckForError(DatabaseElement db,
+                                       TableElement table,
+                                       bool showMessageBox=false,
+                                       bool ignoreException=true)
+    {
+      bool hasError = false;
+      if (hasError = (db==null || table==null))
+      {
+        if (showMessageBox) System.Windows.Forms.MessageBox.Show(
+          Gen.Strings.MsgDatabaseOrTableNullError_Title,
+          Gen.Strings.MsgDatabaseOrTableNullError_Message
+         );
+        if (!ignoreException) throw new ArgumentException (Gen.Strings.MsgDatabaseOrTableNullError_Exception);
+      }
+      return hasError;
+    }
+    internal static bool CheckForError(TableElement table,
+                                       bool showMessageBox=false,
+                                       bool ignoreException=true)
+    {
+      bool hasError = false;
+      if (hasError = (table==null))
+      {
+        if (showMessageBox) System.Windows.Forms.MessageBox.Show(
+          Gen.Strings.MsgDatabaseOrTableNullError_Title,
+          Gen.Strings.MsgDatabaseOrTableNullError_Message
+         );
+        if (!ignoreException) throw new ArgumentException (Gen.Strings.MsgDatabaseOrTableNullError_Exception);
+      }
+      return hasError;
+    }
+    #endregion
+    
+    #region Convert
+    
+    /// <summary>#1 Starting Point
+    /// 
+    /// 
+    /// The selection must have at the least a table and selected template.
+    /// Converts a selection (table or view) provided by IDbConfiguration4.
+    /// 
+    /// - prepares parsing
+    /// 
+    /// - performs initial layer of parsing.
+    /// </summary>
+    /// <param name="config">IDbConfiguration4; (selection)</param>
+    /// <returns>parsed string result.</returns>
+    static public string Generate(GenConfig config)
+    {
+      string output = string.Empty;
+      
+      var view = TemplateModel.LoadSelection(config);
+      
+      if (view.T != null)
+      {
+        output = Gen_Pass2(view);
+        
+        List<QuickMatch> list; // holds a list of template-tag matches.
+        
+        while (0 != (list = TemplateReferenceUtil.GetReferences(output)).Count)
+          output = WritePart(view, list[0], output);
+      }
+      
+      #region IF View IS SELECTION
+      else if (config.SelectedView!=null)
+      {
+        view  = TemplateModel.LoadView(config);
+        output = Gen_Pass2(view);
+        view.T.View = null;
+        
+        // check for errors
+        if (view.DB==null || view.T==null) { System.Windows.Forms.MessageBox.Show("Error finding database or table for view-link","Exiting generation..."); return "Error finding database or table for view."; }
+        
+        List<QuickMatch> list;
+        while (0 != (list = TemplateReferenceUtil.GetReferences( output )).Count)
+        {
+          var m1 = list[0]; // m1.Value = the name of our Template, right?
+          
+          Logger.LogY( "Template?" , "QuickMatch[0].Value={0}, QuickMatch[0].Name={1}", m1.Value, m1.Name );
+          
+          if (!m1.HasParams) { Logger.LogC( "TemplateFactory.Write ERROR" , "No Params" ); continue; }
+          
+          if (!m1.HasMultipleParams)
+          {
+            #region Single Table Reference
+            
+            view.TT = config.Templates[m1.Params[0]];
+            if (view.TT==null) { Logger.Warn("TemplateFactory.Write ERROR","Tag: ‘{0}’ value.", m1.Name); continue; } // return tableOut;
+            
+            // reset the current view?
+            
+            view.T.View = config.SelectedView;
+            string newOut = Gen_Pass2( view );
+            
+            output = output.Replace(m1.FullString,newOut);
+            
+            view.T.View = null;
+            
+            Logger.LogM("TemplateFactory.Write","{0}", m1.Params[0]);
+            
+            #endregion
+          }
+          else if (m1.Name=="Directory")
+          {
+            #region Directory
 
-		static public string[] Group1(NsTypes groupn) { return Ac01[groupn].Split(';'); }
-		static public string[] Group2(NsTypes groupn) { return Ac02[groupn].Split(';'); }
+            if (System.IO.Directory.Exists(m1.Value))
+            {
+              var listf = new List<string>();
+              foreach (string dir in System.IO.Directory.GetDirectories(m1.Value))
+              {
+                listf.Add(dir);
+              }
+              output = output.Replace(m1.FullString,string.Join(",",listf.ToArray()));
+            }
+            
+            #endregion
+          }
+          else
+          {
+            #region Main Parser Section
+            
+            Logger.LogC("TemplateFactory.Write", "Match0.Value = “{0}”",m1.Value);
+            Logger.LogC("TemplateFactory.Write", ".Name = “{0}”",m1.Name);
+            Logger.LogC("TemplateFactory.Write", "{0}", m1.Params[0]);
+            
+            string newOut = string.Empty;
+            
+            for (int i = 0, match0ParamsLength = m1.Params.Length; i < match0ParamsLength; i++) {
+              var param = m1.Params[i];
+              
+              Logger.LogG("TemplateFactory.Write", "table: “{0}”", m1.Params[i]);
+              
+              view.SetTemplate(m1.Params[0]);
+              view.T.View = config.SelectedView; // but why?
+              
+              newOut += string.Format("{0}",Gen_Pass2( view ));
+              
+              view.T.View = null;
+            }
+            
+            output = output.Replace(m1.FullString,newOut);
+            #endregion
+          }
+        }
+      }
+      #endregion
+      
+      return output;
+    }
 
-		static readonly Regex regex_fieldTemplateTag = new Regex(Gen.Strings.Regex_Field_Template_Tag,RegexOptions.Multiline);
+    static string WritePart(TemplateModel view, QuickMatch match, string generatedIn)
+    {
+      string generatedOut = generatedIn; //  QuickMatch match0 = list[0]; // Logger.LogY("TemplateFactory.WritePart","{0}", match.Value);// this is "TemplateName,TableName"
+      if (!match.HasParams) { Logger.Warn("TemplateFactory.WritePart","ERROR: No Params"); return generatedIn; }
+      
+      if (!match.HasMultipleParams)
+      {
+        view.SetTemplate(match.Params[0]);
+        if (view.TT==null) { Logger.Warn( "TemplateFactory.WritePart ERROR", "Tag: ‘{0}’ value.", match.Name ); return generatedIn; }
+        generatedOut = generatedIn.Replace( match.FullString, Gen_Pass2( view ) ); // replace the template tag with the parsed content.
+      }
+      // the Directory Element is not parsed.
+      else if (match.Name=="Directory")
+      {
+        if (System.IO.Directory.Exists(match.Value))
+        {
+          var listf = new List<string>();
+          foreach (string dir in System.IO.Directory.GetDirectories(match.Value)) listf.Add(dir);
+          generatedOut = generatedIn.Replace(match.FullString,string.Join(",",listf.ToArray()));
+        }
+      }
+      // ¡MAIN PARSER LOOP!
+      else
+      {
+        string newOut = string.Empty;
+        for(int i=1; i < match.Params.Length; i++) // match.Params[i] = table-name; notice I starts at one
+        {
+          view.SetTemplate(match.Params[0]);
+          view.SetView(match.Params[i]);
+          newOut += Gen_Pass2(view);
+        }
+        generatedOut = generatedIn.Replace( match.FullString, newOut );
+      }
+      return generatedOut;
+    }
+    
+    /// <summary>Parser Pass #2:
+    /// <para>
+    /// This is the parser's initialization point.
+    /// </para>
+    /// <para>Here, we process the given template given a particular table.</para>
+    /// <para>The parser process repeats using this method for each requested table/template
+    /// provided by the given template until there are no templates left to parse.</para>
+    /// </summary>
+    /// <param name="view"></param>
+    /// <returns></returns>
+    static public string Gen_Pass2(TemplateModel view)
+    {
+      if (view.T==null) return view.TemplateBody; // UNDONE: Log Error
+      bool noPrimaryKey  = view.TemplateBody.Contains(StrKeys.FieldValuesNK);
+      string generated  = view.T.ReplaceValues( view.TemplateBody );
+      
+      Logger.LogM("TF.Generate" , "T: {0}, TT: {{{1}, {2}}}", view.T.Name, view.TT.Group, view.TT.Alias);
+      
+      List<string>   paramStrings = GetParamStrings( view, noPrimaryKey );
+      generated = ReplaceFieldValues( generated, paramStrings.ToArray() );
+      paramStrings.Clear();
+      paramStrings = null;
+      
+      return generated;
+    }
+    
+    static string ReplaceFieldValues(string input, params string[] values)
+    {
+      string fieldOut = string.Join(string.Empty,values); // not comma-delimited
+      string cFieldOut = string.Join(",",values);         //     comma-delimited
+      return input
+        .ReplaceP(StrKeys.FieldValues     , fieldOut)
+        .ReplaceP(StrKeys.FieldValuesNK   , fieldOut)
+        .ReplaceP(StrKeys.FieldValuesCdf  , cFieldOut)
+        .ReplaceP(StrKeys.FieldValuesNKCdf, cFieldOut)
+        ;
+    }
+    
+    static List<string> GetParamStrings(TemplateModel view, bool noPrimaryKey)
+    {
+      var result_pList = new List<string>();
+      string curr_FieldName = null, strDatabaseName=null, strTableName=null;
+      
+      // this is the primary date conversion or replacement portion of this method.
+      // ------------------------------------------------------------
+      if (view.T.View==null && view.T.Link==null)
+      {
+        view.PrepareReformat();
+        for (int i = 0, elmTableFieldsCount = view.T.Fields.Count; i < elmTableFieldsCount; i++)
+        {
+          curr_FieldName = GetParam(view, noPrimaryKey, i);
+          if (!string.IsNullOrEmpty(curr_FieldName)) result_pList.Add(curr_FieldName);
+        }
+        view.TemplateContentReformat = null;
+      }
+      // ------------------------------------------------------------
+      // we're dealing with a DataViewElement -- not sure if this is working so focus more up there...
+      // ------------------------------------------------------------
+      else if (view.T.View!=null)
+        // here, we iterate on either of the following:
+        // 1.  FieldElement, tbl.Fields
+        // 2.  DataViewLink, tableElement.View.LinkItems
+        //     2.1 FieldElement, tbl.Fields
+      {
+        view.SetView();
+        view.PrepareReplaceValues();
+        if (CheckForError(view.T)) { Logger.Warn("TemplateFactory.GetParamStrings","couldn't find table named \"{0}\"", view.T.Name); } // this semantic really kind of sucks.
+        
+        for (int i = 0, tblFieldsCount = view.T.Fields.Count; i < tblFieldsCount; i++)
+        {
+          FieldElement field = view.T.Fields[i];
+          field.View = view.T.View;
+          
+          curr_FieldName = GetParam(view, noPrimaryKey, i);
+          
+          
+          if (view.T.View.HasField(view.T, field, true) && !string.IsNullOrEmpty(curr_FieldName)) result_pList.Add(curr_FieldName);
+          field.View = null;
+        }
+        
+        foreach (DataViewLink link in view.T.View.LinkItems)
+        {
+          view.SetView(link);
+          view.PrepareReplaceValues();
+          if (CheckForError(view.T)) { Logger.Warn("GetParamStrings","Table \"{0}\" wasn't found"); } // how about exiting?
+          Logger.LogG("--->","Found table: {0}", view.T.Name);
+          
+          for (int i = 0, tblFieldsCount = view.T.Fields.Count; i < tblFieldsCount; i++) {
+            FieldElement field = view.T.Fields[i];
+            field.View = view.T.View;
+            field.Link = link;
+            
+            curr_FieldName = GetParam(view, noPrimaryKey, i);
+            
+            bool hasField = link.HasField(view.T, field, true);
+            if (hasField && !string.IsNullOrEmpty(curr_FieldName))
+              result_pList.Add(curr_FieldName);
+            field.View = null;
+            field.Link = null;
+          }
+        }
+        view.TemplateContentReformat = null;
+      }
+      return result_pList;
+    }
+    
+    /// <summary>
+    /// field template "DataName" is used.
+    /// 
+    /// if no primary key was asked and elmTable.PK==tplField.DataName
+    /// </summary>
+    /// <param name="tplField">this is our FieldElement containing `Database.Table.Field["name"]`s data.</param>
+    /// <param name="elmTable"></param>
+    /// <param name="strFieldTemplate"></param>
+    /// <param name="noPrimaryKey"></param>
+    /// <param name="index">the field's index (no more global incrementor)</param>
+    /// <returns></returns>
+    static string GetParam(FieldElement tplField, TableElement elmTable, string strFieldTemplate, bool noPrimaryKey, int index)
+    {
+      bool   isPK  = elmTable.PrimaryKey==tplField.DataName; // Check if this is the primary-key
+      
+      return (noPrimaryKey & isPK) ?
+        null :
+        tplField.Replace(
+          string.Copy(strFieldTemplate)
+          .ReplaceP(StrKeys.FieldIndex, index)
+          .ReplaceP(StrKeys.IsPrimaryKey,isPK)
+          .ReplaceP(StrKeys.PrimaryKey, elmTable.PrimaryKey) // FIXME:  ?? string.Empty
+         );
+    }
+    /// <summary>
+    /// field template "DataName" is used.
+    /// 
+    /// if no primary key was asked and elmTable.PK==tplField.DataName
+    /// </summary>
+    /// <param name="view"></param>
+    /// <param name="noPrimaryKey"></param>
+    /// <param name="index">the field's index</param>
+    /// <returns></returns>
+    static string GetParam(TemplateModel view, bool noPrimaryKey, int index)
+    {
+      bool   isPK  = view.T.PrimaryKey==view.T.Fields[index].DataName; // Check if this is the primary-key
+      return (noPrimaryKey & isPK) ?
+        null :
+        view.T.Fields[index].Replace(
+          string.Copy(view.TemplateContentReformat)
+          .ReplaceP(StrKeys.FieldIndex, index)
+          .ReplaceP(StrKeys.IsPrimaryKey,isPK)
+          .ReplaceP(StrKeys.PrimaryKey, view.T.PrimaryKey) // FIXME:  ?? string.Empty
+         );
+    }
+    
+    #endregion
 
-		#endregion
-		
-		#region Check For Error
-		static bool CheckForError(DatabaseElement db,
-		                          TableElement table,
-		                          bool showMessageBox=false,
-		                          bool ignoreException=true)
-		{
-			bool hasError = false;
-			if (hasError = (db==null || table==null))
-			{
-				if (showMessageBox) System.Windows.Forms.MessageBox.Show(
-					Gen.Strings.MsgDatabaseOrTableNullError_Title,
-					Gen.Strings.MsgDatabaseOrTableNullError_Message
-				);
-				if (!ignoreException) throw new ArgumentException (Gen.Strings.MsgDatabaseOrTableNullError_Exception);
-			}
-			return hasError;
-		}
-		static bool CheckForError(TableElement table,
-		                          bool showMessageBox=false,
-		                          bool ignoreException=true)
-		{
-			bool hasError = false;
-			if (hasError = (table==null))
-			{
-				if (showMessageBox) System.Windows.Forms.MessageBox.Show(
-					Gen.Strings.MsgDatabaseOrTableNullError_Title,
-					Gen.Strings.MsgDatabaseOrTableNullError_Message
-				);
-				if (!ignoreException) throw new ArgumentException (Gen.Strings.MsgDatabaseOrTableNullError_Exception);
-			}
-			return hasError;
-		}
-		#endregion
-		
-		#region Convert
-		
-		static public string ConvertTable(Generator.Export.Intrinsic.IDbConfiguration4 tps)
-		{
-			return ConvertInput(tps,true);
-		}
-		
-		
-		/// <summary>
-		/// #1 Starting Point
-		/// <para>
-		/// The selection must have at the least a table and selected template.
-		/// Converts a selection (table or view) provided by IDbConfiguration4.
-		/// </para>
-		/// </summary>
-		/// <param name="tps">IDbConfiguration4; (selection)</param>
-		/// <param name="newVersion">This isn't used.</param>
-		/// <returns>parsed string result.</returns>
-		static public string ConvertInput(Generator.Export.Intrinsic.IDbConfiguration4 tps, bool newVersion)
-		{
-			string tableOut = string.Empty;
-			
-			DatabaseElement database = null;
-			TableElement table = tps.SelectedTable;
-			TableTemplate template = tps.SelectedTemplate;
-			
-			if (table!=null)
-			{
-				// set the table
-				table = tps.SelectedTable;
-				
-				// Get the template and do first layer of parsing
-				tableOut = ConvertInput2(
-					tps,
-					table,
-					template.ElementTemplate,
-					template.ItemsTemplate,
-					false
-				);
-				
-				Logger.Warn("template factory","Listing Items");
-				
-				// holds a list of template-tag matches.
-				List<QuickMatch> list;
-				
-				// Check for recurring templates to parse.
-				while (0 != (list = TemplateReferenceUtil.GetReferences(tableOut)).Count)
-				{
-					tableOut = ConvertInputPart(tps,table,list[0],tableOut);
-				}
-			}
-			
-			#region IF View IS SELECTION
-			else if (tps.SelectedView!=null)
-			{
-				string sdb=	tps.SelectedView.Database, stb=tps.SelectedView.Table;
-				
-				database =	tps.SelectedCollection.Databases.FirstOrDefault(db => db.Name == sdb);
-				table = (TableElement)database.Items.FirstOrDefault(t => t.Name == stb);
-				
-				if (CheckForError(database,table,true))
-				{
-					return Gen.Strings.MsgDatabaseOrTableNullError_Exception;
-				}
-				
-				table.View = tps.SelectedView;
-				tableOut = ConvertInput2(
-					tps,
-					table,
-					tps.SelectedTemplate.ElementTemplate,
-					tps.SelectedTemplate.ItemsTemplate,
-					false
-				);
-				table.View = null;
-				
-				#region Null Message
-				if (database==null || table==null)
-				{
-					System.Windows.Forms.MessageBox.Show("Error finding database or table for view-link","Exiting generation...");
-					return "Error finding database or table for view.";
-				}
-				#endregion
-				
-				Logger.Warn( "template factory" , "Listing Items" );
-				
-				List<QuickMatch> list;
-				while (0 != (list = TemplateReferenceUtil.GetReferences( tableOut )).Count)
-				{
-					QuickMatch match0 = list[0];
-					
-					#region Parameter Check/Logging
-					
-					Logger.LogC( "\ttemplate factory" , "{0}", match0.Value );
-					
-					if (!list[0].HasParams)
-					{
-						Logger.LogC( "TemplateFactory.ConvertInput ERROR" , "No Params" );
-						continue;
-					}
-					#endregion
-					
-					TableTemplate tbltmpl=null;
-					
-					if (!match0.HasMultipleParams)
-					{
-						#region Single Table Reference
-						
-						tbltmpl = tps.Templates[list[0].Params[0]];
-						
-						if (tbltmpl==null)
-						{
-							Logger.Warn("TemplateFactory.ConvertInput ERROR","Tag: ‘{0}’ value.",list[0].Name);
-							continue; // return tableOut;
-						}
-						
-						TableTemplate tpl=tps.Templates[list[0].Params[0]];
-						table.View = tps.SelectedView;
-						string newOut = ConvertInput2( tps, table, tpl.ElementTemplate, tpl.ItemsTemplate, false );
-						tableOut = tableOut.Replace(list[0].FullString,newOut);
-						table.View = null;
-						Logger.LogM("TemplateFactory.ConvertInput","{0}",match0.Params[0]);
-						
-						#endregion
-					}
-					else if (match0.Name=="Directory")
-					{
-						#region Directory
+    public const string fmt_field = "$({0})";
+    
+    static readonly Regex regex_fieldTemplateTag = new Regex(Gen.Strings.Regex_Field_Template_Tag,RegexOptions.Multiline);
+    
+    static readonly Dictionary<NsTypes,string> AC001 = new Dictionary<NsTypes,string>(){
+      { NsTypes.Global, Gen.Strings.Factory_AcErratum },
+      { NsTypes.TableTypes, string.Concat(
+        Gen.Strings.Factory_AcTable,";",
+        Gen.Strings.Factory_AcPrime) },
+      { NsTypes.AdapterTypes,
+        Gen.Strings.Factory_AcAdapt },
+      { NsTypes.DatabaseTypes,
+        Gen.Strings.Factory_AcData },
+      { NsTypes.FieldTypes, string.Concat(
+        Gen.Strings.Factory_AcField,";",
+        Gen.Strings.Factory_AcTypes,";",
+        Gen.Strings.Factory_AcPkType) },
+    };
+    static readonly Dictionary<NsTypes,string> AC002 = new Dictionary<NsTypes,string>(){
+      { NsTypes.Global,Gen.Strings.Factory_AcErratum },
+      { NsTypes.TableTypes, string.Concat(
+        Gen.Strings.Factory_AcTable,";",
+        Gen.Strings.Factory_AcTypes,";",
+        Gen.Strings.Factory_AcPrime) },
+      { NsTypes.AdapterTypes,
+        Gen.Strings.Factory_AcAdapt },
+    };
+    
+    static public readonly Dictionary<NsTypes,string> Ac01 = AC001;
+    static public readonly Dictionary<NsTypes,string> Ac02 = AC002;
 
-						if (System.IO.Directory.Exists(match0.Value))
-						{
-							List<string> listf = new List<string>();
-							foreach (string dir in System.IO.Directory.GetDirectories(match0.Value))
-							{
-								listf.Add(dir);
-							}
-							tableOut = tableOut.Replace(match0.FullString,string.Join(",",listf.ToArray()));
-						}
-						
-						#endregion
-					}
-					else
-					{
-						#region Main Parser Section
-						Logger.LogC("template factory","Match0.Value = “{0}”",match0.Value);
-						Logger.LogC("\tfactory",".Name = “{0}”",match0.Name);
-						System.Cor3.ConsoleColorC.statC("{0}",match0.Params[0]);
-						string newOut = string.Empty;
-						for(int i=1; i < match0.Params.Length; i++)
-						{
-							System.Cor3.ConsoleColorC.statG("table: “{0}”", match0.Params[i]);
-							TableTemplate tpl = tps.Templates[match0.Params[0]];
-							TableElement tbl = tps.SelectedDatabase[match0.Params[i]];
-							table.View = tps.SelectedView;
-							newOut += string.Format("{0}",ConvertInput2( tps, tbl, tpl.ElementTemplate, tpl.ItemsTemplate, false ));
-							table.View = null;
-						}
-						tableOut = tableOut.Replace(list[0].FullString,newOut);
-						#endregion
-					}
-				}
-			}
-			#endregion
-			
-			return tableOut;
-		}
-		
-		/// changed: we are not just calling continue to break out of a loop;  No loop;
-		/// Now we're returning the input 'tableIn'.
-		static public string ConvertInputPart(Generator.Export.Intrinsic.IDbConfiguration4 tps, TableElement table, QuickMatch match, string tableIn)
-		{
-			string tableOut = tableIn;
-//			QuickMatch match0 = list[0];
-			Logger.LogC("\ttemplate factory","{0}",match.Value);
-			
-			if (!match.HasParams) {
-				Logger.LogC("TemplateFactory.ConvertInput ERROR","No Params");
-				return tableOut/*continue*/;
-			}
-			
-			TableTemplate tbltmpl=null;
-			
-			if (!match.HasMultipleParams)
-			{
-				#region Single Table Reference
-				
-				#region Warn if null
-				// this is wrong.
-				// See above how we assign the tbltpl to null before checking here!
-				if (tbltmpl==null) {
-					Logger.Warn(
-						Gen.Strings.LogTemplateFactoryErr_Title,
-						Gen.Strings.LogTemplateFactoryErr_Filter,
-						match. Name
-					);
-					return tableOut;
-				}
-				#endregion
-				
-				// Get our template
-				tbltmpl = tps.Templates[match.Params[0]];
-				
-				// get our input
-				string newOut = ConvertInput2( tps, table, tbltmpl.ElementTemplate, tbltmpl.ItemsTemplate, false );
-				
-				// replace the template tag with the parsed content.
-				tableOut = tableOut.Replace( match.FullString, newOut );
-				
-				Logger.LogM( Gen.Strings.LogFactoryConvert_Title, "{0}", match.Params[0] );
-				
-				#endregion
-			}
-			// the Directory Element is not parsed.
-			else if (match.Name=="Directory")
-			{
-				#region Directory
-				
-				if (System.IO.Directory.Exists(match.Value))
-				{
-					List<string> listf = new List<string>();
-					foreach (string dir in System.IO.Directory.GetDirectories(match.Value))
-					{
-						listf.Add(dir);
-					}
-					tableOut = tableOut.Replace(match.FullString,string.Join(",",listf.ToArray()));
-				}
-				
-				#endregion
-			}
-			// This is the main parser loop.
-			else
-			{
-				// If we are here, we have a complex template;
-				// That is, our template references multiple tables.
-				#region Main Parser Section
-				
-//				switch (match0.Name) { default: Global.statC("{0}",match0.Params[0]); break; }
-				Logger.LogC(Gen.Strings.LogTemplateInfo_Title,Gen.Strings.LogTemplateInfo_Format,match.Value,match.Name,match.Params[0]);
-				
-				string newOut = string.Empty;
-				
-				for(int i=1; i < match.Params.Length; i++)
-				{
-					Global.statG(Gen.Strings.LogTable_Format, match.Params[i]);
-					TableTemplate tpl = tps.Templates[match.Params[0]];
-					TableElement tbl = tps.SelectedDatabase[match.Params[i]];
-					newOut += ConvertInput2(tps,tbl,tpl.ElementTemplate,tpl.ItemsTemplate,false);
-				}
-				tableOut = tableOut.Replace( match.FullString, newOut );
-				#endregion
-			}
-			
-			return tableOut;
-			
-		}
-		
-		/// <summary>
-		/// Parser Pass #2:
-		/// <para>
-		/// This is the parser's initialization point.
-		/// </para>
-		/// <para>Here, we process the given template given a particular table.</para>
-		/// <para>The parser process repeats using this method for each requested table/template
-		/// provided by the given template until there are no templates left to parse.</para>
-		/// </summary>
-		/// <param name = "tps"></param>
-		/// <param name="table"></param>
-		/// <param name="tableTemplate"></param>
-		/// <param name="fieldTemplate"></param>
-		/// <param name="isForView"></param>
-		/// <returns></returns>
-		static public string ConvertInput2(Generator.Export.Intrinsic.IDbConfiguration4 tps,
-		                                   TableElement table,
-		                                   string tableTemplate,
-		                                   string fieldTemplate,
-		                                   bool isForView)
-		{
-			// UNDONE: Log Error
-			if (table==null) return tableTemplate;
-			
-			Logger.LogM( "template factory" , "Converting {0}" , table.Name );
-			
-			bool   noKey	= tableTemplate.Contains("FieldValuesNK");
-			// replace common tableTemplate values.
-			string tableOut	= table.ReplaceValues( tableTemplate );
-			
-			List<string> paramStrings = GetParamStrings( tps, table, fieldTemplate, noKey );
-			
-			tableOut = ReplaceFieldValues( tableOut, paramStrings.ToArray() );
-			
-			paramStrings.Clear();
-			paramStrings = null;
-			
-			return tableOut;
-		}
-		
-		static string ReplaceFieldValues(string input,
-		                                          params string[] values)
-		{
-			string cFieldOut = string.Join(",",values);
-			string fieldOut = string.Join(string.Empty,values);
-			
-			return input
-				.ReplaceP("FieldValues",fieldOut)
-				.ReplaceP("FieldValuesNK",fieldOut)
-				.ReplaceP("FieldValues,Cdf",cFieldOut)
-				.ReplaceP("FieldValuesNK,Cdf",cFieldOut);
-		}
-		
-		// primary (used)
-		/// <summary>
-		/// Parser Pass #2.1
-		/// <para>
-		/// FieldTemplate is parsed for each field in the table and returned
-		/// in a list where each parsed field is an item.
-		/// </para>
-		/// </summary>
-		/// <param name = "tps"></param>
-		/// <param name="table"></param>
-		/// <param name="fieldTemplate"></param>
-		/// <param name="noKey"></param>
-		/// <returns>
-		/// A list of parsed table-fields given fieldTemplate.
-		/// </returns>
-		public static List<string> GetParamStrings(Generator.Export.Intrinsic.IDbConfiguration4 tps,
-		                                           TableElement table,
-		                                           string fieldTemplate,
-		                                           bool noKey)
-		{
-			var paramStrings = new List<string>();
-			string temp = null, sdb=null, stb=null;
-			// what's the table we're dealing with here?
-			string fieldOut = table.Reformat( fieldTemplate );
-			counter=0;
-			if (table.View==null && table.Link==null) // we leave the link here so that templates can be generated per link.
-			{
-				foreach (FieldElement field in table.Fields)
-				{
-					temp = GetParam(field,table,fieldOut,noKey);
-					if (!string.IsNullOrEmpty(temp)) paramStrings.Add(temp);
-				}
-			}
-			else if (table.View!=null)
-			{
-				sdb = table.View.Database;
-				stb = table.View.Table;
-				DatabaseElement db = tps.SelectedCollection.Databases.FirstOrDefault(xdb => xdb.Name == sdb);
-				var tbl = (TableElement)db.Items.FirstOrDefault(t => t.Name == stb);
-				if (CheckForError(tbl)) Logger.Warn("GetParamStrings","Table \"{0}\" wasn't found");
-				fieldOut = tbl.ReplaceValues( fieldTemplate );
-				foreach (FieldElement field in tbl.Fields)
-				{
-					field.View = table.View;
-					temp = GetParam(field,table,fieldOut,noKey);
-					bool hasField = table.View.HasField(table,field,true);
-					if (hasField && !string.IsNullOrEmpty(temp)) paramStrings.Add(temp);
-					field.View = null;
-				}
-				tbl = null;
-				foreach (DataViewLink link in table.View.LinkItems)
-				{
-					sdb = link.Database;
-					stb = link.Table;
-					db = tps.SelectedCollection.Databases.FirstOrDefault(xdb => xdb.Name == sdb);
-					tbl = (TableElement)db.Items.FirstOrDefault(t => t.Name == stb);
-					if (CheckForError(tbl)) Logger.Warn("GetParamStrings","Table \"{0}\" wasn't found");
-					Logger.LogG("Found table","{0}",tbl.Name);
-					fieldOut = tbl.ReplaceValues( fieldTemplate );
-					Logger.LogG("Template","{0}",fieldOut);
-					foreach (FieldElement field in tbl.Fields)
-					{
-						field.View = table.View;
-						field.Link = link;
-						temp = GetParam(field,table,fieldOut,noKey);
-						bool hasField = link.HasField(table,field,true);
-						if (hasField && !string.IsNullOrEmpty(temp)) paramStrings.Add(temp);
-						field.View = null;
-						field.Link = null;
-					}
-					tbl = null;
-				}
-				
-			}
-			return paramStrings;
-		}
-		
-		static string GetParam(FieldElement field,
-		                       TableElement table,
-		                       string fieldTemplate,
-		                       bool noKey)
-		{
-			// Copy the template-string for parsing.
-			string fieldGen = string.Copy(fieldTemplate);
-			// Check if this is the primary-key
-			bool isPrimary = table.PrimaryKey==field["DataName"].ToString();
-			// Skip primary key field if requested (noKey)
-			if (noKey & isPrimary) return null;
-			fieldGen = fieldGen
-				.ReplaceP("FieldIndex",counter++)
-				.ReplaceP("IsPrimary",isPrimary)
-				.ReplaceP("PrimaryKey",table.PrimaryKey);
-			// parse
-			fieldGen = field.Replace(fieldGen);
-			return fieldGen; //paramStrings.Add(fieldGen);
-		}
-		
-		#endregion
-		
-	}
+    static public string[] Group1(NsTypes groupn) { return Ac01[groupn].Split(';'); }
+    static public string[] Group2(NsTypes groupn) { return Ac02[groupn].Split(';'); }
+
+  }
 }
