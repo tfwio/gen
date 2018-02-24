@@ -1,5 +1,21 @@
 <?xml version="1.0"?>
 <DatabaseCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Database ConnectionType="SQLite" Name="GoMmdFs">
+    <Table Name="DirectoryItem" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="int64" DataName="id" IsArray="false" Description="Describes a record by id; &#xD;&#xA;This is only used to assert/retrieve a record in SQL database." DefaultValue="" CodeBlock="id" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="int64" DataName="pid" IsArray="false" Description="Describes a record by id; &#xD;&#xA;This is only used to assert/retrieve a record in SQL database." DefaultValue="" CodeBlock="id" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="Name" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="SHA1" IsArray="false" Description="the file-extension." DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="fullPath" IsArray="false" Description="the meta-type identefier." DefaultValue="DBNull.Value" />
+    </Table>
+    <Table Name="FileItem" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="int64" DataName="id" IsArray="false" Description="Describes a record by id; &#xD;&#xA;This is only used to assert/retrieve a record in SQL database." DefaultValue="" CodeBlock="id" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="int64" DataName="pid" IsArray="false" Description="Describes a record by id; &#xD;&#xA;This is only used to assert/retrieve a record in SQL database." DefaultValue="" CodeBlock="id" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="Name" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="SHA1" IsArray="false" Description="the file-extension." DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="fullPath" IsArray="false" Description="the meta-type identefier." DefaultValue="DBNull.Value" />
+    </Table>
+  </Database>
   <Database ConnectionType="OleDb" Name="Calibre-UI">
     <Table Name="books-menu1" PrimaryKey="Library, Comic" DbType="SQLite">
       <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, Comic" IsArray="false" DefaultValue="DBNull.Value" />
