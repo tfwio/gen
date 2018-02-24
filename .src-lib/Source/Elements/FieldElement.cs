@@ -289,7 +289,7 @@ namespace Generator.Elements
 				#region CustomTypes
 				fparams.Add("NativeNullType",	NullableTypeUtility.GetNativeNullType(fparams["Native"].ToString()));
 				fparams.Add("NativeNullValue",	NullableTypeUtility.IsNativeNullable(fparams["Native"].ToString()) ? ".Value" : "");
-				fparams.Add("NativeNullTypeGo",  NullableTypeUtility.GetNativeNullableGoType(fparams["Native"].ToString()));
+				fparams.Add("NativeNullTypeGo",  NullableTypeUtility.GetNativeNullableGoType(fparams["DataTypeNative"].ToString()));
 				//
 				if ( ((bool)fparams["IsString"] ) == true ) {
 					fparams.Add("SqlFormat",	"'{0}'");
