@@ -1,3 +1,4 @@
 **/bin
 **/obj
 .sln/packages/*
+.src-tool/Pages
