@@ -195,6 +195,9 @@
     <Compile Include="Source\Parser\REPLACEMENT.cs" />
     <Compile Include="Source\Parser\SchemaStateViewBase.cs" />
     <Compile Include="Source\Parser\SqlTemplateParser.cs" />
+    <Compile Include="Source\Parser\StrKeys.cs" />
+    <None Include="Source\Parser\TemplateFactory_NonStatic.cs" />
+    <Compile Include="Source\Parser\TemplateModel.cs" />
     <Compile Include="Source\Parser\tempmatch.cs" />
     <Compile Include="Source\Parser\TypeResolutionClass.cs" />
     <Compile Include="Source\QueryDataContext.cs" />
@@ -251,7 +254,6 @@
     <Compile Include="Source\Types\SCHEMA\SchemaMapTypes.cs" />
     <Compile Include="Source\Types\TSQL\TSQLConverter.cs" />
     <Compile Include="Source\Types\NullableTypeUtility.cs" />
-    <Compile Include="Source\TemplateModel\FieldTemplate.cs" />
     <Compile Include="Source\TemplateModel\MarkupTemplate.cs" />
     <Compile Include="Source\TemplateModel\TableTemplate.cs" />
     <Compile Include="Source\TemplateModel\TemplateCollection.cs" />

@@ -132,9 +132,8 @@ namespace Generator.Core.Markup
 		/// <para>(System.Cor3.Data.Map.Types.FlashNativeTypes)</para>
 		/// </para>
 		/// </summary>
-		[XmlAttribute,Category(groupTemplate)] public string SyntaxLanguage { get { return syntaxLanguage; } set { syntaxLanguage = value; } }
+		[XmlAttribute, Category(groupTemplate)] public string SyntaxLanguage { get { return syntaxLanguage; } set { syntaxLanguage = value; } }
 		
-		[XmlElement,Browsable(false)] public FieldTemplate FieldTemplate { get { return fieldTemplate; } set { fieldTemplate = value; } } FieldTemplate fieldTemplate;
 		#endregion
 
 		// .ctor
@@ -147,7 +146,6 @@ namespace Generator.Core.Markup
 		}
 		public TableTemplate(TableElement value) : base(value)
 		{
-			fieldTemplate = new FieldTemplate();
 		}
 
 		#region DataRow Implementation (Template From DataRowView)
@@ -168,7 +166,6 @@ namespace Generator.Core.Markup
 		{
 			base.ToRow(row);
 			row["ClassName"] = this.ClassName;
-//			row["FieldTemplate"] = this.FieldTemplate;
 			row[res.itmTpl] = this.ItemsTemplate;
 			row["Tags"] = this.Tags;
 			row["SyntaxLanguage"] = this.SyntaxLanguage;
