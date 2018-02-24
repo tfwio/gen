@@ -110,7 +110,7 @@ namespace Generator.Elements
 		/// that adds 'Serialization.Types' to a specific element bound to Serialization.
 		/// </para>
 		/// </remarks>
-		/// <seealso cref="Generator.Elements.Parser.TemplateFactory" />
+		/// <seealso cref="Generator.Parser.TemplateFactory" />
 		/// </summary>
 		[XmlIgnore] public DICT<string,object> Params
 		{
@@ -128,13 +128,13 @@ namespace Generator.Elements
 				fparams.Add("DataName",					DataName);
 				fparams.Add("dataname",					DataName.ToLower());
 				// fixed 2012-08-22
-				// fparams.Add("DataNameC",				dataName.ToStringCapitolize());
+				// fparams.Add("DataNameC",			dataName.ToStringCapitolize());
 				fparams.Add("DataNameC",				DataName.ToStringCapitolize());
-				fparams.Add("CleanName,Nodash",			DataName.Clean());
-				fparams.Add("FriendlyName",				DataName.Clean());
+				fparams.Add("CleanName,Nodash",	DataName.Clean());
+				fparams.Add("FriendlyName",			DataName.Clean());
 				fparams.Add("CleanName",				DataName.Replace("-","_"));
 				fparams.Add("DataNameX",				DataName.Replace("-","_").ReplaceId());
-				fparams.Add("FriendlyNameC",			DataName.Clean().ToStringCapitolize());
+				fparams.Add("FriendlyNameC",		DataName.Clean().ToStringCapitolize());
 				#endregion
 				#region DataAlias (for links and views)
 				try
@@ -162,9 +162,9 @@ namespace Generator.Elements
 				fparams.Add("DataType",					DataType??string.Empty);
 				fparams.Add("datatype",					(DataType??string.Empty).ToLower());
 				// Converted to a standard Native Type such as 'string'
-				fparams.Add("DataTypeNative",			DataTypeNative??string.Empty);
-				fparams.Add("DataTypeNativeF",			DataTypeNative??string.Empty);
-				fparams.Add("datatypenative",			(DataTypeNative??string.Empty).ToLower());
+				fparams.Add("DataTypeNative",		DataTypeNative??string.Empty);
+				fparams.Add("DataTypeNativeF",	DataTypeNative??string.Empty);
+				fparams.Add("datatypenative",		(DataTypeNative??string.Empty).ToLower());
 				#endregion
 				//
 				// FIXME: We need to convert flash types also from Access/Ace Types.
@@ -178,19 +178,19 @@ namespace Generator.Elements
 				#region Formatting
 				fparams.Add("FormatString",		FormatString);
 				//
-				fparams.Add("MaxLMAX",			MaxLength == -1 ? "MAX" : MaxLength.ToString());
-				fparams.Add("nmax",				MaxLength == -1 ? "" : string.Format("({0})",MaxLength));
-				fparams.Add("smax",				MaxLength == -1 ? "(MAX)" : string.Format("({0})",MaxLength));
-				fparams.Add("MaxLength",		MaxLength);
+				fparams.Add("MaxLMAX",		 MaxLength == -1 ? "MAX" : MaxLength.ToString());
+				fparams.Add("nmax",				 MaxLength == -1 ? "" : string.Format("({0})",MaxLength));
+				fparams.Add("smax",				 MaxLength == -1 ? "(MAX)" : string.Format("({0})",MaxLength));
+				fparams.Add("MaxLength",	 MaxLength);
 				//
-				fparams.Add("CodeBlock",		CodeBlock??String.Empty);
-				fparams.Add("BlockAction",		BlockAction??String.Empty);
+				fparams.Add("CodeBlock",	 CodeBlock??String.Empty);
+				fparams.Add("BlockAction", BlockAction??String.Empty);
 				// TODO: ADDED FIELD TYPE NAMES
 				fparams.Add("FormType",			FormType??String.Empty);
 				fparams.Add("FormTypeClean",	(FormType??String.Empty).Clean());
 				fparams.Add("formtype",			(FormType??String.Empty).ToLower());
 				//
-				fparams.Add("IsString",			false);
+				fparams.Add("IsString",		false);
 				fparams.Add("IsBool",			false);
 				fparams.Add("IsNum",			false);
 				// -------------------------
@@ -289,6 +289,7 @@ namespace Generator.Elements
 				#region CustomTypes
 				fparams.Add("NativeNullType",	NullableTypeUtility.GetNativeNullType(fparams["Native"].ToString()));
 				fparams.Add("NativeNullValue",	NullableTypeUtility.IsNativeNullable(fparams["Native"].ToString()) ? ".Value" : "");
+				fparams.Add("NativeNullTypeGo",  NullableTypeUtility.GetNativeNullableGoType(fparams["Native"].ToString()));
 				//
 				if ( ((bool)fparams["IsString"] ) == true ) {
 					fparams.Add("SqlFormat",	"'{0}'");

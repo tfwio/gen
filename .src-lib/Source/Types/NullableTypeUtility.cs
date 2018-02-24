@@ -5,19 +5,46 @@ namespace Generator
 	public static class NullableTypeUtility
 	{
 		#region NativeNullType Helper
-		static public string GetNativeNullType(string input)
-		{
-			switch (input)
-			{
-				case "string":
-				case "DBNull":
-				case "Empty":
-				case "object":
-					return input;
-				default:
-					return string.Format("{0}?",input);
-			}
-		}
+		/// <summary>
+		/// This is for handling a DataName pointer for GoLang.
+		/// At the moment, we're not sure how to handle some types
+		/// since I'm not in the mood to think adequatly ;)
+		/// </summary>
+		/// <param name="input"></param>
+		/// <returns></returns>
+    static public string GetNativeNullableGoType(string input)
+    {
+      switch (input)
+      {
+        case "int": // target native go types
+        case "int32":
+        case "int64":
+        case "float":
+        case "float32":
+        case "float64":
+          return string.Format("*{0}",input);
+        case "string":
+        case "DBNull":
+        case "Empty":
+        case "object":
+          return input;
+        default:
+          return string.Format("*{0}",input);
+      }
+    }
+    static public string GetNativeNullType(string input)
+    {
+      switch (input)
+      {
+        case "string":
+        case "DBNull":
+        case "Empty":
+        case "object":
+          return input;
+        default:
+          return string.Format("{0}?",input);
+      }
+    }
 		static public bool IsNativeNullable(string input)
 		{
 			switch (input)
