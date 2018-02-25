@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Generator.Parser;
 using System.Cor3.Data;
 using Generator.Elements.Basic;
 using Generator.Elements.Types;
@@ -337,76 +338,76 @@ namespace Generator.Elements
 			
 			//
 			#region Table Type
-			Add("TableType", DbType);
-			Add("tabletype", string.Format("{0}", DbType).ToLower());
+      Add(StrKeys.TableType, DbType);
+			Add(StrKeys.tabletype, string.Format("{0}", DbType).ToLower());
 			#endregion
 			//
 			#region Primary Key
 			// see the primary key related tags below
-			Add("PK", PrimaryKey);
-			Add("pk", PrimaryKey == null ? string.Empty : PrimaryKey.ToLower());
-			Add("PrimaryKey", PrimaryKey ?? string.Empty);
-			Add("PrimaryKeyCleanC", PrimaryKey == null ? string.Empty : PrimaryKey.ToStringCapitolize().Clean());
-			Add("primarykey", PrimaryKey == null ? string.Empty : PrimaryKey.ToLower());
+			Add(StrKeys.PK, PrimaryKey);
+			Add(StrKeys.pk, PrimaryKey == null ? string.Empty : PrimaryKey.ToLower());
+			Add(StrKeys.PrimaryKey, PrimaryKey ?? string.Empty);
+			Add(StrKeys.PrimaryKeyCleanC, PrimaryKey == null ? string.Empty : PrimaryKey.ToStringCapitolize().Clean());
+			Add(StrKeys.primarykey, PrimaryKey == null ? string.Empty : PrimaryKey.ToLower());
 			#endregion
 			//
 			#region TableName
 			//
-			Add("Name", Name);
-			Add("Table", Name.Replace("-", "_"));
+			Add(StrKeys.Name, Name);
+			Add(StrKeys.Table, Name.Replace("-", "_"));
 			
 			try {
 				
-				Add("TableAlias", View!=null ? View.Alias : Link!=null ? Link.Alias : Name);
-				Add("_TableAlias", View!=null ? View.Alias : Link!=null ? Link.Alias : Name.Replace("-", "_"));
-				Add("tablealias", (conversionElements["TableAlias"] as string).ToLower());
+				Add(StrKeys.TableAlias, View!=null ? View.Alias : Link!=null ? Link.Alias : Name);
+				Add(StrKeys._TableAlias, View!=null ? View.Alias : Link!=null ? Link.Alias : Name.Replace("-", "_"));
+				Add(StrKeys.tablealias, (conversionElements[StrKeys.TableAlias] as string).ToLower());
 				//
-				Add("TableAliasC", conversionElements["TableAlias"].ToStringCapitolize());
-				Add("FriendlyTableAlias", (conversionElements["TableAlias"] as string).Clean());
-				Add("TableAliasClean", conversionElements["FriendlyTableAlias"]);
-				Add("tablealiasclean", (conversionElements["TableAlias"] as string).ToLower());
-				Add("TableAliasCClean", conversionElements["TableAlias"].ToStringCapitolize());
-				Add("TABLEALIASCLEAN", (conversionElements["TableAlias"] as string).ToUpper());
+				Add(StrKeys.TableAliasC, conversionElements[StrKeys.TableAlias].ToStringCapitolize());
+				Add(StrKeys.FriendlyTableAlias, (conversionElements[StrKeys.TableAlias] as string).Clean());
+				Add(StrKeys.TableAliasClean, conversionElements[StrKeys.FriendlyTableAlias]);
+				Add(StrKeys.tablealiasclean, (conversionElements[StrKeys.TableAlias] as string).ToLower());
+				Add(StrKeys.TableAliasCClean, conversionElements[StrKeys.TableAlias].ToStringCapitolize());
+				Add(StrKeys.TABLEALIASCLEAN, (conversionElements[StrKeys.TableAlias] as string).ToUpper());
 				//
 //				Add("AliasCClean", conversionElements["FriendlyAlias"].ToStringCapitolize());
 				//
-				Add("TableAliasCName", (conversionElements["TableAlias"] as string).Clean());
-				Add("TableAliasCNameC", (conversionElements["TableAliasCName"] as string).ToStringCapitolize());
+				Add(StrKeys.TableAliasCName, (conversionElements[StrKeys.TableAlias] as string).Clean());
+				Add(StrKeys.TableAliasCNameC, (conversionElements[StrKeys.TableAliasCName] as string).ToStringCapitolize());
 			} catch (Exception error) {
 				Logger.Warn("Parse Exception",error.Message);
 			}
 			
 			//
-			Add("TableName", Name);
-			Add("tablename", Name.ToLower());
+			Add(StrKeys.TableName, Name);
+			Add(StrKeys.tablename, Name.ToLower());
 			//
-			Add("TableNameC", Name.ToStringCapitolize());
-			Add("TableNameClean", FriendlyName);
-			Add("tablenameclean", FriendlyName.ToLower());
-			Add("TableNameCClean", FriendlyName.ToStringCapitolize());
+			Add(StrKeys.TableNameC, Name.ToStringCapitolize());
+			Add(StrKeys.TableNameClean, FriendlyName);
+			Add(StrKeys.tablenameclean, FriendlyName.ToLower());
+			Add(StrKeys.TableNameCClean, FriendlyName.ToStringCapitolize());
 			//
-			Add("TableCleanName", Name.Clean());
-			Add("TableCleanNameC", Name.Clean().ToStringCapitolize());
+			Add(StrKeys.TableCleanName, Name.Clean());
+			Add(StrKeys.TableCleanNameC, Name.Clean().ToStringCapitolize());
 			#endregion
 			//
 			#region Namespace Types
-			Add("AdapterNs", NsAdapter);
-			Add("AdapterT", TAdapter);
-			Add("AdapterNsT", TypeAdapter);
+			Add(StrKeys.AdapterNs, NsAdapter);
+			Add(StrKeys.AdapterT, TAdapter);
+			Add(StrKeys.AdapterNsT, TypeAdapter);
 			//
-			Add("CommandNs", NsCommand);
-			Add("CommandT", TCommand);
-			Add("CommandNsT", TypeCommand);
+			Add(StrKeys.CommandNs, NsCommand);
+			Add(StrKeys.CommandT, TCommand);
+			Add(StrKeys.CommandNsT, TypeCommand);
 			//
-			Add("ConnectionNs", NsConnection);
-			Add("ConnectionT", TConnection);
-			Add("ConnectionNsT", TypeConnection);
+			Add(StrKeys.ConnectionNs, NsConnection);
+			Add(StrKeys.ConnectionT, TConnection);
+			Add(StrKeys.ConnectionNsT, TypeConnection);
 			//
-			Add("ParameterT", TParameter);
+			Add(StrKeys.ParameterT, TParameter);
 			//
-			Add("ReaderNs", NsReader);
-			Add("ReaderT", TReader);
-			Add("ReaderNsT", TypeReader);
+			Add(StrKeys.ReaderNs, NsReader);
+			Add(StrKeys.ReaderT, TReader);
+			Add(StrKeys.ReaderNsT, TypeReader);
 			#endregion
 			//
 			GeneratorTypeProvider.GetTypes<GeneratorDateTimeFieldProvider>(conversionElements);
@@ -417,20 +418,20 @@ namespace Generator.Elements
 				MessageBox.Show("Table must provide a primary key", "Please check the table.");
 				return;
 			} else if (PrimaryKey != string.Empty && PrimaryKey != "%PKUNKNOWN%") {
-				Add("PKDataName",					PrimaryKeyElement.DataName);
-				Add("PKDataType",					PrimaryKeyElement.DataType);
-				Add("PKDataTypeNative",		PrimaryKeyElement.DataTypeNative);
-				Add("PKNativeNullType",		NullableTypeUtility.GetNativeNullType(PrimaryKeyElement["Native"].ToString()));
-				Add("PKNativeNullValue",	NullableTypeUtility.IsNativeNullable(PrimaryKeyElement["Native"].ToString()) ? ".Value" : "");
-				Add("PKNativeNullValueGo",PrimaryKeyElement.Params["NativeNullTypeGo"].ToString());
+				Add(StrKeys.PKDataName,					PrimaryKeyElement.DataName);
+				Add(StrKeys.PKDataType,					PrimaryKeyElement.DataType);
+				Add(StrKeys.PKDataTypeNative,		PrimaryKeyElement.DataTypeNative);
+				Add(StrKeys.PKNativeNullType,		NullableTypeUtility.GetNativeNullType(PrimaryKeyElement[StrKeys.Native].ToString()));
+				Add(StrKeys.PKNativeNullValue,	NullableTypeUtility.IsNativeNullable(PrimaryKeyElement[StrKeys.Native].ToString()) ? ".Value" : "");
+				Add(StrKeys.PKNativeNullValueGo,PrimaryKeyElement.Params[StrKeys.NativeNullTypeGo].ToString());
 //				Add("PKDataTypeNative",PrimaryKeyElement.DataTypeNative);
-				Add("PKDescription",		PrimaryKeyElement.Description);
+				Add(StrKeys.PKDescription,		PrimaryKeyElement.Description);
 				//
-				Add("PKDataNameC",			PrimaryKeyElement.DataName.ToStringCapitolize());
-				Add("PKCleanName",			PrimaryKeyElement.DataName.Replace("-", "_"));
-				Add("PKCleanName,Nodash",	PrimaryKeyElement.DataName.Clean());
-				Add("PKFriendlyName",		PrimaryKeyElement.DataName.Clean());
-				Add("PKFriendlyNameC",		PrimaryKeyElement.DataName.Clean().ToStringCapitolize());
+				Add(StrKeys.PKDataNameC,			PrimaryKeyElement.DataName.ToStringCapitolize());
+				Add(StrKeys.PKCleanName,			PrimaryKeyElement.DataName.Replace("-", "_"));
+				Add(StrKeys.PKCleanName_Nodash,	PrimaryKeyElement.DataName.Clean());
+				Add(StrKeys.PKFriendlyName,		PrimaryKeyElement.DataName.Clean());
+				Add(StrKeys.PKFriendlyNameC,		PrimaryKeyElement.DataName.Clean().ToStringCapitolize());
 			} else {
 				Logger.Warn("TableElement.InitializeDictionary", Gen.Messages.TableElement_PrimaryKeyNotFound, Name);
 			}
