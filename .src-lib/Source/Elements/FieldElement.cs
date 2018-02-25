@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 
 using Generator.Elements.Basic;
 using Generator.Elements.Types;
+using Generator.Parser;
 
 #if TREEV
 using System.Windows.Forms;
@@ -125,30 +126,30 @@ namespace Generator.Elements
 				// DataName
 				// -------------------------
 				#region DataName
-				fparams.Add("DataName",					DataName);
-				fparams.Add("dataname",					DataName.ToLower());
+				fparams.Add(StrKeys.DataName,					DataName);
+				fparams.Add(StrKeys.dataname,					DataName.ToLower());
 				// fixed 2012-08-22
-				// fparams.Add("DataNameC",			dataName.ToStringCapitolize());
-				fparams.Add("DataNameC",				DataName.ToStringCapitolize());
-				fparams.Add("CleanName,Nodash",	DataName.Clean());
-				fparams.Add("FriendlyName",			DataName.Clean());
-				fparams.Add("CleanName",				DataName.Replace("-","_"));
-				fparams.Add("DataNameX",				DataName.Replace("-","_").ReplaceId());
-				fparams.Add("FriendlyNameC",		DataName.Clean().ToStringCapitolize());
+				// fparams.Add(StrKeys.DataNameC,			dataName.ToStringCapitolize());
+				fparams.Add(StrKeys.DataNameC,				DataName.ToStringCapitolize());
+				fparams.Add(StrKeys.CleanName_Nodash,	DataName.Clean());
+				fparams.Add(StrKeys.FriendlyName,			DataName.Clean());
+				fparams.Add(StrKeys.CleanName,				DataName.Replace("-","_"));
+				fparams.Add(StrKeys.DataNameX,				DataName.Replace("-","_").ReplaceId());
+				fparams.Add(StrKeys.FriendlyNameC,		DataName.Clean().ToStringCapitolize());
 				#endregion
 				#region DataAlias (for links and views)
 				try
 				{
-					fparams.Add("DataAlias",null);
+					fparams.Add(StrKeys.DataAlias,null);
 					if (View!=null) fparams["DataAlias"] = string.Concat(View.Alias,".",DataName);
 					if (Link!=null) fparams["DataAlias"] = string.Concat(Link.Alias,".",DataName);
 					if (View==null && Link==null) fparams["DataAlias"] = fparams["DataName"];
-					fparams.Add("dataalias",(fparams["DataAlias"] as string).ToLower());
-					fparams.Add("DataAliasC",(fparams["DataAlias"] as string).ToStringCapitolize());
-					fparams.Add("CleanAlias,Nodash",(fparams["DataAlias"] as string).Clean());
-					fparams.Add("FriendlyAlias",(fparams["DataAlias"] as string).Clean());
-					fparams.Add("CleanAlias",(fparams["DataAlias"] as string).Replace("-","_"));
-					fparams.Add("FriendlyAliasC",(fparams["DataAlias"] as string).Clean().ToStringCapitolize());
+					fparams.Add(StrKeys.dataalias,(fparams["DataAlias"] as string).ToLower());
+					fparams.Add(StrKeys.DataAliasC,(fparams["DataAlias"] as string).ToStringCapitolize());
+					fparams.Add(StrKeys.CleanAlias_Nodash,(fparams["DataAlias"] as string).Clean());
+					fparams.Add(StrKeys.FriendlyAlias,(fparams["DataAlias"] as string).Clean());
+					fparams.Add(StrKeys.CleanAlias,(fparams["DataAlias"] as string).Replace("-","_"));
+					fparams.Add(StrKeys.FriendlyAliasC,(fparams["DataAlias"] as string).Clean().ToStringCapitolize());
 				}
 				catch (Exception error)
 				{
@@ -159,50 +160,50 @@ namespace Generator.Elements
 				// DataType
 				// -------------------------
 				#region DataType
-				fparams.Add("DataType",					DataType??string.Empty);
-				fparams.Add("datatype",					(DataType??string.Empty).ToLower());
+				fparams.Add(StrKeys.DataType,					DataType??string.Empty);
+				fparams.Add(StrKeys.datatype,					(DataType??string.Empty).ToLower());
 				// Converted to a standard Native Type such as 'string'
-				fparams.Add("DataTypeNative",		DataTypeNative??string.Empty);
-				fparams.Add("DataTypeNativeF",	DataTypeNative??string.Empty);
-				fparams.Add("datatypenative",		(DataTypeNative??string.Empty).ToLower());
+				fparams.Add(StrKeys.DataTypeNative,		DataTypeNative??string.Empty);
+				fparams.Add(StrKeys.DataTypeNativeF,	DataTypeNative??string.Empty);
+				fparams.Add(StrKeys.datatypenative,		(DataTypeNative??string.Empty).ToLower());
 				#endregion
 				//
 				// FIXME: We need to convert flash types also from Access/Ace Types.
 				//		  This means that we do need to know what type our origin is
 				//		  at this point.
-				fparams.Add("FlashDataType",	As3TypeProvider.SystemTypeToFlashType(this.DataTypeNative));
-//				fparams.Add("FlashDataType",	TypeInfo.SqlTypeStrToFlashType(DataType));
+				fparams.Add(StrKeys.FlashDataType,	As3TypeProvider.SystemTypeToFlashType(this.DataTypeNative));
+//				fparams.Add(StrKeys.FlashDataType,	TypeInfo.SqlTypeStrToFlashType(DataType));
 				// -------------------------
 				// Formatting
 				// -------------------------
 				#region Formatting
-				fparams.Add("FormatString",		FormatString);
+				fparams.Add(StrKeys.FormatString,		FormatString);
 				//
-				fparams.Add("MaxLMAX",		 MaxLength == -1 ? "MAX" : MaxLength.ToString());
-				fparams.Add("nmax",				 MaxLength == -1 ? "" : string.Format("({0})",MaxLength));
-				fparams.Add("smax",				 MaxLength == -1 ? "(MAX)" : string.Format("({0})",MaxLength));
-				fparams.Add("MaxLength",	 MaxLength);
+				fparams.Add(StrKeys.MaxLMAX,		 MaxLength == -1 ? "MAX" : MaxLength.ToString());
+				fparams.Add(StrKeys.nmax,				 MaxLength == -1 ? "" : string.Format("({0})",MaxLength));
+				fparams.Add(StrKeys.smax,				 MaxLength == -1 ? "(MAX)" : string.Format("({0})",MaxLength));
+				fparams.Add(StrKeys.MaxLength,	 MaxLength);
 				//
-				fparams.Add("CodeBlock",	 CodeBlock??String.Empty);
-				fparams.Add("BlockAction", BlockAction??String.Empty);
+				fparams.Add(StrKeys.CodeBlock,	 CodeBlock??String.Empty);
+				fparams.Add(StrKeys.BlockAction, BlockAction??String.Empty);
 				// TODO: ADDED FIELD TYPE NAMES
-				fparams.Add("FormType",			FormType??String.Empty);
-				fparams.Add("FormTypeClean",	(FormType??String.Empty).Clean());
-				fparams.Add("formtype",			(FormType??String.Empty).ToLower());
+				fparams.Add(StrKeys.FormType,			FormType??String.Empty);
+				fparams.Add(StrKeys.FormTypeClean,	(FormType??String.Empty).Clean());
+				fparams.Add(StrKeys.formtype,			(FormType??String.Empty).ToLower());
 				//
-				fparams.Add("IsString",		false);
-				fparams.Add("IsBool",			false);
-				fparams.Add("IsNum",			false);
+				fparams.Add(StrKeys.IsString,		false);
+				fparams.Add(StrKeys.IsBool,			false);
+				fparams.Add(StrKeys.IsNum,			false);
 				// -------------------------
 				// IS-DATA-TYPE Properties
 				// -------------------------
 				switch (DataTypeNative) {
 					case "String":
 					case "Char":
-						fparams["IsString"] = true;
+						fparams[StrKeys.IsString] = true;
 						break;
 					default:
-						fparams["IsString"] = false;
+						fparams[StrKeys.IsString] = false;
 						break;
 				}
 				#endregion
@@ -231,75 +232,75 @@ namespace Generator.Elements
 				}
 				#endregion
 				//
-				NativeTypeProvider.TypeCodeStringToNativeDictionary(DataTypeNative,fparams);
+				DataTypeNative.TypeCodeStringToNativeDictionary(fparams);
 				//
 				#region disabled
 				#if no
 				switch (DataTypeNative) {
 					case "Single":
-						fparams.Add("Native","float");
+						fparams.Add(StrKeys.Native,"float");
 						break;
 					case "Double":
-						fparams.Add("Native","double");
+						fparams.Add(StrKeys.Native,"double");
 						break;
 					case "Decimal":
-						fparams.Add("Native","Decimal");
+						fparams.Add(StrKeys.Native,"Decimal");
 						break;
 					case "Boolean":
-						fparams.Add("Native","bool");
+						fparams.Add(StrKeys.Native,"bool");
 						break;
-						//					case "BigInt":		fparams.Add("Native","Int64"); break;
+						//					case "BigInt":		fparams.Add(StrKeys.Native,"Int64"); break;
 					case "DateTime":
-						fparams.Add("Native","DateTime");
+						fparams.Add(StrKeys.Native,"DateTime");
 						break;
 					case "DBNull":
-						fparams.Add("Native","DBNull");
+						fparams.Add(StrKeys.Native,"DBNull");
 						break;
 					case "Empty":
-						fparams.Add("Native","Empty");
+						fparams.Add(StrKeys.Native,"Empty");
 						break;
 					case "Int16":
-						fparams.Add("Native","short");
+						fparams.Add(StrKeys.Native,"short");
 						break;
 					case "Int32":
-						fparams.Add("Native","int");
+						fparams.Add(StrKeys.Native,"int");
 						break;
 					case "Int64":
-						fparams.Add("Native","long");
+						fparams.Add(StrKeys.Native,"long");
 						break;
 					case "UInt16":
-						fparams.Add("Native","ushort");
+						fparams.Add(StrKeys.Native,"ushort");
 						break;
 					case "UInt32":
-						fparams.Add("Native","uint");
+						fparams.Add(StrKeys.Native,"uint");
 						break;
 					case "UInt64":
-						fparams.Add("Native","ulong");
+						fparams.Add(StrKeys.Native,"ulong");
 						break;
 					case "String":
-						fparams.Add("Native","string");
+						fparams.Add(StrKeys.Native,"string");
 						break;
 					default:
-						fparams.Add("Native",DataTypeNative.ToLower());
+						fparams.Add(StrKeys.Native,DataTypeNative.ToLower());
 						break;
 				}
 				#endif
 				#endregion
 				//
 				#region CustomTypes
-				fparams.Add("NativeNullType",	NullableTypeUtility.GetNativeNullType(fparams["Native"].ToString()));
-				fparams.Add("NativeNullValue",	NullableTypeUtility.IsNativeNullable(fparams["Native"].ToString()) ? ".Value" : "");
-				fparams.Add("NativeNullTypeGo",  NullableTypeUtility.GetNativeNullableGoType(fparams["DataTypeNative"].ToString()));
+				fparams.Add(StrKeys.NativeNullType,	NullableTypeUtility.GetNativeNullType(fparams["Native"].ToString()));
+				fparams.Add(StrKeys.NativeNullValue,	NullableTypeUtility.IsNativeNullable(fparams["Native"].ToString()) ? ".Value" : "");
+				fparams.Add(StrKeys.NativeNullTypeGo,  NullableTypeUtility.GetNativeNullableGoType(fparams["DataTypeNative"].ToString()));
 				//
 				if ( ((bool)fparams["IsString"] ) == true ) {
-					fparams.Add("SqlFormat",	"'{0}'");
-					fparams.Add("Format",		@"""{0}""");
-					fparams.Add("fmax",			MaxLength == -1 ? "(max)" : string.Format("({0})",MaxLength));
+					fparams.Add(StrKeys.SqlFormat,	"'{0}'");
+					fparams.Add(StrKeys.Format,		@"""{0}""");
+					fparams.Add(StrKeys.fmax,			MaxLength == -1 ? "(max)" : string.Format("({0})",MaxLength));
 				} else if ( ((bool)fparams["IsBool"] )==true ) {
-					fparams.Add("Format",string.Empty);
-					fparams.Add("fmax",string.Empty);
+					fparams.Add(StrKeys.Format,string.Empty);
+					fparams.Add(StrKeys.fmax,string.Empty);
 				} else if ( ((bool)fparams["IsNum"] )==true ) {
-					if (UseFormat) fparams.Add("fmax",MaxLength==-1 ? "" : string.Format("({0})",MaxLength));
+					if (UseFormat) fparams.Add(StrKeys.fmax,MaxLength==-1 ? "" : string.Format("({0})",MaxLength));
 				}
 				//
 				switch (DataType) {
@@ -309,19 +310,19 @@ namespace Generator.Elements
 					case "NVarChar":
 					case "Text":
 					case "VarChar":
-						fparams.Add("max", MaxLength == -1 ? "(max)" : string.Format("({0})",MaxLength));
+						fparams.Add(StrKeys.max, MaxLength == -1 ? "(max)" : string.Format("({0})",MaxLength));
 						break;
 					default:
-						fparams.Add("max", MaxLength == -1 ? "" : string.Format("({0})",MaxLength));
+						fparams.Add(StrKeys.max, MaxLength == -1 ? "" : string.Format("({0})",MaxLength));
 						break;
 				}
 				#endregion
 				//
-				fparams.Add("UseFormat",	UseFormat);
-				fparams.Add("IsNullable",	IsNullable);
-				fparams.Add("DataTypeNullable",	IsNullable ? NullableTypeUtility.GetNativeNullType(fparams["Native"].ToString()) : fparams["Native"]);
-				fparams.Add("Description",	Description);
-				fparams.Add("DefaultValue",	DefaultValue);
+        fparams.Add(StrKeys.UseFormat,  UseFormat);
+				fparams.Add(StrKeys.IsNullable,	IsNullable);
+				fparams.Add(StrKeys.DataTypeNullable,	IsNullable ? NullableTypeUtility.GetNativeNullType(fparams["Native"].ToString()) : fparams["Native"]);
+				fparams.Add(StrKeys.Description,	Description);
+				fparams.Add(StrKeys.DefaultValue,	DefaultValue);
 				
 				if (Transform!=null) Transform(fparams);
 				
