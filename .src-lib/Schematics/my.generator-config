@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <file-data>D:\DEV\WIN\CS_ROOT\Projects\cor3-gen\source\gen\Schematics\my.xdata</file-data>
-  <file-template>D:\DEV\WIN\CS_ROOT\Projects\cor3-gen\source\gen\Schematics\my.xtpl</file-template>
+  <file-data>my.xdata</file-data>
+  <file-template>my.xtpl</file-template>
 </config>
