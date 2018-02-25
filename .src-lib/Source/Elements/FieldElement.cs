@@ -60,28 +60,28 @@ namespace Generator.Elements
 		
 		[XmlAttribute/*,DefaultValue("Text")*/] public string DataType {
 			get { return dataType; }
-			set { dataType = value; OnPropertyChanged("DataType"); }
+			set { dataType = value; OnPropertyChanged(StrKeys.DataType); }
 		} string dataType = "Text";
 		
 		
-		[XmlAttribute, DefaultValue("")]                public string DataTypeNative { get { return dataTypeNative; } set { dataTypeNative = value; OnPropertyChanged("DataTypeNative"); } } string dataTypeNative;
-		[XmlAttribute]                                  public string DataName       { get { return dataName; } set { dataName = value; OnPropertyChanged("DataName"); } } string dataName;
-		[XmlAttribute]                                  public string FormatString   { get { return formatString; } set { formatString = value; OnPropertyChanged("FormatString"); } } string formatString;
-		[XmlAttribute, DefaultValue("")]                public string BaseClass      { get { return baseClass; } set { baseClass = value; OnPropertyChanged("BaseClass"); } } string baseClass;
-		[XmlAttribute,DefaultValue(-1)]                 public int    MaxLength      { get { return maxLength; } set { maxLength = value; OnPropertyChanged("MaxLength"); } } int maxLength = -1;
-		[DefaultValue(false),XmlAttribute]              public bool   UseFormat      { get { return useFormat; } set { useFormat = value; OnPropertyChanged("UseFormat"); } } bool useFormat;
-		[DefaultValue(true),XmlAttribute]               public bool   IsNullable     { get { return isNullable; } set { isNullable = value; OnPropertyChanged("IsNullable"); } } bool isNullable = true;
-		[XmlAttribute]                                  public bool   IsArray        { get { return isArray; } set { isArray = value; OnPropertyChanged("IsArray"); } } bool isArray;
+		[XmlAttribute, DefaultValue("")]                public string DataTypeNative { get { return dataTypeNative; } set { dataTypeNative = value; OnPropertyChanged(StrKeys.DataTypeNative); } } string dataTypeNative;
+		[XmlAttribute]                                  public string DataName       { get { return dataName; } set { dataName = value; OnPropertyChanged(StrKeys.DataName); } } string dataName;
+		[XmlAttribute]                                  public string FormatString   { get { return formatString; } set { formatString = value; OnPropertyChanged(StrKeys.FormatString); } } string formatString;
+		[XmlAttribute, DefaultValue("")]                public string BaseClass      { get { return baseClass; } set { baseClass = value; OnPropertyChanged(StrKeys.BaseClass); } } string baseClass;
+		[XmlAttribute,DefaultValue(-1)]                 public int    MaxLength      { get { return maxLength; } set { maxLength = value; OnPropertyChanged(StrKeys.MaxLength); } } int maxLength = -1;
+		[DefaultValue(false),XmlAttribute]              public bool   UseFormat      { get { return useFormat; } set { useFormat = value; OnPropertyChanged(StrKeys.UseFormat); } } bool useFormat;
+		[DefaultValue(true),XmlAttribute]               public bool   IsNullable     { get { return isNullable; } set { isNullable = value; OnPropertyChanged(StrKeys.IsNullable); } } bool isNullable = true;
+		[XmlAttribute]                                  public bool   IsArray        { get { return isArray; } set { isArray = value; OnPropertyChanged(StrKeys.IsArray); } } bool isArray;
 		[XmlIgnore]                                     public bool   IsPrimary      { get { return parent.PrimaryKey == dataName; } set { if (value) Parent.PrimaryKey = dataName; OnPropertyChanged("IsPrimary"); } }
-		[XmlAttribute]                                  public string Description    { get { return description; } set { description = value; OnPropertyChanged("Description"); } } string description;
-		[XmlAttribute/*,DefaultValue("DBNull.Value")*/] public string DefaultValue   { get { return defaultValue; } set { defaultValue = value; OnPropertyChanged("DefaultValue"); } } string defaultValue = "DBNull.Value";
-		[XmlAttribute]                                  public string BlockAction    { get { return blockAction; } set { blockAction = value; OnPropertyChanged("BlockAction"); } } string blockAction;
-		[XmlAttribute]                                  public string CodeBlock { get { return codeBlock; } set { codeBlock = value; OnPropertyChanged("CodeBlock"); } } string codeBlock;
-		[XmlAttribute]                                  public string FormType { get { return formType; } set { formType = value; OnPropertyChanged("FormType"); } } string formType;
+		[XmlAttribute]                                  public string Description    { get { return description; } set { description = value; OnPropertyChanged(StrKeys.Description); } } string description;
+		[XmlAttribute/*,DefaultValue("DBNull.Value")*/] public string DefaultValue   { get { return defaultValue; } set { defaultValue = value; OnPropertyChanged(StrKeys.DefaultValue); } } string defaultValue = "DBNull.Value";
+		[XmlAttribute]                                  public string BlockAction    { get { return blockAction; } set { blockAction = value; OnPropertyChanged(StrKeys.BlockAction); } } string blockAction;
+		[XmlAttribute]                                  public string CodeBlock { get { return codeBlock; } set { codeBlock = value; OnPropertyChanged(StrKeys.CodeBlock); } } string codeBlock;
+		[XmlAttribute]                                  public string FormType { get { return formType; } set { formType = value; OnPropertyChanged(StrKeys.FormType); } } string formType;
 		/// <summary>Used internally by the parser</summary>
-		[XmlIgnore]                                     public DataViewElement View { get { return view; } set { view = value; OnPropertyChanged("View"); } } DataViewElement view;
+		[XmlIgnore]                                     public DataViewElement View { get { return view; } set { view = value; OnPropertyChanged(StrKeys.View); } } DataViewElement view;
 		/// <summary>Used internally by the parser</summary>
-		[XmlIgnore]                                     public DataViewLink Link { get { return link; } set { link = value; OnPropertyChanged("Link"); } } DataViewLink link;
+		[XmlIgnore]                                     public DataViewLink Link { get { return link; } set { link = value; OnPropertyChanged(StrKeys.Link); } } DataViewLink link;
 		
 		#endregion
 
@@ -141,15 +141,15 @@ namespace Generator.Elements
 				try
 				{
 					fparams.Add(StrKeys.DataAlias,null);
-					if (View!=null) fparams["DataAlias"] = string.Concat(View.Alias,".",DataName);
-					if (Link!=null) fparams["DataAlias"] = string.Concat(Link.Alias,".",DataName);
-					if (View==null && Link==null) fparams["DataAlias"] = fparams["DataName"];
-					fparams.Add(StrKeys.dataalias,(fparams["DataAlias"] as string).ToLower());
-					fparams.Add(StrKeys.DataAliasC,(fparams["DataAlias"] as string).ToStringCapitolize());
-					fparams.Add(StrKeys.CleanAlias_Nodash,(fparams["DataAlias"] as string).Clean());
-					fparams.Add(StrKeys.FriendlyAlias,(fparams["DataAlias"] as string).Clean());
-					fparams.Add(StrKeys.CleanAlias,(fparams["DataAlias"] as string).Replace("-","_"));
-					fparams.Add(StrKeys.FriendlyAliasC,(fparams["DataAlias"] as string).Clean().ToStringCapitolize());
+					if (View!=null) fparams[StrKeys.DataAlias] = string.Concat(View.Alias,".",DataName);
+					if (Link!=null) fparams[StrKeys.DataAlias] = string.Concat(Link.Alias,".",DataName);
+					if (View==null && Link==null) fparams[StrKeys.DataAlias] = fparams[StrKeys.DataName];
+					fparams.Add(StrKeys.dataalias,(fparams[StrKeys.DataAlias] as string).ToLower());
+					fparams.Add(StrKeys.DataAliasC,(fparams[StrKeys.DataAlias] as string).ToStringCapitolize());
+					fparams.Add(StrKeys.CleanAlias_Nodash,(fparams[StrKeys.DataAlias] as string).Clean());
+					fparams.Add(StrKeys.FriendlyAlias,(fparams[StrKeys.DataAlias] as string).Clean());
+					fparams.Add(StrKeys.CleanAlias,(fparams[StrKeys.DataAlias] as string).Replace("-","_"));
+					fparams.Add(StrKeys.FriendlyAliasC,(fparams[StrKeys.DataAlias] as string).Clean().ToStringCapitolize());
 				}
 				catch (Exception error)
 				{
@@ -215,19 +215,19 @@ namespace Generator.Elements
 					case "DBNull":
 					case "Empty":
 					case "String":
-						fparams["IsNum"] = false;
+						fparams[StrKeys.IsNum] = false;
 						break;
 					default:
-						fparams["IsNum"] = true;
+						fparams[StrKeys.IsNum] = true;
 						break;
 				}
 				//
 				switch (DataTypeNative) {
 					case "Boolean":
-						fparams["IsBool"] = (true);
+						fparams[StrKeys.IsBool] = (true);
 						break;
 					default:
-						fparams["IsBool"] = false;
+						fparams[StrKeys.IsBool] = false;
 						break;
 				}
 				#endregion
@@ -288,18 +288,18 @@ namespace Generator.Elements
 				#endregion
 				//
 				#region CustomTypes
-				fparams.Add(StrKeys.NativeNullType,	NullableTypeUtility.GetNativeNullType(fparams["Native"].ToString()));
-				fparams.Add(StrKeys.NativeNullValue,	NullableTypeUtility.IsNativeNullable(fparams["Native"].ToString()) ? ".Value" : "");
-				fparams.Add(StrKeys.NativeNullTypeGo,  NullableTypeUtility.GetNativeNullableGoType(fparams["DataTypeNative"].ToString()));
+				fparams.Add(StrKeys.NativeNullType,	NullableTypeUtility.GetNativeNullType(fparams[StrKeys.Native].ToString()));
+				fparams.Add(StrKeys.NativeNullValue,	NullableTypeUtility.IsNativeNullable(fparams[StrKeys.Native].ToString()) ? ".Value" : "");
+				fparams.Add(StrKeys.NativeNullTypeGo,  NullableTypeUtility.GetNativeNullableGoType(fparams[StrKeys.DataTypeNative].ToString()));
 				//
-				if ( ((bool)fparams["IsString"] ) == true ) {
+				if ( ((bool)fparams[StrKeys.IsString] ) == true ) {
 					fparams.Add(StrKeys.SqlFormat,	"'{0}'");
 					fparams.Add(StrKeys.Format,		@"""{0}""");
 					fparams.Add(StrKeys.fmax,			MaxLength == -1 ? "(max)" : string.Format("({0})",MaxLength));
-				} else if ( ((bool)fparams["IsBool"] )==true ) {
+				} else if ( ((bool)fparams[StrKeys.IsBool] )==true ) {
 					fparams.Add(StrKeys.Format,string.Empty);
 					fparams.Add(StrKeys.fmax,string.Empty);
-				} else if ( ((bool)fparams["IsNum"] )==true ) {
+				} else if ( ((bool)fparams[StrKeys.IsNum] )==true ) {
 					if (UseFormat) fparams.Add(StrKeys.fmax,MaxLength==-1 ? "" : string.Format("({0})",MaxLength));
 				}
 				//
@@ -320,7 +320,7 @@ namespace Generator.Elements
 				//
         fparams.Add(StrKeys.UseFormat,  UseFormat);
 				fparams.Add(StrKeys.IsNullable,	IsNullable);
-				fparams.Add(StrKeys.DataTypeNullable,	IsNullable ? NullableTypeUtility.GetNativeNullType(fparams["Native"].ToString()) : fparams["Native"]);
+				fparams.Add(StrKeys.DataTypeNullable,	IsNullable ? NullableTypeUtility.GetNativeNullType(fparams[StrKeys.Native].ToString()) : fparams["Native"]);
 				fparams.Add(StrKeys.Description,	Description);
 				fparams.Add(StrKeys.DefaultValue,	DefaultValue);
 				
