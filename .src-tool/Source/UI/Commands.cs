@@ -35,15 +35,28 @@ namespace GeneratorTool.Views
 		public void Execute(object parameter) { if (!this.CanExecute(parameter)) { return; } this.OnExecute(parameter); }
 		
 		protected abstract void OnExecute(object parameter);
+  }
+  // TODO: implement command execution
+  public class MyCommand : CommandBase
+  {
+    public ICommand Command { get; set; }
+    protected override void OnExecute(object parameter)
+    {
+      if (Command != null && Command.CanExecute(parameter))
+        Command.Execute(parameter);
+    }
+  }
+
+  public abstract class BasicViewCommand : BasicCommand {
+	  internal MoxiView View { get; set; }
 	}
+	
 	/// <summary>
 	/// The content here was taken from a table-copy command.
 	/// It is merely temporary.
 	/// </summary>
-	public class DatabaseCreateCommand : BasicCommand
+	public class DatabaseCreateCommand : BasicViewCommand
 	{
-		public MoxiView View { get; set; }
-	  
 		public override bool CanExecute(object parameter)
 		{
       return View != null &&
@@ -69,9 +82,8 @@ namespace GeneratorTool.Views
 			View.RefreshDataTree(parent);
 		}
 	}
-	public class FieldCopyCmd : BasicCommand
+	public class FieldCopyCmd : BasicViewCommand
 	{
-		public MoxiView View { get; set; }
 		protected override void OnExecute(object parameter)
 		{
 			var field = parameter as FieldElement;
@@ -83,9 +95,8 @@ namespace GeneratorTool.Views
 			View.Model.ClipboardItem = FieldElement.Clone(field);
 		}
 	}
-	public class FieldCutCmd : BasicCommand
+	public class FieldCutCmd : BasicViewCommand
 	{
-		public MoxiView View { get; set; }
 		protected override void OnExecute(object parameter)
 		{
 			var field = parameter as FieldElement;
@@ -100,9 +111,8 @@ namespace GeneratorTool.Views
 		}
 	}
 	
-	public class FieldPasteAboveCmd : BasicCommand
+	public class FieldPasteAboveCmd : BasicViewCommand
 	{
-		public MoxiView View { get; set; }
 		public override bool CanExecute(object parameter)
 		{
 			if (View == null || View.Model == null || View.Model.ClipboardItem == null) return false;
@@ -124,9 +134,8 @@ namespace GeneratorTool.Views
 			parent.Fields = parent.Fields;
 		}
 	}
-	public class FieldPasteBelowCmd : BasicCommand
+	public class FieldPasteBelowCmd : BasicViewCommand
 	{
-		public MoxiView View { get; set; }
 		public override bool CanExecute(object parameter)
 		{
 			if (View==null || View.Model==null || View.Model.ClipboardItem==null) return false;
@@ -168,19 +177,8 @@ namespace GeneratorTool.Views
       ModernDialog.ShowMessage(string.Format("{{ Null={0}, Value: {1} }}", parameter==null, parameter),"Message Title",MessageBoxButton.OK);
     }
   }
-  // TODO: implement command execution
-  public class MyCommand : CommandBase
+  public class TableCopyCmd : BasicViewCommand
   {
-    public ICommand Command { get; set; }
-    protected override void OnExecute(object parameter)
-    {
-      if (Command != null && Command.CanExecute(parameter))
-        Command.Execute(parameter);
-    }
-  }
-  public class TableCopyCmd : BasicCommand
-  {
-    public MoxiView View { get; set; }
     protected override void OnExecute(object parameter)
     {
       var table = parameter as TableElement;
@@ -191,9 +189,8 @@ namespace GeneratorTool.Views
       View.Model.ClipboardItem = new TableElement(table);
     }
   }
-  public class TableCutCmd : BasicCommand
+  public class TableCutCmd : BasicViewCommand
   {
-    public MoxiView View { get; set; }
     protected override void OnExecute(object parameter)
     {
       var table = parameter as TableElement;
@@ -212,9 +209,8 @@ namespace GeneratorTool.Views
   /// FIXME
   /// It appears this command is not working.
   /// </summary>
-  public class TableCreateCmd : BasicCommand
+  public class TableCreateCmd : BasicViewCommand
   {
-    public MoxiView View { get; set; }
     public override bool CanExecute(object parameter)
     {
       if (View == null || View.Model == null) return false;
@@ -229,30 +225,29 @@ namespace GeneratorTool.Views
       }
       var parent = database.Parent;
       var table = new TableElement(){
-        Parent=database,
         BaseClass=null,
         DbType="SQLite",
         Description=null,
         Inherits=null,
         Name="New Table",
-        Fields = new List<FieldElement>()
+        PrimaryKey = "id",
+        Fields = {
+          new FieldElement(){
+            DataName="id",
+            DataTypeNative="Int64",
+            DataType="INTEGER"
+          }
+        }
       };
-//			table.items = new List<FieldElement>();
-      table.Fields.Add(
-        new FieldElement(){
-          Parent=table,
-          DataName="id",
-          DataTypeNative="Int64",
-          DataType="INTEGER"
-        });
-      table.PrimaryKey = "id";
+      table.Fields[0].Parent = table;
+      table.Parent = database;
+      DatabaseCollection.Rechild(database, table);
       database.Children.Add(table);
       View.RefreshDataTree(database);
     }
   }
-  public class TablePasteAboveCmd : BasicCommand
+  public class TablePasteAboveCmd : BasicViewCommand
   {
-    public MoxiView View { get; set; }
     public override bool CanExecute(object parameter)
     {
       if (View == null || View.Model == null || View.Model.ClipboardItem == null) return false;
@@ -276,9 +271,8 @@ namespace GeneratorTool.Views
       View.RefreshDataTree(parent);
     }
   }
-  public class TablePasteBelowCmd : BasicCommand
+  public class TablePasteBelowCmd : BasicViewCommand
   {
-    public MoxiView View { get; set; }
     public override bool CanExecute(object parameter)
     {
       if (View == null || View.Model == null || View.Model.ClipboardItem == null) return false;
