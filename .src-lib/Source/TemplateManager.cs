@@ -97,28 +97,30 @@ namespace Generator
 		public bool HasQuery { get { return SelectedQuery != null; } }
 		public QueryElement selectedQuery = null;
 		public QueryElement SelectedQuery { get { return selectedQuery; } set { selectedQuery = value; } }
-		/// <summary>
-		/// Generate default elements for a empty configuration file.
-		/// </summary>
-		/// <returns></returns>
-		virtual public DatabaseCollection CreateConfig()
-		{
-			var dc	= new DatabaseCollection();
-			var dbelm	= new DatabaseElement(string.Format(Gen.Messages.Node_New_Database_Element,__dbIncr));
-			dc.Queries				= new List<QueryElement>();
-			dc.Databases			= new List<DatabaseElement>(){ dbelm };
-			__dbIncr++;
+		
+    //// Is this useful to a future ICommand?
+    ///// <summary>
+		///// Generate default elements for a empty configuration file.
+		///// </summary>
+		///// <returns></returns>
+		//virtual public DatabaseCollection CreateConfig()
+		//{
+		//	var dc	= new DatabaseCollection();
+		//	var dbelm	= new DatabaseElement(string.Format(Gen.Messages.Node_New_Database_Element,__dbIncr));
+		//	dc.Queries				= new List<QueryElement>();
+		//	dc.Databases			= new List<DatabaseElement>(){ dbelm };
+		//	__dbIncr++;
 			
-			dbelm.Items				= new List<TableElement>();
-			dbelm.Views				= new List<DataViewElement>();
-			var te					= new TableElement();
-			te.Fields				= new List<FieldElement>();
-			te.Name					= string.Format(Gen.Messages.Node_New_Table_Element, __tbIncr);
+		//	dbelm.Items				= new List<TableElement>();
+		//	dbelm.Views				= new List<DataViewElement>();
+		//	var te					= new TableElement();
+		//	te.Fields				= new List<FieldElement>();
+		//	te.Name					= string.Format(Gen.Messages.Node_New_Table_Element, __tbIncr);
 			
-			dbelm.Items.Add(te);
-			SelectedCollection = dc;
-			return dc;
-		}
+		//	dbelm.Items.Add(te);
+		//	SelectedCollection = dc;
+		//	return dc;
+		//}
 		#endregion
 
 		#region Selection: Templates
