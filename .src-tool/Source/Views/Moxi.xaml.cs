@@ -79,8 +79,6 @@ namespace GeneratorTool.Views
 		static public readonly ICommand TogglePreviewCommand = new RoutedUICommand(){ Text="Preview button toggled.", InputGestures={ new KeyGesture(Key.F5) } };
 		static public readonly ICommand ToggleDataCommand = new RoutedUICommand(){ Text="Select the data tab-item.", InputGestures={ new KeyGesture(Key.F5) } };
 		
-		
-		
 		static public readonly FieldCutCmd FieldCutCommand = new FieldCutCmd();
 		static public readonly FieldCopyCmd FieldCopyCommand = new FieldCopyCmd();
 		static public readonly FieldPasteAboveCmd FieldPasteAboveCommand = new FieldPasteAboveCmd();
@@ -96,7 +94,6 @@ namespace GeneratorTool.Views
 		
     void Event_ButtonContextMenu(object sender, RoutedEventArgs e) { (sender as Button).ContextMenu.IsOpen = true; }
     //void Event_ButtonContextMenu(object sender, System.Windows.RoutedEventArgs e) { (e.OriginalSource as Button).ContextMenu.IsOpen = true; }
-		
 		
 		#region Little Helpers
 		
@@ -191,7 +188,7 @@ namespace GeneratorTool.Views
 			else if (treeSelection is FieldElement) PushState(treeSelection as FieldElement);
 			else if (treeSelection is TableTemplate) PushState(treeSelection as TableTemplate);
 			else if (treeSelection is DataViewElement) PushState(treeSelection as DataViewElement);
-			else if (treeSelection is string) MessageBox.Show("Look a string.");
+			else if (treeSelection is string) MessageBox.Show("Look, a string.");
 			dataEditor.DataContext = Model.LastFactory;
 		}
 		void StatePushAction(object sender, RoutedEventArgs e)

@@ -11,7 +11,7 @@
 	<Grid>
 		<WrapPanel Margin="12" ItemHeight="240" ItemWidth="240">
 			<Grid MinWidth="240">
-				<Border CornerRadius="8" Background="#ff007FFF" />
+				<Border CornerRadius="3" Background="#FFFFFF" />
 				<Grid Margin="4">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto" />
@@ -33,9 +33,9 @@
 					<TextBox Grid.Row="7" Text="" />
 				</Grid>
 			</Grid>
-			<Grid MinWidth="240">
-				<Border CornerRadius="8" Background="#ff007FFF" />
-				<Grid Margin="4">
+      <Grid MinWidth="240">
+        <Border CornerRadius="3" Background="#FFFFFF" />
+        <Grid Margin="4">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="*" />
@@ -56,9 +56,9 @@
 					<TextBox Grid.Row="7" Text="" />
 				</Grid>
 			</Grid>
-			<Grid MinWidth="240">
-				<Border CornerRadius="8" Background="#ff007FFF" />
-				<Grid Margin="4">
+      <Grid MinWidth="240">
+        <Border CornerRadius="3" Background="#FFFFFF" />
+        <Grid Margin="4">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="*" />
