@@ -31,28 +31,28 @@ namespace Generator.Elements
 		public const string ref_asm_node = "References";
 
 		[XmlIgnore] public DatabaseCollection Parent { get; set; }
-		
-		#region Method: Rechild
-		/// <summary>
-		/// The role of this action is to parent each of the elements so as to enable
-		/// reverse-lookups.
-		/// <para>Thus far, it appears that the Rechild method is executed when a configuration file
-		/// is loaded (such as databaseconfiguration file).</para>
-		/// </summary>
-		static void Rechild(DatabaseCollection element)
+
+    #region Method: Rechild
+    /// <summary>
+    /// The role of this action is to parent each of the elements so as to enable
+    /// reverse-lookups.
+    /// <para>Thus far, it appears that the Rechild method is executed when a configuration file
+    /// is loaded (such as databaseconfiguration file).</para>
+    /// </summary>
+    internal static void Rechild(DatabaseCollection element)
 		{
 			for (int i = 0; i < element.Databases.Count; i++) {
 				element.Databases[i].Parent = element;
 				Rechild(element,element.Databases[i]);
 			}
 		}
-		/// <summary>
-		/// The role of this action is to parent each of the elements so as to enable
-		/// reverse-lookups.
-		/// <para>Thus far, it appears that the Rechild method is executed when a configuration file
-		/// is loaded (such as databaseconfiguration file).</para>
-		/// </summary>
-		static void Rechild(DatabaseCollection parent, DatabaseElement child)
+    /// <summary>
+    /// The role of this action is to parent each of the elements so as to enable
+    /// reverse-lookups.
+    /// <para>Thus far, it appears that the Rechild method is executed when a configuration file
+    /// is loaded (such as databaseconfiguration file).</para>
+    /// </summary>
+    internal static void Rechild(DatabaseCollection parent, DatabaseElement child)
 		{
 			child.Children.Clear();
 			for (int i = 0; i < child.Items.Count; i++) {
@@ -73,7 +73,7 @@ namespace Generator.Elements
 		/// <para>Thus far, it appears that the Rechild method is executed when a configuration file
 		/// is loaded (such as databaseconfiguration file).</para>
 		/// </summary>
-		static void Rechild(DatabaseElement parent, TableElement child)
+		internal static void Rechild(DatabaseElement parent, TableElement child)
 		{
 			for (int i = 0; i < child.Fields.Count; i++) {
 				child.Fields[i].Parent = child;
