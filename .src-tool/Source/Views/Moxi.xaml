@@ -9,7 +9,7 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   
-  mc:Ignorable="d" d:DesignWidth="705" d:DesignHeight="350"
+  mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="350"
   
   xmlns:e="clr-namespace:Generator.Elements;assembly=Gen.Lib"
   xmlns:l="clr-namespace:GeneratorTool"
@@ -99,6 +99,8 @@
               <ContentControl><Hyperlink x:Name="ccmd" Foreground="{Binding IsEnabled, Converter={StaticResource isEnabledToColorConverter}, ElementName=ccmd, Mode=TwoWay}" Command="{x:Static v:MuiMessageCommand.ShowMessageCommand}" CommandParameter="{Binding Databases}"><InlineUIContainer><TextBlock Text="MSG" /></InlineUIContainer></Hyperlink></ContentControl>
               <TextBlock Text="|" Margin="3,0,3,0" />
               <ContentControl><Hyperlink x:Name="lcmd" Foreground="{Binding IsEnabled, Converter={StaticResource isEnabledToColorConverter}, ElementName=lcmd, Mode=TwoWay}" Command="{x:Static l:GeneratorReader.LoadConfigurationCommand}"><InlineUIContainer><TextBlock Text="LOAD" /></InlineUIContainer></Hyperlink></ContentControl>
+              <TextBlock Text="|" Margin="3,0,3,0" />
+              <ContentControl><Hyperlink x:Name="rlcmd" Foreground="{Binding IsEnabled, Converter={StaticResource isEnabledToColorConverter}, ElementName=rlcmd, Mode=TwoWay}" Command="{x:Static l:GeneratorReader.ReloadConfigurationCommand}"><InlineUIContainer><TextBlock Text="RELOAD" /></InlineUIContainer></Hyperlink></ContentControl>
               <TextBlock Text="|" Margin="3,0,3,0" />
               <ContentControl><Hyperlink x:Name="scmd" Foreground="{Binding IsEnabled, Converter={StaticResource isEnabledToColorConverter}, ElementName=scmd, Mode=TwoWay}" Command="{x:Static l:GeneratorReader.SaveConfigurationCommand}"><InlineUIContainer><TextBlock Text="SAVE" /></InlineUIContainer></Hyperlink></ContentControl>
               <TextBlock Text="|" Margin="3,0,3,0" />

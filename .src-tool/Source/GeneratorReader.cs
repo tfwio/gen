@@ -33,6 +33,7 @@ namespace GeneratorTool
 		
 		static public readonly ICommand InitializeConfigurationCommand = new RoutedUICommand(){ Text="Initialize generator configuration-file." };
 		static public readonly ICommand LoadConfigurationCommand = new RoutedUICommand(){ Text="Load generator configuration-file.", InputGestures={ new KeyGesture(Key.O, ModifierKeys.Control) } };
+		static public readonly ICommand ReloadConfigurationCommand = new RoutedUICommand(){ Text="Reload generator configuration-file.", InputGestures={ new KeyGesture(Key.R, ModifierKeys.Control) } };
 		static public readonly ICommand SaveConfigurationCommand = new RoutedUICommand(){ Text="Save generator configuration-file.", InputGestures={ new KeyGesture(Key.S, ModifierKeys.Control|ModifierKeys.Shift) } };
 		static public readonly ICommand SaveConfigurationAsCommand = new RoutedUICommand(){ Text="Save generator configuration-file (as).", InputGestures={ new KeyGesture(Key.S, ModifierKeys.Control|ModifierKeys.Shift) } };
 		
@@ -50,8 +51,9 @@ namespace GeneratorTool
 		{
 			CommandBindings = new CommandBindingCollection(
 				new List<CommandBinding> {
-					new CommandBinding(LoadConfigurationCommand,LoadConfiguration),
-					new CommandBinding(
+          new CommandBinding(LoadConfigurationCommand,LoadConfiguration),
+          new CommandBinding(ReloadConfigurationCommand,ReloadConfiguration,CanReloadConfiguration),
+          new CommandBinding(
 						SaveConfigurationCommand,
 						SaveConfiguration,
 						(object xo, CanExecuteRoutedEventArgs xa) =>
@@ -116,28 +118,44 @@ namespace GeneratorTool
 			Model.Configuration = GeneratorConfig.Load(Model.FileName);
 			InitializeConfiguration(this, null);
 		}
-		
-		#region RoutedEvents
-		
-		void LoadConfiguration(object o, RoutedEventArgs a)
-		{
-			if (ofd.ShowDialog().Value)
-			{
-//				try {
-				Model = new GeneratorModel();
-				Model.FileName = ofd.FileName;
-				Model.Configuration = GeneratorConfig.Load(Model.FileName);
-				InitializeConfiguration(o, a);
-				a.Handled = true;
-//				} catch (Exception e) {
-//					throw e;
-//				} finally {
-				if (LoadCompleteAction!=null) LoadCompleteAction.Invoke();
-//				}
-			}
-		}
-		
-		void InitializeConfiguration(object o, RoutedEventArgs a)
+
+    #region RoutedEvents
+
+    void LoadConfiguration(object o, RoutedEventArgs a)
+    {
+      if (ofd.ShowDialog().Value)
+      {
+        Model = new GeneratorModel();
+        Model.FileName = ofd.FileName;
+        Model.Configuration = GeneratorConfig.Load(Model.FileName);
+        InitializeConfiguration(o, a);
+        a.Handled = true;
+        if (LoadCompleteAction != null) LoadCompleteAction.Invoke();
+      }
+    }
+    void CanReloadConfiguration(object xo, CanExecuteRoutedEventArgs xa) {
+      if (Model == null) xa.CanExecute = false;
+      else xa.CanExecute = System.IO.File.Exists(Model.FileName);
+      xa.Handled = true;
+      return;
+    }
+    void ReloadConfiguration(object o, RoutedEventArgs a)
+    {
+      if (Model == null) return;
+      if (System.IO.File.Exists(Model.FileName))
+      {
+        Model.Configuration = GeneratorConfig.Load(Model.FileName);
+        InitializeConfiguration(o, a);
+        a.Handled = true;
+        if (LoadCompleteAction != null) LoadCompleteAction.Invoke();
+      }
+      else
+      {
+        MessageBox.Show("Nothing to reload.");
+      }
+    }
+
+    void InitializeConfiguration(object o, RoutedEventArgs a)
 		{
 //			try {
 			Model.Databases = DatabaseCollection.Load(Model.Configuration.datafile);
