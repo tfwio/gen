@@ -422,8 +422,11 @@ namespace Generator.Elements
 				Add(StrKeys.PKDataType,					PrimaryKeyElement.DataType);
 				Add(StrKeys.PKDataTypeNative,		PrimaryKeyElement.DataTypeNative);
 				Add(StrKeys.PKNativeNullType,		NullableTypeUtility.GetNativeNullType(PrimaryKeyElement[StrKeys.Native].ToString()));
+        Add(StrKeys.PKNativeIsNullable,  PrimaryKeyElement.IsNullable);
 				Add(StrKeys.PKNativeNullValue,	NullableTypeUtility.IsNativeNullable(PrimaryKeyElement[StrKeys.Native].ToString()) ? ".Value" : "");
 				Add(StrKeys.PKNativeNullValueGo,PrimaryKeyElement.Params[StrKeys.NativeNullTypeGo].ToString());
+				Add(StrKeys.PKNativeNullValueGoAddress, PrimaryKeyElement.IsNullable ? "&" : string.Empty);
+				Add(StrKeys.PKNativeNullValueGoPointer, PrimaryKeyElement.IsNullable ? "*" : string.Empty);
 //				Add("PKDataTypeNative",PrimaryKeyElement.DataTypeNative);
 				Add(StrKeys.PKDescription,		PrimaryKeyElement.Description);
 				//

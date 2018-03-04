@@ -98,6 +98,16 @@ namespace Generator.Parser
     internal const string  NativeNullType    = "NativeNullType";
     internal const string  NativeNullValue   = "NativeNullValue";
     internal const string  NativeNullTypeGo  = "NativeNullTypeGo";
+    /// <summary>
+    /// Likely useless, but I figured if we're adding null-pointer (pointer),
+    /// we might as well add this guy.  This is only provided if the type
+    /// is marked IsNull.
+    /// </summary>
+    internal const string  NativeNullTypeGoAddress  = "NativeNullTypeGoAddress";
+    /// <summary>
+    /// Only provided if the type is marked IsNull, returns a single asterix.
+    /// </summary>
+    internal const string  NativeNullTypeGoPointer  = "NativeNullTypeGoPointer";
     
     // ==========================================
     
@@ -166,8 +176,13 @@ namespace Generator.Parser
     internal const string  PKDataType          = "PKDataType";
     internal const string  PKDataTypeNative    = "PKDataTypeNative";
     internal const string  PKNativeNullType    = "PKNativeNullType";
+    internal const string  PKNativeIsNullable   = "PKNativeIsNullable";
     internal const string  PKNativeNullValue   = "PKNativeNullValue";
     internal const string  PKNativeNullValueGo = "PKNativeNullValueGo";
+    /// <seealso cref="NativeNullTypeGoAddress"/>
+    internal const string  PKNativeNullValueGoAddress = "PKNativeNullValueGoAddress";
+    /// <seealso cref="NativeNullTypeGoPointer"/>
+    internal const string  PKNativeNullValueGoPointer = "PKNativeNullValueGoPointer";
     internal const string  PKDescription       = "PKDescription";
     internal const string  PKDataNameC         = "PKDataNameC";
     internal const string  PKCleanName         = "PKCleanName";
