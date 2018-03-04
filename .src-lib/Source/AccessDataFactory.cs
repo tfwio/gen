@@ -13,7 +13,6 @@ using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Data.SQLite;
-using System.Windows;
 
 #endregion
 
@@ -54,7 +53,7 @@ namespace Generator.Data
 				}
 				if (failedConnecting)
 				{
-					MessageBox.Show("Couldn't do it");
+					ErrorMessage.Show("Couldn't do it");
 					return null;
 				}
 				using (OleDbConnection c = acedb.Connection)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 using System.Xml.Serialization;
 using Generator.Elements.Basic;
 
@@ -54,7 +53,8 @@ namespace Generator.Elements
 		#endregion
 		
 		public DataViewElement(){}
-		public DataViewElement(TreeNode node)
+		#if TREEV
+		public DataViewElement(System.Windows.Forms.TreeNode node)
 		{
 			if (!(node.Tag is DataViewElement))
 				throw new ArgumentException("Automated Element was not of type(DataViewElement)");
@@ -66,7 +66,7 @@ namespace Generator.Elements
 			Fields = refElement.Fields;
 			linkItems = refElement.LinkItems;
 		}
-		
+		#endif
 	}
 	
 	

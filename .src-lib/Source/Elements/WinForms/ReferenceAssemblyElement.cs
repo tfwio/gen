@@ -1,10 +1,12 @@
-﻿using System;
+﻿#if TREEV
+using System;
 using System.Linq;
 using System.Windows.Forms;
 namespace Generator.Elements
 {
 	public partial class ReferenceAssemblyElement
 	{
+
 		public ReferenceAssemblyElement(TreeNode node)
 		{
 			if (node.Tag is ReferenceAssemblyElement) {
@@ -46,6 +48,7 @@ namespace Generator.Elements
 		}
 	}
 }
+#endif
 
 
 

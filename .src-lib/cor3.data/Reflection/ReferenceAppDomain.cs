@@ -30,7 +30,6 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Hosting;
 using System.Security.Policy;
-using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace System.Cor3.Reflection

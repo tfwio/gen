@@ -4,14 +4,11 @@
  */
 #region Using
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using Generator.Elements.Types;
 using System.Cor3.Reflection;
-using System.Runtime.Hosting;
-using System.Windows.Forms;
 using System.Xml.Serialization;
 #endregion
 

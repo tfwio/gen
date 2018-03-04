@@ -1,7 +1,6 @@
 ﻿/* oOo * 11/19/2007 : 8:00 AM */
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace System
 {
@@ -90,10 +89,8 @@ namespace System
 	[SerializableAttribute]
 	public class DICT_List<TKey,TValue> : DICT<TKey,List<TValue>>
 	{
-		const string
-			xception   = "DICT Usage Error",
-		key_exists = "Argument:\n'{0}'\n... Has allready been added to the DICT";
-		void ErrorMsg(object parameter) { MessageBox.Show(string.Format(key_exists,parameter),xception); }
+		const string key_exists = "DICT Usage Error\nArgument:\n'{0}'\n... Has allready been added to the DICT";
+		void ErrorMsg(object parameter) { throw new Exception(string.Format(key_exists,parameter)); }
 		public void AddV(TKey key, params TValue[] value)
 		{
 			if (!ContainsKey(key)) CreateKey(key);
@@ -124,14 +121,12 @@ namespace System
 	{
 		void ErrorMsg(object parameter)
 		{
-			MessageBox.Show(
+			throw new Exception(
 				string.Format(
-//					Strings.DictionaryList_ErrorMessage,
+		      "DictionaryList Usage Error\n" +
 					"Argument ‘{0}’ as allready been added to the Dictionary.",
 					parameter
-				),
-//				Strings.DictionaryList_ErrorMessage_Title
-				"DictionaryList Usage Error"
+				)
 			);
 		}
 		

@@ -2,3 +2,6 @@
 **/obj
 .sln/packages/*
 .src-tool/Pages
+/.sln/.vs/generator-tools_v141/v15
+/readme.htm
+bin-core

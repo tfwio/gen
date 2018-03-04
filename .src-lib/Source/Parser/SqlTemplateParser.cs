@@ -80,7 +80,7 @@ namespace Generator.Parser
 				if (tm.MethodsArray.Length != 3) continue;
 				if ((tm.MethodsArray[0]=="list") && (tm.MethodsArray[1]=="columns"))
 				{
-					System.Windows.Forms.MessageBox.Show("listing cols");
+          ErrorMessage.ShowLog("TemplateParser-log","listing cols");
 					foreach (DataRowView row in ds.Tables[Gen.Strings.Schema_Columns].DefaultView)
 					{
 						if (row["TABLE_NAME"].ToString().ToLower().Equals(tm.MethodsArray[2].ToLower()))
@@ -89,7 +89,7 @@ namespace Generator.Parser
 				}
 				else if ((tm.MethodsArray[0]=="list") && (tm.MethodsArray[1]=="tables"))
 				{
-					System.Windows.Forms.MessageBox.Show("listing tables");
+          ErrorMessage.ShowLog("TemplateParser-log","listing tables");
 					foreach (DataRowView row in ds.Tables[Gen.Strings.Schema_Tables].DefaultView)
 					{
 						string tname = row["TABLE_NAME"].ToString();
@@ -102,7 +102,7 @@ namespace Generator.Parser
 				// PRIMARY SECTION
 				else if ((tm.MethodsArray[0]=="show") && (tm.MethodsArray[1]=="tables"))
 				{
-					System.Windows.Forms.MessageBox.Show("show tables");
+          ErrorMessage.ShowLog("TemplateParser-log","show tables");
 					//%TABLE_CATALOG%,%TABLE_NAME%,%COLUMN_NAME%,%IS_NULLABLE%
 					//%TABLE_SCHEMA%,%TABLE_NAME%,%TABLE_TYPE%
 					foreach (DataRowView row in ds.Tables[Gen.Strings.Schema_Tables].DefaultView)

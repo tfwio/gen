@@ -20,7 +20,7 @@ using Generator.Data;
 #endregion
 #if WPF4
 using MessageBox = System.Windows.MessageBox;
-#else
+#elif !NCORE
 using MessageBox = System.Windows.Forms.MessageBox;
 #endif
 namespace Generator.Extensions

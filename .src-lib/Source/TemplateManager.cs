@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
-using System.Windows;
-using System.Windows.Input;
 
 using Generator.Elements;
 using Generator.Core.Markup;
 using Generator.Parser;
 
 #if WPF4
+using System.Windows;
+using System.Windows.Input;
 using EventType = System.Windows.RoutedEventArgs;
 #else
 

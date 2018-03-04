@@ -13,7 +13,6 @@ using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Data.SQLite;
-using System.Windows;
 
 #endregion
 
@@ -59,7 +58,7 @@ namespace Generator.Data
 			{
 				using (SqlConnection c = sqldb.Connection) {
 					try { c.Open(); c.Close(); } catch { check = true; }
-				} if (check) { MessageBox.Show("Couldn't do it"); return null; }
+				} if (check) { ErrorMessage.Show("Couldn't do it"); return null; }
 				
 				// retrieves the schema information
 				using (SqlConnection c = sqldb.Connection)

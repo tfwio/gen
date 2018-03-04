@@ -4,8 +4,6 @@ using System.Cor3;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Threading;
-using System.Windows.Forms;
 
 namespace System.Cor3
 {

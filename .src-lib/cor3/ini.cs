@@ -162,6 +162,19 @@ namespace System.IO
   }
   
   /// <summary>
+  /// this class is generally obsolete.
+  /// 
+  /// Its put to use in <see cref="IniReader"/> and the dictionary implementation using it.
+  /// </summary>
+  public class Keyed
+  {
+    public string Name { get; set; }
+    public string Value { get; set; }
+    public Keyed() { }
+    public Keyed(string pItemKey, string pItemValue) { Name=pItemKey; Value=pItemValue; }
+  }
+  
+  /// <summary>
   /// it could get a bit confusing that I have two dictionaries for the same purpose.
   /// both appear to work, one seems to be simpler than the other (dic&lt;string,dic&lt;str,str>>)
   /// but in reality they both do the same thing.

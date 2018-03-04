@@ -11,18 +11,6 @@ using System.Windows.Forms;
 using NLog = System.Console;
 namespace System
 {
-  /// <summary>
-  /// this class is generally obsolete.
-  /// 
-  /// Its put to use in <see cref="IniReader"/> and the dictionary implementation using it.
-  /// </summary>
-  public class Keyed
-  {
-    public string Name { get; set; }
-    public string Value { get; set; }
-    public Keyed() { }
-    public Keyed(string pItemKey, string pItemValue) { Name=pItemKey; Value=pItemValue; }
-  }
   class ITaskContext
   {
     public IVisualModel UserFace { get; set; }

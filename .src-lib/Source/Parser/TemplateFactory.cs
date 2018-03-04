@@ -22,7 +22,7 @@ namespace Generator.Parser
       bool hasError = false;
       if (hasError = (db==null || table==null))
       {
-        if (showMessageBox) System.Windows.Forms.MessageBox.Show(
+        if (showMessageBox) ErrorMessage.Show(
           Gen.Strings.MsgDatabaseOrTableNullError_Title,
           Gen.Strings.MsgDatabaseOrTableNullError_Message
          );
@@ -37,7 +37,7 @@ namespace Generator.Parser
       bool hasError = false;
       if (hasError = (table==null))
       {
-        if (showMessageBox) System.Windows.Forms.MessageBox.Show(
+        if (showMessageBox) ErrorMessage.Show(
           Gen.Strings.MsgDatabaseOrTableNullError_Title,
           Gen.Strings.MsgDatabaseOrTableNullError_Message
          );
@@ -85,7 +85,7 @@ namespace Generator.Parser
         view.T.View = null;
         
         // check for errors
-        if (view.DB==null || view.T==null) { System.Windows.Forms.MessageBox.Show("Error finding database or table for view-link","Exiting generation..."); return "Error finding database or table for view."; }
+        if (view.DB==null || view.T==null) { ErrorMessage.Show("Error finding database or table for view-link","Exiting generation..."); return "Error finding database or table for view."; }
         
         List<QuickMatch> list;
         while (0 != (list = TemplateReferenceUtil.GetReferences( output )).Count)
@@ -379,7 +379,7 @@ namespace Generator.Parser
       bool hasError = false;
       if (hasError = (db==null || table==null))
       {
-        if (showMessageBox) System.Windows.Forms.MessageBox.Show(
+        if (showMessageBox) ErrorMessage.Show(
           Gen.Strings.MsgDatabaseOrTableNullError_Title,
           Gen.Strings.MsgDatabaseOrTableNullError_Message
          );
@@ -394,7 +394,7 @@ namespace Generator.Parser
       bool hasError = false;
       if (hasError = (table==null))
       {
-        if (showMessageBox) System.Windows.Forms.MessageBox.Show(
+        if (showMessageBox) ErrorMessage.Show(
           Gen.Strings.MsgDatabaseOrTableNullError_Title,
           Gen.Strings.MsgDatabaseOrTableNullError_Message
          );
@@ -442,7 +442,7 @@ namespace Generator.Parser
         view.T.View = null;
         
         // check for errors
-        if (view.DB==null || view.T==null) { System.Windows.Forms.MessageBox.Show("Error finding database or table for view-link","Exiting generation..."); return "Error finding database or table for view."; }
+        if (view.DB==null || view.T==null) { ErrorMessage.Show("Error finding database or table for view-link","Exiting generation..."); return "Error finding database or table for view."; }
         
         List<QuickMatch> list;
         while (0 != (list = TemplateReferenceUtil.GetReferences( output )).Count)

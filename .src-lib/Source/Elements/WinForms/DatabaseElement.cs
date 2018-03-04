@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Generator.Assets;
+
+#if TREEV
 using System.Windows.Forms;
+#endif
 namespace Generator.Elements
 {
 	#if TREEV

@@ -27,7 +27,6 @@ using System.Data;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
-using System.Windows.Forms;
 using Generator.Elements;
 
 //using (SQLiteConnection connection = new SQLiteConnection(connectionstring))
@@ -135,7 +134,7 @@ insert into [templates] (
 		{
 			if (System.IO.File.Exists(path))
 			{
-				#if CONSOLE
+				#if NCORE
 				Console.Clear();
 				Console.Error.Write("File Exists...\n\"{0}\"",path);
 				#else

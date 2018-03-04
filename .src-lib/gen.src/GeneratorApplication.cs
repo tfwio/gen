@@ -4,9 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
-using Generator.Core.Markup;
-using Generator.Elements;
 namespace GeneratorApp
 {
   // feel free to optimize and/or

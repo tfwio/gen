@@ -21,7 +21,7 @@ using System.Windows;
 using Microsoft.Win32;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
-#else
+#elif !NCORE
 using System.Windows.Forms;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
@@ -38,9 +38,11 @@ namespace Generator
   /// </summary>
   public static class SQLiteOperations
   {
+    #if WPF4 || !NCORE
     static public SaveFileDialog sfd = new SaveFileDialog();
     static public OpenFileDialog ofd = new OpenFileDialog();
-
+    #endif
+    
     static public Dictionary<string,DataColumn> db3(this FileInfo sqlite3_db, string table_name)
     {
       var dic = new Dictionary<string,DataColumn>();
@@ -176,19 +178,19 @@ namespace Generator
             C.Open();
             A.InsertCommand = new SQLiteCommand(query_drop_templates_table,C);
             try { A.InsertCommand.ExecuteNonQuery(); }
-            catch (Exception exc) { MessageBox.Show("Error executing the DROP query."); }//exc.ToString()
+            catch (Exception exc) { ErrorMessage.Show("Error executing the DROP query."); }//exc.ToString()
             if (andCreate)
             {
               A.InsertCommand = new SQLiteCommand(query_create_templates_table,C);
               try { A.InsertCommand.ExecuteNonQuery(); }
-              catch (Exception exc) { MessageBox.Show("Error executing the CREATE query."); }//exc.ToString()
+              catch (Exception exc) { ErrorMessage.Show("Error executing the CREATE query."); }//exc.ToString()
             }
             C.Close();
           }
         }
       }
     }
-
+#if !NCORE
     static public void GeneratorTemplatesCreate(string databaseFile)
     {
       ofd.Filter = "Xml-Template Configuration|*.xml|All files|*";
@@ -199,6 +201,7 @@ namespace Generator
       #endif
       GeneratorTemplatesCreate(databaseFile,ofd.FileName);
     }
+#endif
     static public void GeneratorTemplatesCreate(string databaseFile, string xmlTemplateFile)
     {
       TemplateCollection dc = TemplateCollection.Load(xmlTemplateFile);
@@ -229,7 +232,7 @@ insert into [generator-templates] (
               A.InsertCommand.Parameters.AddWithValue("@SyntaxLanguage",tpl.SyntaxLanguage);
               A.InsertCommand.Parameters.AddWithValue("@Tags",tpl.Tags);
               try { A.InsertCommand.ExecuteNonQuery(); }
-              catch (Exception exc) { MessageBox.Show(exc.ToString()); }
+              catch (Exception exc) { ErrorMessage.Show(exc.ToString()); }
             }
             C.Close();
           }
@@ -237,13 +240,13 @@ insert into [generator-templates] (
       }
     }
     #endregion
-
     /**
      * seems to have little to no use here.
      * ———————————————————————————————————
      * If it is to be useful, this function needs to be re-written.
      */
     #region ExportSQLiteCreateSnippit
+#if !NCORE
     /// <summary>
     /// Uses a SaveFileDialog to get a file and continues to the overload.
     /// </summary>
@@ -289,9 +292,11 @@ insert into [generator-templates] (
       try { File.WriteAllText(sqlFile,string.Join("\r\n",list.ToArray()),System.Text.Encoding.UTF8); }
       catch (Exception e) { throw new Exception("There was an error writing to the file.",e); }
     }
+#endif
     #endregion
 
     #region XmlToDatabaseConfiguration
+#if !NCORE
     /// <summary>
     /// 1. Starts off by prompting you for a database-configuration file (*.xdata/xml)
     /// 
@@ -324,6 +329,7 @@ insert into [generator-templates] (
       #endif
       XmlToDatabaseConfiguration(xmlDatabaseConfiguration,ofd.FileName);
     }
+#endif
 
     /// <summary>
     /// <para>1. Iterate through the databases and tables inserting them as it goes.</para>
@@ -585,6 +591,8 @@ insert into [generator-templates] (
     
     // empty
     #region GeneratorDataCollectionCreate
+    #if !NCORE
+    // FIXME: THIS DOES NOTHING?!
     /// <summary>
     /// this is a template method—as in that it is generally an empty method.
     /// </summary>
@@ -593,9 +601,10 @@ insert into [generator-templates] (
       sfd.Filter = "xconfig|*.xconfig|xml|*.xml|all files|*";
       #if WPF4
       if (!sfd.ShowDialog().Value) return;
-      #else
+      #elif !NCORE
       if (sfd.ShowDialog()!=DialogResult.OK) return;
       #endif
+      
       List<string> list = new List<string>();
       
       string fname = sfd.FileName;
@@ -633,6 +642,7 @@ insert into [generator-templates] (
       //				}
       //			}
     }
+    #endif
     #endregion
   }
 }

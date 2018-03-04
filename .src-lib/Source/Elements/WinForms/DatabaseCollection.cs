@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Generator.Assets;
-using System.Windows.Forms;
 using Global=System.Cor3.last_addon;
+#if TREEV
+using System.Windows.Forms;
+#endif
 namespace Generator.Elements
 {
-	
 	public partial class DatabaseCollection
 	{
 		#region TreeView Support

@@ -22,9 +22,6 @@
 using System;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SQLite;
-using System.Diagnostics;
-using System.Windows.Forms;
 
 //using (SQLiteConnection connection = new SQLiteConnection(connectionstring))
 //using (SQLiteDataAdapter adapter   = new SQLiteDataAdapter(query,connection))
@@ -34,7 +31,7 @@ using System.Windows.Forms;
 //}
 namespace Generator.Elements
 {
-	/// <summay>TemplatesModel, PrimaryKey=‘id’</summary>
+	/// <summary>TemplatesModel, PrimaryKey=‘id’</summary>
 	/// <remarks></remarks>
 	[Serializable]
 	public class TemplateElement

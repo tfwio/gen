@@ -75,22 +75,21 @@ namespace Gen {
     }
     
     /// <summary>
-    ///   Looks up a localized string similar to  ----------------------------------------------------------
-    /// ==========================================================
+    ///   Looks up a localized string similar to 
     /// Generator Command Appliaction
-    /// ----------------------------------------------------------
-    /// 
+    /// ==========================================================
+    ///
+    ///*this really should be re-written, eh?* 
+    ///
     /// There are two modes of operation in this application.
     ///
-    ///1. Using a pre-determined configuration-set,
-    ///   we execute a given template on input/output.
+    ///1. Using a pre-determined configuration-set, (EG: *.generator-config) we execute a given template on input/output.
     ///
-    ///2. all runtime cofniguration settings are injected
-    ///   via invocation.
+    ///2. all runtime cofniguration settings are injected via invocation arguments/parameters.
     /// 
     /// # RUNTIME CONF
     /// 
-    ///    Here, a generator-configuraion file as i [rest of string was truncated]&quot;;.
+    ///    Here, a generator-configuraion file as its basis.  Here, you supply a path to y [rest of string was truncated]&quot;;.
     /// </summary>
     public static string AppHelpString {
       get {

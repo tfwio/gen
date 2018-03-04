@@ -1,6 +1,5 @@
 ﻿/* oio * 8/2/2014 * Time: 2:03 PM */
 using System;
-using System.Windows.Forms;
 using Generator;
 using Generator.Core.Markup;
 using Generator.Elements;
@@ -75,6 +74,7 @@ namespace GeneratorApp
 		#region readonly / constants
 		const string filter = "Generator Configuration|*.generator-config|Xml Document (generator-config)|*.xml";
 
+		#if !NCORE
 		readonly OpenFileDialog ofd = new OpenFileDialog {
 			Filter = filter
 		};
@@ -82,7 +82,8 @@ namespace GeneratorApp
 		readonly SaveFileDialog sfd = new SaveFileDialog {
 			Filter = filter
 		};
-
+    #endif
+    
 		#endregion
 		#region Method: string Generate, IDbConfiguration4 GetConfig
 		public Generator.Export.Intrinsic.IDbConfiguration4 GetConfig(TableElement table, TableTemplate template)
@@ -110,12 +111,12 @@ namespace GeneratorApp
 		}
 
 		#endregion
-		void ConfigLoad()
-		{
-			Model.FileName = ofd.FileName;
-			Model.Configuration = GeneratorConfig.Load(Model.FileName);
-			InitializeConfiguration(this, null);
-		}
+//		void ConfigLoad()
+//		{
+//			Model.FileName = ofd.FileName;
+//			Model.Configuration = GeneratorConfig.Load(Model.FileName);
+//			InitializeConfiguration(this, null);
+//		}
 		#region RoutedEvents
 		public void Initialize()
 		{

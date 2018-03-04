@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+#if TREEV
 using System.Windows.Forms;
+#endif
 namespace Generator.Elements
 {
 	public partial class FieldElement

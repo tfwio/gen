@@ -139,18 +139,17 @@
     <value>generator-config|*.generator-config;|All Files|*</value>
   </data>
   <data name="AppHelpString" xml:space="preserve">
-    <value> ----------------------------------------------------------
- ==========================================================
+    <value>
  Generator Command Appliaction
- ----------------------------------------------------------
- 
+ ==========================================================
+
+*this really should be re-written, eh?* 
+
  There are two modes of operation in this application.
 
-1. Using a pre-determined configuration-set,
-   we execute a given template on input/output.
+1. Using a pre-determined configuration-set, (EG: *.generator-config) we execute a given template on input/output.
 
-2. all runtime cofniguration settings are injected
-   via invocation.
+2. all runtime cofniguration settings are injected via invocation arguments/parameters.
  
  # RUNTIME CONF
  
@@ -163,11 +162,11 @@ gen -gcfg [gen-cfg]
 
 # or
 
-gen -it   [path] \
-    -is   [path]) \
-    -tbln [table-name] \
-    -tpln [template-name] \
-    -i    (file) \
+gen -it   [path] ^
+    -is   [path]) ^
+    -tbln [table-name] ^
+    -tpln [template-name] ^
+    -i    (file) ^
     -o    (file)
 ```
  

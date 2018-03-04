@@ -2,6 +2,7 @@
  * User: oIo
  * Date: 11/15/2010 – 2:33 AM
  */
+#if TREEV || false
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -9,7 +10,6 @@ namespace Generator.Elements
 {
 	public partial class TableElement
 	{
-		#if TREEV || false
 		// .ctor
 		public TableElement(TreeNode node)
 		{
@@ -50,8 +50,8 @@ namespace Generator.Elements
 			foreach (FieldElement item in items)
 				tblelement.Nodes.Add(item.ToNode());
 		}
-    #endif
 	}
 }
+#endif
 
 

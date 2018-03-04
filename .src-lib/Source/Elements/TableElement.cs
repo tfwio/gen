@@ -7,10 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Generator.Parser;
-using System.Cor3.Data;
 using Generator.Elements.Basic;
 using Generator.Elements.Types;
-using System.Windows.Forms;
 using System.Xml.Serialization;
 
 using Global=System.Cor3.last_addon;
@@ -415,7 +413,7 @@ namespace Generator.Elements
 			#region Primary Key Automated Reference (NOT FOR VIEWS)
 			//
 			if (PrimaryKey == null) {
-				MessageBox.Show("Table must provide a primary key", "Please check the table.");
+				ErrorMessage.Show("Table must provide a primary key", "Please check the table.");
 				return;
 			} else if (PrimaryKey != string.Empty && PrimaryKey != "%PKUNKNOWN%") {
 				Add(StrKeys.PKDataName,					PrimaryKeyElement.DataName);

@@ -21,9 +21,11 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 using System;
-using System.Windows.Forms;
 using Generator.Elements;
 
+#if TREEV
+using System.Windows.Forms;
+#endif
 namespace Generator.Export.Intrinsic
 {
 	/// <summary>
@@ -38,6 +40,8 @@ namespace Generator.Export.Intrinsic
 	//		bool HasCollection { get ; }
 	//		bool HasDataSelection { get ; }
 		SimpleQueryElement SelectedQuery { get; set; }
+		#if TREEV
 		TreeNode SelectedNode { get; set; }
+		#endif
 	}
 }

@@ -3,13 +3,15 @@
  * Date: 11/15/2010 – 2:33 AM
  */
 using System;
-using System.Windows.Forms;
 using Generator.Assets;
+#if TREEV
+using System.Windows.Forms;
+#endif
 namespace Generator.Elements
 {
 	public partial class QueryElement
 	{
-		//		#if FORMS
+		#if TREEV
 		public void ToTree(TreeNode root)
 		{
 			TreeNode node = root.Nodes.Add(name);
@@ -26,7 +28,7 @@ namespace Generator.Elements
 			}
 			return q;
 		}
-	//		#endif
+		#endif
 	}
 }
 

@@ -1,15 +1,14 @@
 ﻿/* oOo * 11/14/2007 : 10:22 PM */
 using System;
-using System.ComponentModel.Design.Serialization;
 using System.Xml.Serialization;
 
+#if !NCORE
 using DialogResult = System.Windows.Forms.DialogResult;
 using MessageBox = System.Windows.Forms.MessageBox;
 using MessageBoxButtons = System.Windows.Forms.MessageBoxButtons;
-
+#endif
 namespace System.IO
 {
-
   /* oOo * 11/15/2007 : 5:53 AM */
   /**
    * IGNORE THIS CLASS... Skip down to the next SerializableClass<T>.
@@ -87,16 +86,24 @@ namespace System.IO
         try {
           result = xser.Deserialize(fs);
         } catch (Exception error) {
-          DialogResult dr = DialogResult.None;
           #if TRACE
+          // "TRACE" AINT RIGHT, is it?
           Console.Error.Write("deserialization error");
           #endif
           
+          #if !NCORE
+          DialogResult dr = DialogResult.None;
           if (useMsgbox) dr = MessageBox.Show(
             string.Format(msg_deserializationError,error.Message),
             msg_deserializationErrorTitle,MessageBoxButtons.OKCancel
            );
           if (useMsgbox && (dr==DialogResult.Cancel) ) { throw error; }
+          #else
+          ErrorMessage.Show(
+            msg_deserializationErrorTitle,
+            string.Format(error.Message)
+           );
+          #endif
         } finally {
           
         }

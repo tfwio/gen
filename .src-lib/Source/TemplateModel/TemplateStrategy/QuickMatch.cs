@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Cor3.Parsers;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 
 namespace Generator.Core.Markup
 {
@@ -112,17 +111,19 @@ namespace Generator.Core.Markup
 			for (int i=0; i < px.Length; i++) Params[i] = px[i].Trim();
 			range = TextRange.Empty;
 		}
+		#if !NCORE
 		/// <summary>
 		/// Convert to ToolStripMenuItem.
 		/// </summary>
 		/// <returns>
 		/// a ToolStripMenuItem with the tag set to this QuickMatch element.
 		/// </returns>
-		public ToolStripMenuItem ToMenu()
+		public System.Windows.Forms.ToolStripMenuItem ToMenu()
 		{
-			ToolStripMenuItem item = new ToolStripMenuItem(Params[0]);
+			System.Windows.Forms.ToolStripMenuItem item = new System.Windows.Forms.ToolStripMenuItem(Params[0]);
 			item.Tag = this;
 			return item;
 		}
+		#endif
 	}
 }
