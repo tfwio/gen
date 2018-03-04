@@ -69,7 +69,7 @@ The rest of the tags can be found in [FieldElement.cs](https://github.com/tfwio/
 
 For the majority of tags, you can likely understand the meaning of the tag by the UI's data-table input page:
 
-![](https://tfw.io/dot.io/gen.lib/raw/commit/447bfde4a9921773f95f45029c164787d155bc00/.src-lib/Schematics/data-field-input.png)
+![](data-field-input.png)
 
 You can think of nearly every tag you can input into the above UI as a simple Dictionary entry with exception to how a few of the fields are going to be handled.
 
