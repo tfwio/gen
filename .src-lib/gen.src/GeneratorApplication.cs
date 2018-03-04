@@ -31,7 +31,9 @@ namespace GeneratorApp
           .Replace("{table}",     settings.TableName        ?? "null")
          );
         
-        if (settings.FileConfig==null)
+        if (
+          (settings.FileSchema==null && settings.FileTemplates==null) &&
+          (settings.FileConfig==null))
         {
           Console.WriteLine("conf not provided.");
           Console.ReadKey();
