@@ -29,7 +29,7 @@
     <DebugType>Full</DebugType>
     <Optimize>False</Optimize>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
-    <DefineConstants>DEBUG;TRACE;CONSOLE;NCORE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;CONSOLE;NCORE;LIBGEN</DefineConstants>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -37,7 +37,7 @@
     <DebugType>PdbOnly</DebugType>
     <Optimize>True</Optimize>
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-    <DefineConstants>TRACE;NCORE</DefineConstants>
+    <DefineConstants>TRACE;NCORE;LIBGEN</DefineConstants>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'Win32' ">
@@ -56,7 +56,14 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <BaseAddress>4194304</BaseAddress>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
     <RegisterForComInterop>False</RegisterForComInterop>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <FileAlignment>4096</FileAlignment>
@@ -139,6 +146,7 @@
     <None Include="cor3\Clew.cs" />
     <Compile Include="cor3\DICT.cs" />
     <Compile Include="cor3\ErrorMessage.cs" />
+    <Compile Include="cor3\Extensions\EnumHelper.cs" />
     <Compile Include="cor3\Extensions\FileSystemExtensions.cs" />
     <Compile Include="cor3\Extensions\PropertyInfoHelper.cs" />
     <Compile Include="cor3\Extensions\VariousStringExtensions.cs" />
@@ -203,9 +211,7 @@
     <Compile Include="Source\Extensions\FileSaveExtensions.cs" />
     <Compile Include="Source\Parser\Enumerations.cs" />
     <Compile Include="Source\Parser\FieldMatch.cs" />
-    <Compile Include="Source\Parser\GeneratorParser.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Source\Parser\GeneratorParser.cs" />
     <Compile Include="Source\Parser\ParserHelper.cs" />
     <Compile Include="Source\Parser\ParseUtil.cs" />
     <Compile Include="Source\Parser\TemplateFactory.cs" />
@@ -260,15 +266,13 @@
       <DependentUpon>Messages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Properties\WPFAssemblyInfo.cs" />
     <Compile Include="Strings.Designer.cs">
       <DependentUpon>Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
     </Compile>
-    <None Include="App.config" />
     <None Include="cor3.snk" />
     <None Include="packages.config" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="cor3.data" />

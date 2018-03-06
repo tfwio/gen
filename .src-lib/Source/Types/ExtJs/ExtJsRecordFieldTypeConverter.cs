@@ -54,7 +54,7 @@ namespace Generator.Elements.Types
 		public override TypeCode Convert(string input)
 		{
 			ExtJsRecordFieldType outType = ExtJsRecordFieldType.Auto;
-			bool canDo = Enum.TryParse<ExtJsRecordFieldType>(input, out outType);
+			bool canDo = input.TryParse<ExtJsRecordFieldType>(out outType);
 			if (!canDo) outType = ExtJsRecordFieldType.Auto;
 			
 			return this.Convert(outType,TypeCode.Object);

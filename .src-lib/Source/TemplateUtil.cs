@@ -138,11 +138,11 @@ insert into [templates] (
 				Console.Clear();
 				Console.Error.Write("File Exists...\n\"{0}\"",path);
 				#else
-				MessageBox.Show(
+				System.Windows.Forms.MessageBox.Show(
 					string.Format("File Exists...\n\"{0}\"",path),
 					"Error",
-					MessageBoxButtons.OK,
-					MessageBoxIcon.Error
+					System.Windows.Forms.MessageBoxButtons.OK,
+					System.Windows.Forms.MessageBoxIcon.Error
 				);
 				#endif
 				return;

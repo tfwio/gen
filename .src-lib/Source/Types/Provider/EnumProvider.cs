@@ -28,7 +28,7 @@ namespace Generator.Elements.Types
 		virtual public string FromNative(string name)
 		{
 			TypeCode toConvert;
-			bool gotConversion = Enum.TryParse<TypeCode>(name, out toConvert);
+			bool gotConversion = name.TryParse<TypeCode>(out toConvert);
 			if (!gotConversion) throw new ArgumentException("Couldn't convert from {0} to native TypeCode",name);
 			return ProvideTypeCode(toConvert);
 		}

@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
-    <ProjectGuid>{A07EE6F0-10F1-44B4-98B0-705634F22510}</ProjectGuid>
+    <ProjectGuid>{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Gen</RootNamespace>
-    <AssemblyName>Gen.Lib</AssemblyName>
+    <AssemblyName>gen</AssemblyName>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SignAssembly>True</SignAssembly>
     <DelaySign>False</DelaySign>
@@ -16,79 +16,115 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OutputPath>$(SolutionDir)\..\build\$(Configuration)-$(Platform)\bin</OutputPath>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <NoWin32Manifest>False</NoWin32Manifest>
-    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <IntermediateOutputPath>$(SolutionDir)\..\build\obj\$(Configuration)-$(Platform)-gen-so\</IntermediateOutputPath>
     <AsmRef>..\..\project\asmref</AsmRef>
     <AssemblyOriginatorKeyFile>cor3.snk</AssemblyOriginatorKeyFile>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <ApplicationIcon>..\.src-tool\Source\_rc\appbar.shuffle.ico</ApplicationIcon>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <FileAlignment>4096</FileAlignment>
+    <BaseIntermediateOutputPath>..\build\obj</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>Full</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>True</Optimize>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
-    <DefineConstants>DEBUG;TRACE;TREEV;WPF4;CONSOLE</DefineConstants>
-    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <DefineConstants>DEBUG;TRACE;CONSOLE;isgentool;NCORE</DefineConstants>
+    <BaseIntermediateOutputPath>$(SolutionDir)\..\build\obj\</BaseIntermediateOutputPath>
+    <StartAction>Project</StartAction>
+    <StartArguments>-it "Schematics/my.xtpl" -is "Schematics/my.xdata" -dbn "Calibre" -tbln "books" -tpln "js.calibre-models" -o "model.js"</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>
     <DebugType>PdbOnly</DebugType>
     <Optimize>True</Optimize>
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-    <DefineConstants>TRACE;TREEV;WPF4</DefineConstants>
+    <DefineConstants>TRACE;isgentool;NCORE</DefineConstants>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Platform)' == 'Win32' ">
-    <BaseAddress>4194304</BaseAddress>
-    <PlatformTarget>x86</PlatformTarget>
-    <RegisterForComInterop>False</RegisterForComInterop>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-    <FileAlignment>4096</FileAlignment>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' " />
+  <PropertyGroup Condition=" '$(Platform)' == 'Win32' " />
+  <PropertyGroup Condition=" '$(Platform)' == 'Win64' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Optimize>false</Optimize>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Platform)' == 'Win64' ">
-    <BaseAddress>4194304</BaseAddress>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win32' ">
+    <Optimize>false</Optimize>
+    <OutputPath>build\Debug-Win32\bin</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <AssemblyOriginatorKeyFile>cor3.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win64' ">
+    <Optimize>false</Optimize>
     <PlatformTarget>x64</PlatformTarget>
-    <RegisterForComInterop>False</RegisterForComInterop>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-    <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
-    <BaseAddress>4194304</BaseAddress>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <RegisterForComInterop>False</RegisterForComInterop>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-    <FileAlignment>4096</FileAlignment>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
-    <BaseAddress>4194304</BaseAddress>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' ">
+    <OutputPath>build\Release-Win32\bin</OutputPath>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <PlatformTarget>x86</PlatformTarget>
-    <RegisterForComInterop>False</RegisterForComInterop>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-    <FileAlignment>4096</FileAlignment>
+    <AssemblyOriginatorKeyFile>cor3.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win64' ">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\.sln\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\.sln\packages\Newtonsoft.Json.10.0.3\lib\net35\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.SQLite">
-      <HintPath>..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\lib\net40\System.Data.SQLite.dll</HintPath>
+      <HintPath>..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\lib\net20\System.Data.SQLite.dll</HintPath>
     </Reference>
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="cor3\Extensions\EnumHelper.cs" />
+    <Compile Include="gen.src\Commander.cs" />
+    <Compile Include="gen.src\GeneratorApplication.cs" />
+    <Compile Include="gen.src\GeneratorModel.cs" />
+    <Compile Include="gen.src\GeneratorReader.cs" />
+    <Compile Include="gen.src\GenSettings.cs" />
+    <Compile Include="gen.src\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="app.config" />
+    <None Include="Properties\WPFAssemblyInfo.cs" />
+    <None Include="cor3.snk" />
+    <None Include="packages.config" />
+    <None Include="Schematics\data-field-input.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\my.generator-config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\my.xdata">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\my.xtpl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\Template-Tags.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="test-dbg.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="test-rel.cmd" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="cor3.data\Context\CategoryMode.cs" />
@@ -150,15 +186,14 @@
     <Compile Include="cor3.parsers\StringRange.cs" />
     <Compile Include="cor3.parsers\TextRange.cs" />
     <Compile Include="cor3.parsers\UnicodeSpaceType.cs" />
-    <Compile Include="cor3\Clew.cs" />
+    <None Include="cor3\Clew.cs" />
     <Compile Include="cor3\DICT.cs" />
     <Compile Include="cor3\ErrorMessage.cs" />
-    <Compile Include="cor3\Extensions\EnumHelper.cs" />
     <Compile Include="cor3\Extensions\FileSystemExtensions.cs" />
     <Compile Include="cor3\Extensions\PropertyInfoHelper.cs" />
     <Compile Include="cor3\Extensions\VariousStringExtensions.cs" />
     <Compile Include="cor3\ini.cs" />
-    <Compile Include="cor3\ITaskContext.cs" />
+    <None Include="cor3\ITaskContext.cs" />
     <Compile Include="cor3\last_addon.cs" />
     <Compile Include="cor3\Logger.cs" />
     <Compile Include="cor3\MessageType.cs" />
@@ -218,9 +253,7 @@
     <Compile Include="Source\Extensions\FileSaveExtensions.cs" />
     <Compile Include="Source\Parser\Enumerations.cs" />
     <Compile Include="Source\Parser\FieldMatch.cs" />
-    <Compile Include="Source\Parser\GeneratorParser.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Source\Parser\GeneratorParser.cs" />
     <Compile Include="Source\Parser\ParserHelper.cs" />
     <Compile Include="Source\Parser\ParseUtil.cs" />
     <Compile Include="Source\Parser\TemplateFactory.cs" />
@@ -275,14 +308,16 @@
       <DependentUpon>Messages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strings.Designer.cs">
       <DependentUpon>Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
     </Compile>
+    <None Include="cor3.snk" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="gen.src" />
+    <Folder Include="Schematics" />
     <Folder Include="cor3.data" />
     <Folder Include="cor3.data\Context" />
     <Folder Include="cor3.data\DataAbstract" />
@@ -314,4 +349,5 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <Import Project="..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\build\net40\System.Data.SQLite.Core.targets')" />
+  <Import Project="..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\build\net20\System.Data.SQLite.Core.targets" Condition="Exists('..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\build\net20\System.Data.SQLite.Core.targets')" />
 </Project>

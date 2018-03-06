@@ -10,10 +10,11 @@ namespace Generator.Elements.Types
   
   public static class NativeTypeProvider
   {
+    #if UNUSED
     static public string NativeTypeCode(this Type input, string nullvalue="_NULL_")
     {
       TypeCode t=TypeCode.Empty;
-      return Enum.TryParse<TypeCode>(input.Name, out t) ? t.ToString() : nullvalue;
+      return input.Name.TryParse<TypeCode>(out t) ? t.ToString() : nullvalue;
     }
     static public string TypeN(this object input)
     {
@@ -23,10 +24,11 @@ namespace Generator.Elements.Types
     {
       return input.GetType().NativeTypeCode();
     }
+    #endif
     static public void TypeCodeStringToNativeDictionary(this string DataTypeNative, IDictionary<string,object> fparams)
     {
       TypeCode code = TypeCode.Empty;
-      bool converted = Enum.TryParse(DataTypeNative, out code);
+      bool converted = DataTypeNative.TryParse(out code);
       string result = "Empty";
       result = converted ? TypeCodeToNativeString(code) : "Empty";
       fparams.Add("NativeType",result);

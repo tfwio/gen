@@ -90,17 +90,6 @@ using w32.shell;
       return result;
     }
     
-    
-    static public bool HasFlag2(this uint enumValue, uint compare)
-    {
-      return (enumValue & compare) == compare;
-    }
-    static public bool HasFlag2(this int enumValue, int compare)
-    {
-      return (enumValue & compare) == compare;
-    }
-    
-    
     static public FileAttributes GetFileAttributes(this string path) { return File.GetAttributes(path); }
     static public bool IsDirectory(this string path) { return path.GetFileAttributes().HasFlag(System.IO.FileAttributes.Directory); }
     
