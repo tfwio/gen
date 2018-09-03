@@ -47,11 +47,13 @@ namespace GeneratorTool.SQLiteUtil
 		
 		#region FileDialogs
 		static public readonly OpenFileDialog OFD_DatabaseFile = new OpenFileDialog(){
-			Filter = "SQlite Database (*.db3)|*.db3|" +
-				"SQLite Database (*.db)|*.db|" +
-				"SQlite Database (*.dbx)|*.dbx|" +
+			Filter =
+			  "SQLite Database (*.db)|*.db|" +
+				"SQlite Database (*.db3)|*.db3|" +
+			  "SQlite Database (*.dbx)|*.dbx|" +
 				"SQLite3 Database (*.sqlite)|*.sqlite|" +
-				"All files|*"
+				"All files|*",
+			DefaultExt = "SQLite Database (*.db)|*.db",
 		};
 		static public readonly SaveFileDialog SFD_DatabaseFile = new SaveFileDialog(){
 			Filter =
