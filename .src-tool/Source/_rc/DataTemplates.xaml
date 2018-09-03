@@ -18,6 +18,8 @@
   <v:GroupOnMultiBindingConverter                    x:Key="GroupOnTemplatesConverter" />
   <v:IsEnabledToColorConverter                       x:Key="isEnabledToColorConverter" />
   
+  
+  <!-- NOT USED EVER? -->
   <Style x:Key="aeroCheckListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
     <Setter Property="Padding" Value="2,0,0,0" />
     <Setter Property="Template">
@@ -55,15 +57,19 @@
     </Setter>
   </Style>
   
+  <!--
+  DataView's LinkItem Template
+  no! actually this is like the equivelant of a field in a dataview table (below)
+  -->
   <HierarchicalDataTemplate x:Key="DataViewLinkTemplate">
     <StackPanel Orientation="Horizontal">
       <StackPanel.ContextMenu>
         <ContextMenu>
-          <MenuItem Header="DataView" />
+          <MenuItem Header="DataView" FontWeight="Bold" />
           <Separator />
           <MenuItem Header="Cut" />
-          <MenuItem Header="Copy" />
-          <MenuItem Header="Paste" />
+          <MenuItem Header="Copy"  />
+          <MenuItem Header="Paste"  />
           <Separator />
           <MenuItem Header="Delete" />
         </ContextMenu>
@@ -73,7 +79,7 @@
     </StackPanel>
   </HierarchicalDataTemplate>
   
-  <!--  -->
+  <!-- DataView element -->
   <!-- key="DataViewTemplate" source="LinkItems" ItemTemplate="DataViewLinkTemplate" -->
   <!--  -->
   <HierarchicalDataTemplate x:Key="DataViewTemplate" ItemsSource="{Binding Path=LinkItems}" ItemTemplate="{StaticResource DataViewLinkTemplate}">
@@ -85,6 +91,9 @@
           <MenuItem Header="Cut" />
           <MenuItem Header="Copy" />
           <MenuItem Header="Paste" />
+          <Separator />
+          <MenuItem Header="Copy XML"       Command="{x:Static v:MoxiView.TableCopyXMLCommand}" CommandParameter="{Binding .}" />
+          <!--<MenuItem Header="Copy as JSON" />-->
           <Separator />
           <MenuItem Header="Delete" />
         </ContextMenu>
@@ -109,6 +118,9 @@
           <MenuItem Header="Paste (Above)" Command="{x:Static v:MoxiView.FieldPasteAboveCommand}" CommandParameter="{Binding .}" />
           <MenuItem Header="Paste (Below)" Command="{x:Static v:MoxiView.FieldPasteBelowCommand}" CommandParameter="{Binding .}" />
           <Separator />
+          <MenuItem Header="Copy XML"       Command="{x:Static v:MoxiView.TableCopyXMLCommand}" CommandParameter="{Binding .}" />
+          <!--<MenuItem Header="Copy JSON" IsEnabled="False" />-->
+          <Separator />
           <MenuItem Header="Delete" />
         </ContextMenu>
       </StackPanel.ContextMenu>
@@ -131,6 +143,9 @@
           <MenuItem Header="Paste (Above)" Command="{x:Static v:MoxiView.TablePasteAboveCommand}" CommandParameter="{Binding .}" />
           <MenuItem Header="Paste (Below)" Command="{x:Static v:MoxiView.TablePasteBelowCommand}" CommandParameter="{Binding .}" />
           <Separator />
+          <MenuItem Header="Copy XML"       Command="{x:Static v:MoxiView.TableCopyXMLCommand}" CommandParameter="{Binding .}" />
+          <!--<MenuItem Header="Copy JSON" IsEnabled="False" />-->
+          <Separator />
           <MenuItem Header="Delete" />
         </ContextMenu>
       </StackPanel.ContextMenu>
@@ -146,13 +161,16 @@
     <StackPanel Orientation="Horizontal">
       <StackPanel.ContextMenu>
         <ContextMenu>
-          <MenuItem Header="Database?" />
+          <MenuItem Header="Database Element" />
           <Separator />
           <MenuItem Header="Cut" />
           <MenuItem Header="Copy" />
           <MenuItem Header="Paste" />
           <Separator />
           <MenuItem Header="Create Table" Command="{x:Static v:MoxiView.TableCreateCommand}" CommandParameter="{Binding .}" />
+          <Separator />
+          <MenuItem Header="Copy XML" Command="{x:Static v:MoxiView.TableCopyXMLCommand}" CommandParameter="{Binding .}" />
+          <!--<MenuItem Header="Copy JSON" IsEnabled="False" />-->
           <Separator />
           <MenuItem Header="Delete" />
         </ContextMenu>

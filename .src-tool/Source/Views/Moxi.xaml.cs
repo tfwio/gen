@@ -78,16 +78,20 @@ namespace GeneratorTool.Views
 		static public readonly ICommand ToggleFieldCommand = new RoutedUICommand(){ Text="Field button toggled.", InputGestures={ new KeyGesture(Key.F4) } };
 		static public readonly ICommand TogglePreviewCommand = new RoutedUICommand(){ Text="Preview button toggled.", InputGestures={ new KeyGesture(Key.F5) } };
 		static public readonly ICommand ToggleDataCommand = new RoutedUICommand(){ Text="Select the data tab-item.", InputGestures={ new KeyGesture(Key.F5) } };
-		
+		// Field
 		static public readonly FieldCutCmd FieldCutCommand = new FieldCutCmd();
 		static public readonly FieldCopyCmd FieldCopyCommand = new FieldCopyCmd();
 		static public readonly FieldPasteAboveCmd FieldPasteAboveCommand = new FieldPasteAboveCmd();
 		static public readonly FieldPasteBelowCmd FieldPasteBelowCommand = new FieldPasteBelowCmd();
+		// Table
 		static public readonly TableCutCmd TableCutCommand = new TableCutCmd();
 		static public readonly TableCopyCmd TableCopyCommand = new TableCopyCmd();
 		static public readonly TableCreateCmd TableCreateCommand = new TableCreateCmd();
 		static public readonly TablePasteAboveCmd TablePasteAboveCommand = new TablePasteAboveCmd();
 		static public readonly TablePasteBelowCmd TablePasteBelowCommand = new TablePasteBelowCmd();
+		
+    static public readonly TableCopyXMLCmd TableCopyXMLCommand = new TableCopyXMLCmd();
+		
 		#endregion
 		
 		public GeneratorUIModel Model = new GeneratorUIModel();
@@ -208,7 +212,8 @@ namespace GeneratorTool.Views
 			TableCreateCommand.View = this;
 			TableCopyCommand.View = this;
 			TablePasteAboveCommand.View = this;
-			TablePasteBelowCommand.View = this;
+      TablePasteBelowCommand.View = this;
+			TableCopyXMLCommand.View = this;
 			
 			tabs.ItemContainerStyle = new Style(){
 			  Setters={
