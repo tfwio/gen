@@ -42,7 +42,7 @@ namespace Generator.Elements
 
 		[XmlAttribute] public string Inherits { get { return _inherits; } set { _inherits = value; OnPropertyChanged("Inherits"); } } string _inherits;
 
-		[DefaultValue(""), XmlAttribute()] public string Description { get { return description; } set { description = description; OnPropertyChanged("Description"); } } string description;
+		[DefaultValue(""), XmlAttribute()] public string Description { get { return description; } set { description = value; OnPropertyChanged("Description"); } } string description;
 		
 		[XmlIgnore()] public string FriendlyName { get { return Name.Clean(); } }
 		
