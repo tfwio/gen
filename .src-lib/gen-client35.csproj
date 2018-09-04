@@ -17,7 +17,7 @@
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <OutputPath>$(SolutionDir)\..\build\$(Configuration)-$(Platform)\bin</OutputPath>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <NoWin32Manifest>False</NoWin32Manifest>
     <IntermediateOutputPath>$(SolutionDir)\..\build\obj\$(Configuration)-$(Platform)-gen-so\</IntermediateOutputPath>
     <AsmRef>..\..\project\asmref</AsmRef>
@@ -39,14 +39,13 @@
     <DefineConstants>DEBUG;TRACE;CONSOLE;isgentool;NCORE</DefineConstants>
     <BaseIntermediateOutputPath>$(SolutionDir)\..\build\obj\</BaseIntermediateOutputPath>
     <StartAction>Project</StartAction>
-    <StartArguments>-it "Schematics/my.xtpl" -is "Schematics/my.xdata" -dbn "Calibre" -tbln "books" -tpln "js.calibre-models" -o "model.js"</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>
     <DebugType>PdbOnly</DebugType>
     <Optimize>True</Optimize>
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-    <DefineConstants>TRACE;isgentool;NCORE</DefineConstants>
+    <DefineConstants>TRACE;isgentool;NCORE;CONSOLE</DefineConstants>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' " />
@@ -56,9 +55,9 @@
     <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win32' ">
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>build\Debug-Win32\bin</OutputPath>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <AssemblyOriginatorKeyFile>cor3.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win64' ">
@@ -79,6 +78,12 @@
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommandLine">
+      <HintPath>..\.sln\packages\CommandLineParser.2.3.0\lib\net40\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\.sln\packages\Newtonsoft.Json.10.0.3\lib\net35\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -94,6 +99,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gen">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".poc\Program.cs" />
     <Compile Include="cor3\Extensions\EnumHelper.cs" />
     <Compile Include="gen.src\Commander.cs" />
     <Compile Include="gen.src\GeneratorApplication.cs" />
@@ -317,6 +326,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="gen.src" />
+    <Folder Include=".poc" />
     <Folder Include="Schematics" />
     <Folder Include="cor3.data" />
     <Folder Include="cor3.data\Context" />
