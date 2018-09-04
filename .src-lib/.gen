@@ -1,0 +1,10 @@
+{
+  "schema": "./Schematics/my.generator-config",
+  "gen": [
+    {
+      "template": "js.calibre-models",
+      "database": "Calibre:books",
+      "out": "out.js"
+    }
+  ]
+}
