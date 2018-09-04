@@ -88,7 +88,7 @@ namespace System.IO
         } catch (Exception error) {
           #if TRACE
           // "TRACE" AINT RIGHT, is it?
-          Console.Error.Write("deserialization error");
+          Console.Error.Write("deserialization error: {1}\n{0}\n", file, error.Source);
           #endif
           
           #if !NCORE
