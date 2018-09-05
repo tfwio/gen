@@ -298,7 +298,7 @@ namespace System.Cor3.Data
 					{
 						if (A.InsertCommand != null) A.InsertCommand.ExecuteNonQuery();
 					}
-					catch (Exception e) {
+					catch { // (Exception e) {
 						System.Diagnostics.Debug.Assert(false,"Insert stement failed.");
 					}
 					try

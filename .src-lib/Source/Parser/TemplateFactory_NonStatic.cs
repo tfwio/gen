@@ -211,7 +211,7 @@ namespace Generator.Parser
       bool noPrimaryKey  = view.TemplateBody.Contains(StrKeys.FieldValuesNK);
       string generated  = view.T.ReplaceValues( view.TemplateBody );
       
-      Logger.LogM("TF.Generate" , "T: {0}, TT: {{{1}, {2}}}", view.T.Name, view.TT.Group, view.TT.Alias);
+      Logger.Error(ConsoleColor.Yellow,"TF.Generate" , "T: {0}, TT: {{{1}, {2}}}", view.T.Name, view.TT.Group, view.TT.Alias);
       
       List<string>   paramStrings = GetParamStrings( view, noPrimaryKey );
       generated = ReplaceFieldValues( generated, paramStrings.ToArray() );

@@ -63,7 +63,7 @@ namespace Generator.Export
 				
 				if (!list[0].HasParams) /* error no parameters  */ continue;
 				string newOut = string.Empty;
-				TableTemplate tbltmpl = null;
+				// TableTemplate tbltmpl = null;
 				
 				if (!match0.HasMultipleParams) { // single parameter-match
 					

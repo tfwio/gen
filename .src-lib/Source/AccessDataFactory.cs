@@ -37,7 +37,10 @@ namespace Generator.Data
 			this.DataContext = new AccessDataContext(filename,null);
 			Database = new Access10(filename);
 		}
-		public Array GetDataNativeItemTypes(){ throw new NotImplementedException(); }
+		/// <summary>
+		/// Why was this not overridden?
+		/// </summary>
+		public override Array GetDataNativeItemTypes(){ throw new NotImplementedException(); }
 		
 		#region Schema Info
 		
