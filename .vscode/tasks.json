@@ -1,0 +1,47 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build: gen-client35:Release:AnyCPU",
+      "type": "process",
+      "command": "cmd.exe",
+      "args": [
+        "/c",
+        "${workspaceFolder}\\.src-lib\\build-client-net35_Release_AnyCPU.cmd"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run: gen-client35:Release:AnyCPU",
+      "type": "process",
+      "command": "cmd.exe",
+      "options": {
+        "cwd": "${workspaceFolder}\\build\\Release-AnyCPU\\bin"
+      },
+      "args": [
+        "/c",
+        "${workspaceFolder}\\build\\Release-AnyCPU\\bin\\gen.exe"
+      ]
+    },
+    {
+      "label": "Build: Gen.App (UI):Release:AnyCPU",
+      "type": "process",
+      "command": "cmd.exe",
+      "args": [
+        "/c",
+        "${workspaceFolder}\\.src-tool\\build-ui-net35_Release_AnyCPU.cmd"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
