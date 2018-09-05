@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+# SharpDevelop 5.2
+VisualStudioVersion = 12.0.20827.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gen-client35", "..\.src-lib\gen-client35.csproj", "{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|Win64 = Debug|Win64
+		Debug|Any CPU = Debug|Any CPU
+		Release|Win32 = Release|Win32
+		Release|Win64 = Release|Win64
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}.Debug|Win32.Build.0 = Debug|Win32
+		{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}.Debug|Win64.ActiveCfg = Debug|Win64
+		{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}.Debug|Win64.Build.0 = Debug|Win64
+		{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}.Debug|Any CPU.Build.0 = Debug|Win32
+		{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}.Release|Win32.ActiveCfg = Release|Win32
+		{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}.Release|Win32.Build.0 = Release|Win32
+		{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}.Release|Win64.ActiveCfg = Release|Win64
+		{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}.Release|Win64.Build.0 = Release|Win64
+		{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B29A02FB-0D40-401C-8005-2B2A6B86AFFA} = {DD85DC8B-C1C4-4728-B66B-F9A76C3C33F8}
+		{A07EE6F0-10F1-44B4-98B0-705634F22510} = {DD85DC8B-C1C4-4728-B66B-F9A76C3C33F8}
+		{44644892-9E95-44E1-B3A8-CBAD3D68DC14} = {800A49BA-9884-4498-9C34-5E4421743D13}
+		{628A05D7-2732-4A7E-B91E-666BD2C7B00A} = {800A49BA-9884-4498-9C34-5E4421743D13}
+	EndGlobalSection
+EndGlobal
