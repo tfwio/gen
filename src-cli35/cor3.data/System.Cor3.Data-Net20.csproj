@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{49FA2FBA-6F1D-4B8A-97FE-570F0F8F3B1E}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <RootNamespace>System.Cor3.Data</RootNamespace>
+    <AssemblyName>System.Cor3.Data-Net20</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Cor3.Core\cor3.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>False</DelaySign>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>1591,1587,1570</NoWarn>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <OutputType>Library</OutputType>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DocumentationFile>bin\Debug\System.Cor3.Data.Reference.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>DEBUG;TRACE;CONSOLE;NET35</DefineConstants>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugType>Full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DefineConstants>NET35;TRACE</DefineConstants>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>DEBUG;TRACE;CONSOLE;NET35</DefineConstants>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugType>Full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DefineConstants>NET35;TRACE</DefineConstants>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>DEBUG;TRACE;CONSOLE;NET35</DefineConstants>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugType>Full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DefineConstants>NET35;TRACE</DefineConstants>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>DEBUG;TRACE;CONSOLE;NET35</DefineConstants>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugType>Full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DefineConstants>NET35;TRACE</DefineConstants>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(Configuration)' == 'Debug_MySql_Ref' ">
+    <Reference Include="MySql.Data" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)' == 'Release_MySql_Ref' ">
+    <Reference Include="MySql.Data" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)' == 'Release_MySql' ">
+    <Reference Include="MySql.Data" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)' == 'Debug_MySql' ">
+    <Reference Include="MySql.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <HintPath>..\..\Projects\packages\SYSCORv35.1.3\lib\net20\System.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <HintPath Condition=" '$(Platform)' != 'xp86' ">C:\Program Files %28x86%29\Reference Assemblies\Microsoft\Framework\v3.5\System.Data.DataSetExtensions.dll</HintPath>
+      <HintPath Condition=" '$(Platform)' == 'xp86' ">C:\Program Files\Reference Assemblies\Microsoft\Framework\v3.5\System.Data.DataSetExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\..\Project\packages\System.Data.SQLite.MSIL.1.0.88.0\lib\net20\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\..\Project\packages\System.Data.SQLite.MSIL.1.0.88.0\lib\net20\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Cor3.Core\Properties\GAsm.cs">
+      <Link>Properties\GAsm.cs</Link>
+    </Compile>
+    <Compile Include="Context\CategoryMode.cs" />
+    <Compile Include="Context\DatabaseContext.cs">
+      <DependentUpon>QueryDatabaseContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Context\DatabaseContextCollection.cs">
+      <DependentUpon>QueryDatabaseContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Context\QueryContextInfo.cs" />
+    <Compile Include="Context\IDatabaseContext.cs">
+      <DependentUpon>QueryDatabaseContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Context\IQueryContext1.cs">
+      <DependentUpon>QueryContext`4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Context\IQueryContext2.cs">
+      <DependentUpon>QueryContext`4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Context\OleDbContext.cs">
+      <DependentUpon>QueryContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Context\OrderMode.cs" />
+    <Compile Include="Context\QueryContext.cs">
+      <DependentUpon>QueryContext`4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Context\QueryCollection.cs" />
+    <Compile Include="Context\QueryContext`4.cs" />
+    <Compile Include="Context\QueryDatabaseContext.cs">
+      <DependentUpon>QueryContextInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Context\SqlContext.cs">
+      <DependentUpon>QueryContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Context\SQLiteContext.cs">
+      <DependentUpon>QueryContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Engine\Access10.cs" />
+    <Compile Include="Engine\DataAbstract.cs" />
+    <Compile Include="Engine\MySqlDbA.cs" />
+    <Compile Include="Engine\SqlDbA.cs" />
+    <Compile Include="Engine\SQLiteDb.cs" />
+    <Compile Include="Engine\SqlServerConnectionType.cs" />
+    <Compile Include="Engine\SqlServerDb.cs" />
+    <Compile Include="Engine\TableParams.cs" />
+    <Compile Include="Extensions\DataTemplateExtensions.cs" />
+    <Compile Include="Extensions\GeneralDataExtensions.cs" />
+    <Compile Include="Extensions\DataSetExtensions.cs" />
+    <Compile Include="Extensions\System.FieldStringExtension.cs" />
+    <Compile Include="Extensions\System.Cor3.Data.QueryStringExtension.cs" />
+    <Compile Include="Messages.Designer.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\BindingFlag.cs" />
+    <Compile Include="Reflection\MarshalByRefType.cs">
+      <DependentUpon>ReferenceAppDomain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reflection\ReferenceAppDomain.cs" />
+    <Compile Include="ResourceUtil.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DataAbstract\ColumnInfo.cs" />
+    <Compile Include="Settings\SQLiteSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Context" />
+    <Folder Include="Engine" />
+    <Folder Include="Extensions" />
+    <Folder Include="DataAbstract" />
+    <Folder Include="Settings" />
+    <Folder Include="Reflection" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cor3.Core\System.Cor3-Net20.csproj">
+      <Project>{A2CF282B-96A1-4B49-AAA2-4E3711F7D8A3}</Project>
+      <Name>System.Cor3-Net20</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

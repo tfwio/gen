@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{628A05D7-2732-4A7E-B91E-666BD2C7B00A}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Gen</RootNamespace>
+    <AssemblyName>gen</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SignAssembly>True</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <OutputPath>$(SolutionDir)\..\build\$(Configuration)\</OutputPath>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <AsmRef>..\..\project\asmref</AsmRef>
+    <AssemblyOriginatorKeyFile>cor3.snk</AssemblyOriginatorKeyFile>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <ApplicationIcon>..\.src-tool\Source\_rc\appbar.shuffle.ico</ApplicationIcon>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE;CONSOLE;isgentool;NCORE</DefineConstants>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <StartAction>Project</StartAction>
+    <StartArguments>-it "Schematics/my.xtpl" -is "Schematics/my.xdata" -dbn "Calibre" -tbln "books" -tpln "js.calibre-models" -o "model.js"</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>PdbOnly</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE;isgentool;NCORE</DefineConstants>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Win32' ">
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Win64' ">
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x64</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win64'">
+    <OutputPath>..\build\Release-x64\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DefineConstants>TRACE;isgentool;NCORE;LIBGEN</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win64'">
+    <OutputPath>..\build\Debug-x64\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DefineConstants>TRACE;DEBUG;CONSOLE;isgentool;NCORE;LIBGEN</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">
+    <Prefer32Bit>false</Prefer32Bit>
+    <OutputPath>..\build\Debug-Win32\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
+    <Prefer32Bit>false</Prefer32Bit>
+    <OutputPath>..\build\Release-Win32\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Messages.Designer.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Source\AccessDataFactory.cs" />
+    <Compile Include="Source\ActionFactory.cs" />
+    <Compile Include="Source\BasicDataFactory.cs" />
+    <Compile Include="Source\Elements.Basic\DatabaseChildElement.cs" />
+    <Compile Include="Source\Elements.Basic\DataMapElement.cs" />
+    <Compile Include="Source\Elements.Basic\FieldReference.cs" />
+    <Compile Include="Source\Elements.Basic\IDataView.cs" />
+    <Compile Include="Source\Elements.Basic\UniqueKey.cs" />
+    <Compile Include="Source\Elements\DatabaseCollection.cs" />
+    <Compile Include="Source\Elements\DatabaseElement.cs" />
+    <Compile Include="Source\Elements\DataViewElement.cs" />
+    <Compile Include="Source\Elements\DataViewLink.cs" />
+    <Compile Include="Source\Elements\FieldElement.cs" />
+    <Compile Include="Source\Elements\GeneratorConfig.cs" />
+    <Compile Include="Source\Elements\QueryElement.cs" />
+    <Compile Include="Source\Elements\ReferenceAssemblyElement.cs" />
+    <Compile Include="Source\Elements\RegularExpressionElement.cs" />
+    <Compile Include="Source\Elements\SimpleQueryElement.cs" />
+    <Compile Include="Source\Elements\TableElement.cs" />
+    <Compile Include="Source\Elements\TemplateElement.cs" />
+    <Compile Include="Source\Elements\WinForms\DatabaseCollection.cs" />
+    <Compile Include="Source\Elements\WinForms\DatabaseElement.cs" />
+    <Compile Include="Source\Elements\WinForms\DataViewElement.Forms.cs" />
+    <Compile Include="Source\Elements\WinForms\FieldElement.cs" />
+    <Compile Include="Source\Elements\WinForms\QueryElement.cs" />
+    <Compile Include="Source\Elements\WinForms\ReferenceAssemblyElement.cs" />
+    <Compile Include="Source\Elements\WinForms\SimpleQueryElement.cs" />
+    <Compile Include="Source\Elements\WinForms\TableElement.cs" />
+    <Compile Include="Source\Export\DataCfg.cs" />
+    <Compile Include="Source\Export\GeneratorContextClass.cs" />
+    <Compile Include="Source\Export\Intrinsic\IDatabaseCollection.cs" />
+    <Compile Include="Source\Export\Intrinsic\IDatabaseContext.cs" />
+    <Compile Include="Source\Export\Intrinsic\IDataConfig.cs" />
+    <Compile Include="Source\Export\Intrinsic\IDbConfiguration.cs" />
+    <Compile Include="Source\Export\Intrinsic\IDbConfiguration4.cs" />
+    <Compile Include="Source\Export\Intrinsic\IDbSelection.cs" />
+    <Compile Include="Source\Export\Intrinsic\IFactory.cs" />
+    <Compile Include="Source\Export\Intrinsic\IGeneratorContext.cs" />
+    <Compile Include="Source\Export\Intrinsic\ITemplateContext.cs" />
+    <Compile Include="Source\Export\Intrinsic\ITemplateSelection.cs" />
+    <Compile Include="Source\Extensions\AccessDataExtension.cs" />
+    <Compile Include="Source\Extensions\FileSaveExtensions.cs" />
+    <Compile Include="Source\Extensions\MatchExtension.cs" />
+    <Compile Include="Source\Extensions\SchemaExtension.cs" />
+    <Compile Include="Source\Extensions\XHelpers.cs" />
+    <Compile Include="Source\IDataFactory.cs" />
+    <Compile Include="Source\ImageKeyNames.cs" />
+    <Compile Include="Source\Parser\Enumerations.cs" />
+    <Compile Include="Source\Parser\FieldMatch.cs" />
+    <Compile Include="Source\Parser\GeneratorParser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\Parser\ParserHelper.cs" />
+    <Compile Include="Source\Parser\ParseUtil.cs" />
+    <Compile Include="Source\Parser\REPLACEMENT.cs" />
+    <Compile Include="Source\Parser\SchemaStateViewBase.cs" />
+    <Compile Include="Source\Parser\SqlTemplateParser.cs" />
+    <Compile Include="Source\Parser\StrKeys.cs" />
+    <Compile Include="Source\Parser\TemplateFactory.cs" />
+    <Compile Include="Source\Parser\TemplateModel.cs" />
+    <Compile Include="Source\Parser\tempmatch.cs" />
+    <Compile Include="Source\Parser\TypeResolutionClass.cs" />
+    <Compile Include="Source\QueryDataContext.cs" />
+    <Compile Include="Source\SqlDataFactory.cs" />
+    <Compile Include="Source\SQLiteDataFactory.cs" />
+    <Compile Include="Source\SQLiteOperations.cs" />
+    <Compile Include="Source\TemplateManager.cs" />
+    <Compile Include="Source\TemplateModel\MarkupTemplate.cs" />
+    <Compile Include="Source\TemplateModel\TableTemplate.cs" />
+    <Compile Include="Source\TemplateModel\TemplateCollection.cs" />
+    <Compile Include="Source\TemplateModel\TemplateStrategy\QuickMatch.cs" />
+    <Compile Include="Source\TemplateModel\TemplateStrategy\TemplateReferenceUtil.cs" />
+    <Compile Include="Source\TemplateUtil.cs" />
+    <Compile Include="Source\Types\AccessTypeResolution.cs" />
+    <Compile Include="Source\Types\ACE\AceTypeConverter.cs" />
+    <Compile Include="Source\Types\ActionTypes.cs" />
+    <Compile Include="Source\Types\ADO\AccessDataTypes.cs" />
+    <Compile Include="Source\Types\AS3\As3TypeProvider.cs" />
+    <Compile Include="Source\Types\AS3\FlashNativeTypes.cs" />
+    <Compile Include="Source\Types\ConnectionType.cs" />
+    <Compile Include="Source\Types\DatabaseTypes.cs" />
+    <Compile Include="Source\Types\DotNet\NativeTypes.cs" />
+    <Compile Include="Source\Types\DotNet\ReferenceAsmContextTypes.cs" />
+    <Compile Include="Source\Types\ExtJs\ExtJsFieldType.cs" />
+    <Compile Include="Source\Types\ExtJs\ExtJsFieldTypeProvider.cs" />
+    <Compile Include="Source\Types\ExtJs\ExtJsRecordFieldType.cs" />
+    <Compile Include="Source\Types\ExtJs\ExtJsRecordFieldTypeConverter.cs" />
+    <Compile Include="Source\Types\ExtJs\ExtJsRecordFieldTypeProvider.cs" />
+    <Compile Include="Source\Types\GeneratorTypeConverter.cs" />
+    <Compile Include="Source\Types\InfoCollectionViewTypes.cs" />
+    <Compile Include="Source\Types\InfoStringTypes.cs" />
+    <Compile Include="Source\Types\Net\WebElementType.cs" />
+    <Compile Include="Source\Types\Net\WebFormAttributeType.cs" />
+    <Compile Include="Source\Types\Net\WebFormInputAttributeType.cs" />
+    <Compile Include="Source\Types\Net\WebFormTypes.cs" />
+    <Compile Include="Source\Types\NullableTypeUtility.cs" />
+    <Compile Include="Source\Types\OutputTypes.cs" />
+    <Compile Include="Source\Types\Parser\TemplateSyntaxType.cs" />
+    <Compile Include="Source\Types\Provider\EnumProvider.cs" />
+    <Compile Include="Source\Types\Provider\GeneratorDateTimeFieldProvider.cs" />
+    <Compile Include="Source\Types\Provider\GeneratorTypeProvider.cs" />
+    <Compile Include="Source\Types\SCHEMA\SchemaMapTypes.cs" />
+    <Compile Include="Source\Types\TSQL\TSQLConverter.cs" />
+    <Compile Include="Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include=".gen">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Source\Parser\TemplateFactory_NonStatic.cs" />
+    <None Include="cor3.data\Reflection\readme.md" />
+    <None Include="cor3\Clew.cs" />
+    <Compile Include="cor3.data\Context\CategoryMode.cs" />
+    <Compile Include="cor3.data\Context\DatabaseContext.cs">
+      <DependentUpon>QueryDatabaseContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\DatabaseContextCollection.cs">
+      <DependentUpon>QueryDatabaseContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\IDatabaseContext.cs">
+      <DependentUpon>QueryDatabaseContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\IQueryContext1.cs">
+      <DependentUpon>QueryContext`4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\IQueryContext2.cs">
+      <DependentUpon>QueryContext`4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\OleDbContext.cs" />
+    <Compile Include="cor3.data\Context\OrderMode.cs" />
+    <Compile Include="cor3.data\Context\QueryCollection.cs" />
+    <Compile Include="cor3.data\Context\QueryContext.cs">
+      <DependentUpon>QueryContext`4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\QueryContextInfo.cs" />
+    <Compile Include="cor3.data\Context\QueryContext`4.cs" />
+    <Compile Include="cor3.data\Context\QueryDatabaseContext.cs">
+      <DependentUpon>QueryContextInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\SqlContext.cs">
+      <DependentUpon>QueryContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Context\SQLiteContext.cs">
+      <DependentUpon>QueryContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\DataAbstract\ColumnInfo.cs" />
+    <Compile Include="cor3.data\DataAbstract\DataAbstract.cs" />
+    <Compile Include="cor3.data\Engine\Access10.cs" />
+    <Compile Include="cor3.data\Engine\MySqlDbA.cs" />
+    <Compile Include="cor3.data\Engine\SqlDbA.cs" />
+    <Compile Include="cor3.data\Engine\SQLiteDb.cs" />
+    <Compile Include="cor3.data\Engine\SqlServerDb.cs" />
+    <Compile Include="cor3.data\Extensions\DataSetExtensions.cs" />
+    <Compile Include="cor3.data\Extensions\DataTemplateExtensions.cs" />
+    <Compile Include="cor3.data\Extensions\GeneralDataExtensions.cs" />
+    <Compile Include="cor3.data\Extensions\System.Cor3.Data.QueryStringExtension.cs" />
+    <Compile Include="cor3.data\Extensions\System.FieldStringExtension.cs" />
+    <Compile Include="cor3.data\Reflection\MarshalByRefType.cs">
+      <DependentUpon>ReferenceAppDomain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cor3.data\Reflection\ReferenceAppDomain.cs" />
+    <Compile Include="cor3.data\ResourceUtil.cs" />
+    <Compile Include="cor3.data\Settings\SQLiteSettings.cs" />
+    <Compile Include="cor3.parsers\INIParser.cs" />
+    <Compile Include="cor3.parsers\ITextRange.cs" />
+    <Compile Include="cor3.parsers\ParserBlock.cs" />
+    <Compile Include="cor3.parsers\ParserTypes.cs" />
+    <Compile Include="cor3.parsers\RangeBlock.cs" />
+    <Compile Include="cor3.parsers\StringRange.cs" />
+    <Compile Include="cor3.parsers\TextRange.cs" />
+    <Compile Include="cor3.parsers\UnicodeSpaceType.cs" />
+    <Compile Include="cor3\DICT.cs" />
+    <Compile Include="cor3\ErrorMessage.cs" />
+    <Compile Include="cor3\Extensions\EnumHelper.cs" />
+    <Compile Include="cor3\Extensions\FileSystemExtensions.cs" />
+    <Compile Include="cor3\Extensions\PropertyInfoHelper.cs" />
+    <Compile Include="cor3\Extensions\VariousStringExtensions.cs" />
+    <Compile Include="cor3\ini.cs" />
+    <None Include="cor3\ITaskContext.cs" />
+    <Compile Include="cor3\last_addon.cs" />
+    <Compile Include="cor3\Logger.cs" />
+    <Compile Include="cor3\MessageType.cs" />
+    <Compile Include="cor3\Serial.cs" />
+    <Compile Include="cor3\SimpleProgressEventArgs.cs" />
+    <Compile Include="cor3\XLog.cs" />
+    <Compile Include="cor3\XLogEventArgs.cs" />
+    <Compile Include="gen.src\Commander.cs" />
+    <Compile Include="gen.src\GeneratorApplication.cs" />
+    <Compile Include="gen.src\GeneratorModel.cs" />
+    <Compile Include="gen.src\GeneratorReader.cs" />
+    <Compile Include="gen.src\GenSettings.cs" />
+    <Compile Include="gen.src\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="app.config" />
+    <None Include="cor3.snk" />
+    <None Include="Schematics\data-field-input.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\my.generator-config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\my.xdata">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\my.xtpl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\Template-Tags.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="test-dbg.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser">
+      <Version>2.9.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite">
+      <Version>1.0.117</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx" />
+    <EmbeddedResource Include="Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\build\net40\System.Data.SQLite.Core.targets')" />
+</Project>

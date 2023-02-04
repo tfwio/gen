@@ -8,3 +8,5 @@ bin-core
 /build
 /.src-lib/model.js
 /.src-lib/packages
+/.sln/.vs
+/.sln/MigrationBackup

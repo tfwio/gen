@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Tbl DatabaseCollection" xml:space="preserve">
+    <value>&lt;?xml version="1.0"&gt;
+&lt;DatabaseCollection&gt;{inner-content}
+&lt;/DatabaseCollection&gt;
+</value>
+  </data>
+  <data name="Tbl DatabaseElement" xml:space="preserve">
+    <value>&lt;?xml version="1.0"&gt;
+&lt;Database&gt;{inner-content}
+&lt;/Database&gt;</value>
+  </data>
+  <data name="Tbl TableElement" xml:space="preserve">
+    <value>
+	&lt;Table Name="%TABLE_NAME%" PrimaryKey="%PKUNKNOWN%"&gt;{inner-content}
+	&lt;/Table&gt;</value>
+  </data>
+  <data name="Tbl FieldElement" xml:space="preserve">
+    <value>
+		&lt;Field
+			DataName="%COLUMN_NAME%"
+			NativeType="%NATIVE_TYPE%"
+			DataType="%DATA_TYPE%"
+			IsNullable="%IS_NULLABLE%"
+			MaxLength="%CHARACTER_MAXIMUM_LENGTH%"
+		/&gt;</value>
+  </data>
+  <data name="Schema Access Fields" xml:space="preserve">
+    <value>MSysAccessStorage,MSysAccessXML,MSysACEs,MSysCompactError,MSysIMEXColumns,MSysIMEXSpecs,MSysModules,MSysModules2,MSysNavPaneGroupCategories,MSysNavPaneGroups,MSysNavPaneGroupToObjects,MSysNavPaneObjectIDs,MSysObjects,MSysQueries,MSysRelationships</value>
+  </data>
+  <data name="Xml DatabaseCollection" xml:space="preserve">
+    <value>&lt;?xml version="1.0"&gt;
+&lt;DatabaseCollection&gt;{inner-content}
+&lt;/DatabaseCollection&gt;</value>
+  </data>
+  <data name="Xml Table" xml:space="preserve">
+    <value>
+	&lt;Table Name=""%TABLE_NAME%"" PrimaryKey=""%PKUNKNOWN%""&gt;{inner-content}
+	&lt;/Table&gt;</value>
+  </data>
+  <data name="Xml Field" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Xml Database" xml:space="preserve">
+    <value>&lt;?xml version="1.0"&gt;
+&lt;Database&gt;{inner-content}
+&lt;/Database&gt;</value>
+  </data>
+  <data name="TypeNames Ace" xml:space="preserve">
+    <value>AutoIncr,Currency,DateTime,Memo,Number,Ole,Hyperlink,Text,YesNo</value>
+  </data>
+  <data name="Schema Columns" xml:space="preserve">
+    <value>Columns</value>
+  </data>
+  <data name="Schema DataTypes" xml:space="preserve">
+    <value>DataTypes</value>
+  </data>
+  <data name="Schema Tables" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+  <data name="Schema Procedures" xml:space="preserve">
+    <value>Procedures</value>
+  </data>
+  <data name="Schema Indexes" xml:space="preserve">
+    <value>Indexes</value>
+  </data>
+  <data name="Schema Views" xml:space="preserve">
+    <value>Views</value>
+  </data>
+  <data name="Schema Restrictions" xml:space="preserve">
+    <value>Restrictions</value>
+  </data>
+  <data name="Schema ReservedWords" xml:space="preserve">
+    <value>ReservedWords</value>
+  </data>
+  <data name="Filter Generator Config" xml:space="preserve">
+    <value>generator-config|*.generator-config;|All Files|*</value>
+  </data>
+  <data name="Filter Xml Template" xml:space="preserve">
+    <value>Xml Template File|*.xtpl|Xml File|*.xml|All Files|*</value>
+  </data>
+  <data name="Filter Database Config" xml:space="preserve">
+    <value>Xml Database Configuration|*.xdata|Xml File|*.xml|Known Xml Data-Config|*.xml;*.xdata|All Files|*</value>
+  </data>
+  <data name="Regex Field Template Tag" xml:space="preserve">
+    <value>\$\((set\w*|begin\w*|end\w*|print\w*|Table\w*|Field\w*)\:(?&lt;innerElement&gt;[^\)]+)\)</value>
+  </data>
+  <data name="LogTable_Format" xml:space="preserve">
+    <value>Table: “{0}”</value>
+  </data>
+  <data name="LogFactoryConvert_Title" xml:space="preserve">
+    <value>TemplateFactory.ConvertInput</value>
+  </data>
+  <data name="MsgDatabaseOrTableNullError_Title" xml:space="preserve">
+    <value>Error finding database or table for view.</value>
+  </data>
+  <data name="MsgDatabaseOrTableNullError_Message" xml:space="preserve">
+    <value>Exiting generation...</value>
+  </data>
+  <data name="MsgDatabaseOrTableNullError_Exception" xml:space="preserve">
+    <value>Error finding database or table for view.</value>
+  </data>
+  <data name="Factory_AcTable" xml:space="preserve">
+    <value>Table;TableName;tablename;TableNameC;TableNameClean;tablenameclean;TableNameCClean;TableCleanName;TableCleanNameC;TableType;tabletype</value>
+  </data>
+  <data name="Factory_AcField" xml:space="preserve">
+    <value>FieldValues;FieldValues,Cdf;FieldValuesNK;FieldValuesNK,Cdf;PKDataName;PKDataType;PKDataTypeNative;PKNativeNullType;PKNativeNullValue;PKDescription;PKDataNameC;PKCleanName;PKCleanName,Nodash;PKFriendlyName;PKFriendlyNameC</value>
+  </data>
+  <data name="Factory_AcData" xml:space="preserve">
+    <value>DbType;FriendlyName</value>
+  </data>
+  <data name="Factory_AcPkType" xml:space="preserve">
+    <value>PKDataName;PKDataType;PKDataTypeNative;PKDescription</value>
+  </data>
+  <data name="Factory_AcAdapt" xml:space="preserve">
+    <value>AdapterNs;AdapterT;AdapterNsT;CommandNs;CommandT;CommandNsT;ConnectionT;ConnectionNsT;ConnectionNs;ReaderNs;ReaderT;ReaderNsT;ParameterT</value>
+  </data>
+  <data name="Factory_AcPrime" xml:space="preserve">
+    <value>PK;pk;PrimaryKey;PrimaryKeyCleanC</value>
+  </data>
+  <data name="Factory_AcTypes" xml:space="preserve">
+    <value>CleanName;FriendlyName;FriendlyNameC;DataType;datatype;DataTypeNative;datatypenative;FlashDataType;DataName;dataname;DataNameC;FormatString;FormType;ActionType;max;Max;LMAX;nmax;smax;MaxLength;IsString;IsBool;IsNum;Native;UseFormat;IsNullable;NativeNullType;NativeNullValue;DataTypeNullable;FieldIndex;Description;DefaultValue</value>
+  </data>
+  <data name="Factory_AcErratum" xml:space="preserve">
+    <value>Date;Time;DateTime</value>
+  </data>
+</root>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{53FB8C4C-AF75-46FF-8357-DE7E130FE5FA}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -15,9 +15,10 @@
     <NoStdLib>False</NoStdLib>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <OutputPath>$(SolutionDir)\..\build\$(Configuration)-$(Platform)\bin</OutputPath>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <NoWin32Manifest>False</NoWin32Manifest>
     <IntermediateOutputPath>$(SolutionDir)\..\build\obj\$(Configuration)-$(Platform)-gen-so\</IntermediateOutputPath>
     <AsmRef>..\..\project\asmref</AsmRef>
@@ -53,33 +54,39 @@
   <PropertyGroup Condition=" '$(Platform)' == 'Win64' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Optimize>false</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win32' ">
     <Optimize>False</Optimize>
     <OutputPath>build\Debug-Win32\bin</OutputPath>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <AssemblyOriginatorKeyFile>cor3.snk</AssemblyOriginatorKeyFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win64' ">
     <Optimize>false</Optimize>
     <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' ">
     <OutputPath>build\Release-Win32\bin</OutputPath>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <PlatformTarget>x86</PlatformTarget>
     <AssemblyOriginatorKeyFile>cor3.snk</AssemblyOriginatorKeyFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win64' ">
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandLine">
-      <HintPath>..\.sln\packages\CommandLineParser.2.3.0\lib\net40\CommandLine.dll</HintPath>
+    <Reference Include="CommandLine, Version=2.9.1.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
+      <HintPath>..\.sln\packages\CommandLineParser.2.9.1\lib\net461\CommandLine.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -262,7 +269,9 @@
     <Compile Include="Source\Extensions\FileSaveExtensions.cs" />
     <Compile Include="Source\Parser\Enumerations.cs" />
     <Compile Include="Source\Parser\FieldMatch.cs" />
-    <Compile Include="Source\Parser\GeneratorParser.cs" />
+    <Compile Include="Source\Parser\GeneratorParser.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\Parser\ParserHelper.cs" />
     <Compile Include="Source\Parser\ParseUtil.cs" />
     <Compile Include="Source\Parser\TemplateFactory.cs" />
@@ -316,36 +325,17 @@
     <Compile Include="Messages.Designer.cs">
       <DependentUpon>Messages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Strings.Designer.cs">
       <DependentUpon>Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="cor3.snk" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="gen.src" />
-    <Folder Include=".poc" />
-    <Folder Include="Schematics" />
-    <Folder Include="cor3.data" />
-    <Folder Include="cor3.data\Context" />
-    <Folder Include="cor3.data\DataAbstract" />
-    <Folder Include="cor3.data\Engine" />
-    <Folder Include="cor3.data\Extensions" />
-    <Folder Include="cor3.data\Reflection" />
-    <Folder Include="cor3.data\Settings" />
-    <Folder Include="cor3.parsers" />
-    <Folder Include="cor3" />
-    <Folder Include="cor3\Extensions" />
-    <Folder Include="Source" />
-    <Folder Include="Source\Elements.Basic" />
-    <Folder Include="Source\Elements\WinForms" />
-    <Folder Include="Source\Export\Intrinsic" />
-    <Folder Include="Source\Export" />
-    <Folder Include="Source\Parser" />
-    <Folder Include="Source\Types\Provider" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Messages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

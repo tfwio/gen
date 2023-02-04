@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<DatabaseCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Database ConnectionType="SQLite" Name="GoMmdFs">
+    <Table Name="DirectoryItem" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="int64" DataName="id" IsArray="false" Description="Describes a record by id; &#xD;&#xA;This is only used to assert/retrieve a record in SQL database." DefaultValue="" CodeBlock="id" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="int64" DataName="pid" IsArray="false" Description="Describes a record by id; &#xD;&#xA;This is only used to assert/retrieve a record in SQL database." DefaultValue="" CodeBlock="id" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="Name" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="SHA1" IsArray="false" Description="the file-extension." DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="fullPath" IsArray="false" Description="the meta-type identefier." DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="shortPath" IsArray="false" Description="the meta-type identefier." DefaultValue="DBNull.Value" />
+    </Table>
+    <Table Name="FileItem" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="int64" DataName="id" IsArray="false" Description="Describes a record by id; &#xD;&#xA;This is only used to assert/retrieve a record in SQL database." DefaultValue="" CodeBlock="id" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="int64" DataName="pid" IsArray="false" Description="Describes a record by id; &#xD;&#xA;This is only used to assert/retrieve a record in SQL database." DefaultValue="" CodeBlock="id" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="Name" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="SHA1" IsArray="false" Description="the file-extension." DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="fullPath" IsArray="false" Description="the meta-type identefier." DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="VARCHAR" DataTypeNative="string" DataName="shortPath" IsArray="false" Description="the meta-type identefier." DefaultValue="DBNull.Value" />
+    </Table>
+  </Database>
+  <Database ConnectionType="OleDb" Name="Calibre-UI">
+    <Table Name="books-menu1" PrimaryKey="Library, Comic" DbType="SQLite">
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, Comic" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, DEV" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, Ebook" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, Fiction" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, Mag" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, New" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, SSOC" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, The" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, Topical" IsArray="false" DefaultValue="DBNull.Value" />
+    </Table>
+  </Database>
+  <Database ConnectionType="SQLite" Name="Calibre">
+    <Table Name="books-menu" PrimaryKey="Library, Comic" DbType="SQLite">
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, Comic" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, DEV" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, Ebook" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, Fiction" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, Mag" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, New" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, SSOC" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, The" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="Library, Topical" IsArray="false" DefaultValue="DBNull.Value" />
+    </Table>
+    <Table Name="books" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="id" IsArray="false" Description="FileName: PackInfo.xml&#xD;&#xA;Root: OrphalesPackData" DefaultValue="DBNull.Value" BlockAction="HIDDEN" CodeBlock="" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="title" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="sort" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="timestamp" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="DateTime" DataTypeNative="DateTime" DataName="pubdate" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="Double" DataTypeNative="Double" DataName="series_index" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="author_sort" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="isbn" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="lccn" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="path" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="flags" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="uuid" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="Boolean" DataTypeNative="Boolean" DataName="has_cover" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="DateTime" DataTypeNative="DateTime" DataName="last_modified" IsArray="false" DefaultValue="DBNull.Value" />
+    </Table>
+    <Table Name="data" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="id" IsArray="false" Description="" DefaultValue="DBNull.Value" BlockAction="HIDDEN" CodeBlock="" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="book" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="format" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="String" DataName="uncompressed_size" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="name" IsArray="false" DefaultValue="DBNull.Value" />
+    </Table>
+    <Table Name="comments" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="id" IsArray="false" Description="" DefaultValue="DBNull.Value" BlockAction="HIDDEN" CodeBlock="" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="book" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="text" IsArray="false" DefaultValue="DBNull.Value" />
+    </Table>
+    <Table Name="authors" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="id" IsArray="false" Description="" DefaultValue="DBNull.Value" BlockAction="HIDDEN" CodeBlock="" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="name" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="sort" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="link" IsArray="false" DefaultValue="DBNull.Value" />
+    </Table>
+    <Table Name="books_authors_link" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="id" IsArray="false" Description="" DefaultValue="DBNull.Value" BlockAction="HIDDEN" CodeBlock="" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="book" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="author" IsArray="false" DefaultValue="DBNull.Value" />
+    </Table>
+    <Table Name="publishers" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="id" IsArray="false" Description="" DefaultValue="DBNull.Value" BlockAction="HIDDEN" CodeBlock="" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="name" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="sort" IsArray="false" DefaultValue="DBNull.Value" />
+    </Table>
+    <Table Name="books_publishers_link" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="id" IsArray="false" Description="" DefaultValue="DBNull.Value" BlockAction="HIDDEN" CodeBlock="" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="book" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="publisher" IsArray="false" DefaultValue="DBNull.Value" />
+    </Table>
+    <Table Name="tags" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="id" IsArray="false" Description="" DefaultValue="DBNull.Value" BlockAction="HIDDEN" CodeBlock="" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="name" IsArray="false" DefaultValue="DBNull.Value" />
+    </Table>
+    <Table Name="books_tags_link" PrimaryKey="id" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="id" IsArray="false" Description="" DefaultValue="DBNull.Value" BlockAction="HIDDEN" CodeBlock="" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="book" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="tag" IsArray="false" DefaultValue="DBNull.Value" />
+    </Table>
+    <Table Name="BookView" PrimaryKey="book" DbType="SQLite">
+      <Field Tags="" DataType="INTEGER" DataTypeNative="Int64" DataName="book" IsArray="false" Description="" DefaultValue="DBNull.Value" BlockAction="HIDDEN" CodeBlock="" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="book_title" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="book_sort" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="added" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="pubdate" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="path" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="text" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="author" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="author_sort" IsArray="false" DefaultValue="DBNull.Value" />
+      <Field Tags="" DataType="TEXT" DataTypeNative="String" DataName="format" IsArray="false" DefaultValue="DBNull.Value" />
+    </Table>
+  </Database>
+</DatabaseCollection>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0"?>
+<GeneratorTags>
+	<group name="Erratum" description="">
+		<tag name="Date" description="" />
+		<tag name="Time" />
+		<tag name="DateTime" />
+	</group>
+	<group name="Adapt">
+		<tag name="AdapterNs" />
+		<tag name="AdapterT" />
+		<tag name="AdapterNsT" />
+		<tag name="CommandNs" />
+		<tag name="CommandT" />
+		<tag name="CommandNsT" />
+		<tag name="ConnectionT" />
+		<tag name="ConnectionNsT" />
+		<tag name="ConnectionNsNs" />
+		<tag name="ReaderNs" />
+		<tag name="ReaderT" />
+		<tag name="ReaderNsT" />
+		<tag name="ParameterT" />
+	</group>
+	<group name="Data">
+		<tag name="DbType" />
+		<tag name="FriendlyName" />
+	</group>
+	<group name="Field">
+		<tag name="FieldValues" />
+		<tag name="FieldValues,Cdf" />
+		<tag name="FieldValuesNK" />
+		<tag name="FieldValuesNK,Cdf" />
+		<tag name="PKDataName" />
+		<tag name="PKDataType" />
+		<tag name="PKDataTypeNative" />
+		<tag name="PKNativeNullType" />
+		<tag name="PKNativeNullValue" />
+		<tag name="PKDescription" />
+		<tag name="PKDataNameC" />
+		<tag name="PKCleanName" />
+		<tag name="PKCleanName,Nodash" />
+		<tag name="PKFriendlyName" />
+		<tag name="PKFriendlyNameC" />
+	</group>
+	<group name="PrimaryKey">
+		<tag name="PKDataName" />
+		<tag name="PKDataType" />
+		<tag name="PKDataTypeNative" />
+		<tag name="PKDescription" />
+	</group>
+	<group name="Primary">
+		<tag name="PK" />
+		<tag name="pk" />
+		<tag name="PrimaryKey" />
+		<tag name="PrimaryKeyCleanC" />
+	</group>
+	<group name="Table">
+		<tag name="Table" />
+		<tag name="TableName" />
+		<tag name="tablename" />
+		<tag name="TableNameC" />
+		<tag name="TableNameClean" />
+		<tag name="tablenameclean" />
+		<tag name="TableNameCClean" />
+		<tag name="TableCleanName" />
+		<tag name="TableCleanNameC" />
+		<tag name="TableType" />
+		<tag name="tabletype" />
+	</group>
+	<group name="Types">
+		<tag name="CleanName" />
+		<tag name="FriendlyName" />
+		<tag name="FriendlyNameC" />
+		<tag name="DataType" />
+		<tag name="datatype" />
+		<tag name="DataTypeNative" />
+		<tag name="datatypenative" />
+		<tag name="FlashData" />
+		<tag name="DataName" />
+		<tag name="dataname" />
+		<tag name="DataNameC" />
+		<tag name="FormatString" />
+		<tag name="FormType" />
+		<tag name="ActionType" />
+		<tag name="max" />
+		<tag name="Max" />
+		<tag name="LMAX" />
+		<tag name="nmax" />
+		<tag name="smax" />
+		<tag name="MaxLength" />
+		<tag name="IsString" />
+		<tag name="IsBool" />
+		<tag name="IsNum" />
+		<tag name="Native" />
+		<tag name="UseFormat" />
+		<tag name="IsNullable" />
+		<tag name="NativeNullType" />
+		<tag name="NativeNullValue" />
+		<tag name="DataTypeNullable" />
+		<tag name="FieldIndex" />
+		<tag name="Description" />
+		<tag name="DefaultValue" />
+	</group>
+</GeneratorTags>

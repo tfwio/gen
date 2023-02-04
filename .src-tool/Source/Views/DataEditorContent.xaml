@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:veu="clr-namespace:GeneratorTool.Views.Controls"
-             xmlns:g="clr-namespace:Generator;assembly=Gen.Lib"
+             xmlns:g="clr-namespace:Generator;assembly=Gen.App.Lib"
              mc:Ignorable="d">
   <!--<UserControl.Resources>
 		<ResourceDictionary>

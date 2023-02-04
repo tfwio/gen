@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{B29A02FB-0D40-401C-8005-2B2A6B86AFFA}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,7 +7,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>GeneratorTool</RootNamespace>
     <AssemblyName>GeneratorUI</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <Utf8Output>true</Utf8Output>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
@@ -25,6 +25,7 @@
     <ApplicationIcon>Source\_rc\appbar.shuffle.ico</ApplicationIcon>
     <AsmRef>..\.asm-ref</AsmRef>
     <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -73,6 +74,18 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <BaseAddress>4194304</BaseAddress>
     <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">
+    <OutputPath>..\build\Debug-Win32\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
+    <OutputPath>..\build\Release-Win32\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win64'">
+    <OutputPath>..\build\Release-x64\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win64'">
+    <OutputPath>..\build\Debug-x64\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AvalonDock">
@@ -255,6 +268,7 @@
     <Compile Include="Resource.Designer.cs">
       <DependentUpon>Resource.resx</DependentUpon>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -273,17 +287,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Source\Model" />
-    <Folder Include="Source\SQL" />
-    <Folder Include="Source\Utility" />
-    <Folder Include="Source\UI" />
-    <Folder Include="Source\_rc" />
-    <Folder Include="Source\Views" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\.src-lib\gen.lib.csproj">
+    <ProjectReference Include="..\.src-lib\Gen.App.Lib.csproj">
       <Project>{a07ee6f0-10f1-44b4-98b0-705634f22510}</Project>
-      <Name>gen.lib</Name>
+      <Name>Gen.App.Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

@@ -1,0 +1,21 @@
+clear 	none | left | right | both 	none 	block-level elements 	no 	N/A 	visual
+display 	inline | block | inline-block | list-item | run-in | compact | table | inline-table | table-row-group | table-header-group | table-footer-group | table-row | table-column-group | table-column | table-cell | table-caption | ruby | ruby-base | ruby-text | ruby-base-group | ruby-text-group | <template>| none 	inline 	all elements 	no 	N/A 	visual (‘none’ applies to all media)
+float 	left | right | none | <page-floats> 	none 	all, but see 9.7 	no 	N/A 	visual
+height 	<length> | <percentage> | auto 	auto 	all elements but non-replaced inline elements, table columns, and column groups 	no 	see prose 	visual
+margin 	[ <length> | <percentage> | auto ]{1,4} 	(see individual properties) 	see text 	no 	width* of containing block 	visual
+margin-top , margin-right, margin-bottom, margin-left 	<length> | <percentage> | auto 	0 	see text 	no 	width* of containing block 	visual
+marquee-direction 	forward | reverse 	reverse 	same as ‘overflow’ 	yes 	N/A 	visual
+marquee-loop 	<non-negative-integer> | infinite 	1 	same as ‘overflow’ 	no 	N/A 	visual
+marquee-speed 	slow | normal | fast 	normal 	same as ‘overflow’ 	no 	N/A 	visual
+marquee-style 	scroll | slide | alternate 	scroll 	same as ‘overflow’ 	no 	N/A 	visual
+max-width, max-height 	<length> | <percentage> | none 	none 	all elements but non-replaced inline elements, table rows, and row groups 	no 	refer to width, resp. height of containing block 	visual
+min-width, min-height 	<length> | <percentage> | inherit 	0 	all elements but non-replaced inline elements, table rows, and row groups 	no 	refer to width, resp. height of containing block 	visual
+overflow 	[ visible | hidden | scroll | auto | no-display | no-content ]{1,2} 	see individual properties 	non-replaced block-level elements and non-replaced ‘inline-block’ elements 	no 	N/A 	visual
+overflow-style 	auto | [scrollbar | panner | move | marquee] [, [scrollbar | panner | move | marquee]]* 	auto 	same as ‘overflow’ 	yes 	N/A 	visual
+overflow-x, overflow-y, 	visible | hidden | scroll | auto | no-display | no-content 	visible 	non-replaced block-level elements and non-replaced ‘inline-block’ elements 	no 	N/A 	visual
+padding 	[ <length> | <percentage> ]{1,4} 	(see individual properties) 	all elements 	no 	width* of containing block 	visual
+padding-top , padding-right, padding-bottom, padding-left 	[ <length> | <percentage> ] 	0 	all elements 	no 	width* of containing block 	visual
+rotation 	<angle> 	0 	block-level elements, inline-table and inline-block 	no 	N/A 	visual
+rotation-point 	<bg-position> 	50% 50% 	block-level elements 	no 	Width and height of border box 	visual
+visibility 	visible | hidden | collapse 	visible 	all elements 	yes 	N/A 	visual
+width 	<length> | <percentage> | auto 	auto 	all elements but non-replaced inline elements, table rows, and row groups 	no 	refer to width of containing block 	visual 

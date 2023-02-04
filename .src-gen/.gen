@@ -1,0 +1,19 @@
+{
+  "schema": "./Schematics/my.generator-config",
+  "gen": [
+    {
+      // if for some reason there are multiple templates defined
+      // within the same definition file: the first one will be used.
+      "template": "js.calibre-models",
+      // [database-id:table-id]
+      "database": "Calibre:books",
+      // if output is omitted, data will be printed to stdout
+      "output": "out.js"
+    },
+    {
+      "template": "prime.struct.Class",
+      "database": "Calibre:books",
+      "output": "out.cs"
+    }
+  ]
+}

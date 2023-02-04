@@ -1,0 +1,30 @@
+﻿<?xml version="1.0"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTarget="Build">
+	<!--<UsingTask
+		TaskName="XSD"
+		AssemblyName="Microsoft.Build.CppTasks.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+	/>-->
+	<PropertyGroup>
+		<Programs>$(programfiles)\Microsoft SDKs\Windows</Programs>
+	</PropertyGroup>
+	<!--<XmlFiles Include="GeneratorTags.xml" />-->
+	<!--F:\DEV\WIN\CS_ROOT\Projects\System.Cor3\Source-Tools\GenaratorLib.Clone\build\TemplateTag Reference\-->
+	<ItemGroup>
+		<XmlFiles Include="F:\DEV\WIN\CS_ROOT\Projects\System.Cor3\Source-Tools\GenaratorLib.Clone\build\TemplateTag Reference\GeneratorTags.xml" />
+	</ItemGroup>
+	<Target Name="Build">
+		<!--<XSD
+			Language="CS"
+			Namespace="Generator.Core"
+			Sources="@(XmlFiles)"
+			GenerateFromSchema="classes"
+		/>-->
+		<Exec
+			Command="xsd.exe /n=Generator.Core "
+			Namespace="Generator.Core"
+			Sources="@(XmlFiles)"
+			GenerateFromSchema="classes"
+		/>
+	</Target>
+
+</Project>
