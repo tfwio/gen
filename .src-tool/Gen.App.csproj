@@ -16,16 +16,31 @@
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <DelaySign>False</DelaySign>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <AssemblyOriginatorKeyFile>..\.src-lib\cor3.snk</AssemblyOriginatorKeyFile>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <StartupObject>GeneratorTool.App</StartupObject>
-    <NoWin32Manifest>False</NoWin32Manifest>
     <SignAssembly>True</SignAssembly>
     <ApplicationIcon>Source\_rc\appbar.shuffle.ico</ApplicationIcon>
     <AsmRef>..\.asm-ref</AsmRef>
     <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -88,23 +103,8 @@
     <OutputPath>..\build\Debug-x64\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AvalonDock">
-      <HintPath>..\.sln\packages\AvalonDock.Unofficial.1.3.1\lib\net40\AvalonDock.dll</HintPath>
-    </Reference>
-    <Reference Include="AvalonDock.Themes">
-      <HintPath>..\.sln\packages\AvalonDock.Unofficial.1.3.1\lib\net40\AvalonDock.Themes.dll</HintPath>
-    </Reference>
-    <Reference Include="FirstFloor.ModernUI">
-      <HintPath>..\.sln\packages\ModernUI.WPF.1.0.6\lib\net45\FirstFloor.ModernUI.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.AvalonEdit">
-      <HintPath>..\.sln\packages\AvalonEdit.5.0.2\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.SharpDevelop.Widgets">
       <HintPath>$(AsmRef)\ICSharpCode.SharpDevelop.Widgets.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\.sln\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -115,9 +115,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions">
-    </Reference>
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\lib\net45\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
@@ -273,7 +270,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
     <EmbeddedResource Include="Source\_rc\Sql.xshd" />
     <Resource Include="Source\code-variable.png" />
     <Resource Include="Source\kexi.png" />
@@ -287,11 +283,39 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AvalonDock.Unofficial">
+      <Version>1.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="AvalonEdit">
+      <Version>5.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="ModernUI.WPF">
+      <Version>1.0.9</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite.Core">
+      <Version>1.0.117</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\.src-lib\Gen.App.Lib.csproj">
       <Project>{a07ee6f0-10f1-44b4-98b0-705634f22510}</Project>
       <Name>Gen.App.Lib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
-  <Import Project="..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\.sln\packages\System.Data.SQLite.Core.1.0.105.2\build\net45\System.Data.SQLite.Core.targets')" />
 </Project>
