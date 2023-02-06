@@ -30,16 +30,16 @@ namespace System
 		/// <returns></returns>
 		static public string BackupFile(this string fileName)
 		{
-			string bname = fileName.GenerateDatedFileName();
-			if (System.IO.File.Exists(fileName))
-			{
-				System.IO.File.Copy(fileName,bname);
-			}
-			return bname;
+			var timestamped = fileName.GenerateDatedFileName();
+      if (System.IO.File.Exists(fileName))
+				System.IO.File.Copy(fileName, timestamped);
+			return timestamped;
 		}
-		static public string GenerateDatedFileName(this string fileName)
+    /// <summary>
+    /// yyyyMMddHHmmssfff
+    /// </summary>
+    static public string GenerateDatedFileName(this string fileName)
 		{
-//			return fileName.GenerateFileName(DateTime.Now.ToString("yyyyMMddHHmm"));
 			return fileName.GenerateFileName(DateTime.Now.ToString("yyyyMMddHHmmssfff"));
 		}
 		static public string GenerateFileName(this string filename, string append)
