@@ -10,6 +10,7 @@ using Generator;
 using Generator.Elements;
 using Generator.Core.Markup;
 using Microsoft.Win32;
+using System.IO;
 
 //namespace on.gen {
 
@@ -156,10 +157,39 @@ namespace GeneratorTool
     }
 
     void InitializeConfiguration(object o, RoutedEventArgs a)
-		{
-//			try {
-			Model.Databases = DatabaseCollection.Load(Model.Configuration.datafile);
-			Model.Templates = TemplateCollection.Load(Model.Configuration.templatefile);
+    {
+      FileInfo fifer = new FileInfo(Model.FileName);
+
+      var datafile = (Model.Configuration.datafile.Length >=2)
+                   && (Model.Configuration.datafile[1] == ':')
+                    ? Model.Configuration.datafile
+                    : Path.Combine(fifer.Directory.FullName, Model.Configuration.datafile);
+      Model.Databases = DatabaseCollection.Load(datafile);
+      
+			// if we have something like {'c',':','/',...} or in other
+			// words, a drive-letter and path, then we know not to use
+			// "relative-path" mode.
+			//
+			// its become painfully obvious to me how old some of this
+			// code and concept is/was.
+ 			var tmplfile = (Model.Configuration.templatefile.Length >=2)
+                   && (Model.Configuration.templatefile[1] == ':')
+                    ? Model.Configuration.templatefile
+                    : Path.Combine(fifer.Directory.FullName, Model.Configuration.templatefile);
+			Model.Templates = TemplateCollection.Load(tmplfile);
+			fifer = null;
+
+			// we need better checks and perhaps better error (re-)collection.
+			// now would be good if I wasn't in a "projection" phase.
+			if (Model.Databases == null)
+				MessageBox.Show(
+					// caption
+					$"databases were not created?\n" +
+					$"Modal.FileName: {Model.FileName}\n" +
+					$"{Directory.GetCurrentDirectory()}",
+					// title-caption
+					"Error: databases failed to De-serialize.");
+			
 			// why is this necessary?
 			Model.Databases.Rechild();
 			a.Handled = true;
@@ -199,7 +229,7 @@ namespace GeneratorTool
 					args.Cancel = true;
 				};
 				saveWorker.RunWorkerCompleted += (sender, args) => { saveWorker.Dispose(); saveWorker = null;  };
-				//ModernDialog.ShowMessage(Model.FileName,"Messagebox",MessageBoxButton.OK);
+				// ModernDialog.ShowMessage(Model.FileName,"Messagebox",MessageBoxButton.OK);
 				saveWorker.RunWorkerAsync();
 				a.Handled = true;
 			}

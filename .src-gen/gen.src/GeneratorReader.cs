@@ -1,5 +1,6 @@
 ﻿/* oio * 8/2/2014 * Time: 2:03 PM */
 using System;
+using System.IO;
 using Generator;
 using Generator.Core.Markup;
 using Generator.Elements;
@@ -75,13 +76,8 @@ namespace GeneratorApp
 		const string filter = "Generator Configuration|*.generator-config|Xml Document (generator-config)|*.xml";
 
 		#if !NCORE
-		readonly OpenFileDialog ofd = new OpenFileDialog {
-			Filter = filter
-		};
-
-		readonly SaveFileDialog sfd = new SaveFileDialog {
-			Filter = filter
-		};
+		readonly OpenFileDialog ofd = new OpenFileDialog { Filter = filter };
+		readonly SaveFileDialog sfd = new SaveFileDialog { Filter = filter };
     #endif
     
 		#endregion
@@ -130,18 +126,33 @@ namespace GeneratorApp
     /// </summary>
     void InitializeConfiguration(object o, /*Routed*/EventArgs a)
 		{
-			//			try {
-			Model.Databases = DatabaseCollection.Load(Model.Configuration.datafile);
-			Model.Templates = TemplateCollection.Load(Model.Configuration.templatefile);
-			// why is this necessary?
-			Model.Databases.Rechild();
-//			a.Handled = true;
-			//			} catch (Exception e) {
-			//				throw e;
-			//			} finally {
-			if (InitializeCompleteAction != null)
-				InitializeCompleteAction.Invoke();
-			//			}
+      FileInfo fifer = new FileInfo(Model.FileName);
+
+      var datafile = (Model.Configuration.datafile.Length >=2)
+                   && (Model.Configuration.datafile[1] == ':')
+                    ? Model.Configuration.datafile
+                    : Path.Combine(fifer.Directory.FullName, Model.Configuration.datafile);
+      Model.Databases = DatabaseCollection.Load(datafile);
+
+      // if we have something like {'c',':','/',...} or in other
+      // words, a drive-letter and path, then we know not to use
+      // "relative-path" mode.
+      //
+      // its become painfully obvious to me how old some of this
+      // code and concept is/was.
+      var tmplfile = (Model.Configuration.templatefile.Length >=2)
+                   && (Model.Configuration.templatefile[1] == ':')
+                    ? Model.Configuration.templatefile
+                    : Path.Combine(fifer.Directory.FullName, Model.Configuration.templatefile);
+      Model.Templates = TemplateCollection.Load(tmplfile);
+      fifer = null;
+
+			Model.Databases.Rechild(); // why is this necessary?
+
+			// we need some error handling here
+
+      if (InitializeCompleteAction != null) InitializeCompleteAction.Invoke();
+
 		}
 		#endregion
 	}
